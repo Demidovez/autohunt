@@ -24,7 +24,7 @@ def parsePageToFile(adress):
 def readFileToTextArea():    
     textResult.delete('1.0', END)        
     fileTemp = open("avby.temp", "r", encoding = 'utf-8')
-    soup = BeautifulSoup(fileTemp.read()) # чтение из файла модулем поиска div
+    soup = BeautifulSoup(fileTemp.read()) # чтение из файла модулем поиска div 11111
     fileTemp.close()        
 
     textResult.insert(1.0, soup.find('div', 'listing__items').prettify())
