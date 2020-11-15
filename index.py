@@ -3,11 +3,13 @@ from tkinter.ttk import Combobox
 import urllib.request
 from bs4 import BeautifulSoup
 
+# Функция запуска парсинга в файл и его вывод в окне
 def startParse():  
     adress = editPage.get()
     parsePageToFile(adress)
     readFileToTextArea()
 
+# Парсим и сохраням в temp-файл
 def parsePageToFile(adress):
     webURL  = urllib.request.urlopen(adress)
     mybytes = webURL.read()
@@ -18,13 +20,14 @@ def parsePageToFile(adress):
     fileTemp.write(data)
     fileTemp.close()
 
+# Вывод из файла в окне пользователя
 def readFileToTextArea():   
     textResult.delete('1.0', END)        
     fileTemp = open("avby.temp", "r", encoding = 'utf-8')
     soup = BeautifulSoup(fileTemp.read())
     fileTemp.close()        
 
-    textResult.insert(1.0, soup.prettify())
+    textResult.insert(1.0, soup.find('div', 'listing__items').prettify())
    
   
 # Config of window
