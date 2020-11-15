@@ -21,10 +21,10 @@ def parsePageToFile(adress):
     fileTemp.close()
 
 # Вывод из файла в окне пользователя
-def readFileToTextArea():   
+def readFileToTextArea():    
     textResult.delete('1.0', END)        
     fileTemp = open("avby.temp", "r", encoding = 'utf-8')
-    soup = BeautifulSoup(fileTemp.read())
+    soup = BeautifulSoup(fileTemp.read()) # чтение из файла модулем поиска div
     fileTemp.close()        
 
     textResult.insert(1.0, soup.find('div', 'listing__items').prettify())
