@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 def startParse():  
     adress = editPage.get()
-    #parsePageToFile(adress)
+    parsePageToFile(adress)
     readFileToTextArea()
 
 def parsePageToFile(adress):
