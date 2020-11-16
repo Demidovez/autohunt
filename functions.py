@@ -1,2 +1,58 @@
+import mysql.connector
+from bs4 import BeautifulSoup
+from classes.Adt import Adt
+
 def sendXmlToDatabase():  
-    print("send xml to database...")
+    # #Подключаемся к нашей базе данных
+    # connection = mysql.connector.connect(host='', database='', user='', password='')
+
+    # #Создаем курсор
+    # cursor = connection.cursor()
+
+    # #Отбираем все строки из таблицы test
+    # query = 'select * from test;'
+    # cursor.execute(query)
+    # res = cursor.fetchall()
+
+    # #Закрываем курсор и подключение к БД              
+    # cursor.close()
+    # connection.close()
+
+    # Открываем XML файл
+    fileTemp = open("avby_test.xml", "r", encoding = 'utf-8')
+    # Удаляем переводы строк и пробелы
+    pureXml = "".join(line.strip() for line in fileTemp.read().split("\n"))
+    # Грузим содержимое в soup
+    soup = BeautifulSoup(pureXml, "lxml")
+    fileTemp.close()   
+
+    # Узнаём количество объявлений в XML
+    advtCount = len(soup.findAll('listing-item__wrap'))
+    # Помещаем каждое объявление в элемент списка
+    adtList = list(range(advtCount))
+
+    for number in range(advtCount):
+        # Находим объявление
+        item = soup.find('listing-item__wrap') 
+        # Удаляем тег одного объявления при каждом цикле
+        soup.find('listing-item__wrap').extract()    
+        # Создем объект класса Adt (Объявление) и добавляем в список
+        adtList[number] = Adt(
+            item.model.text, 
+            item.series.text, 
+            item.generation.text, 
+            item.location.text, 
+            item.year.text, 
+            item.engtype.text, 
+            item.engcapacity.text, 
+            item.fueltype.text, 
+            item.mileage.text, 
+            item.price.text, 
+            item.priceusd.text, 
+            item.date.text, 
+            item.image.text, 
+            item.urlad.text
+        )
+        
+
+    print(adtList[0])
