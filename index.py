@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.ttk import Combobox
 import urllib.request
 from bs4 import BeautifulSoup
+from functions import sendXmlToDatabase
 
 # Функция запуска парсинга (кнопкой) в файл и его вывод в окне
 def startParse():  
@@ -75,6 +76,9 @@ scrollForText.config(command = textResult.yview)
 
 btnStart = Button(window, text="Старт!", command = startParse)  
 btnStart.grid(column = 0, row = 6, padx = indentLeft, pady = indentTop, sticky = W)  
+
+btnSendXML = Button(window, text="Отправить xml в БД", command = sendXmlToDatabase)  
+btnSendXML.grid(column = 1, row = 6, padx = indentLeft, columnspan = 2, pady = indentTop, sticky = EW)  
 
 # Main Loop
 window.mainloop()
