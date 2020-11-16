@@ -29,9 +29,16 @@ def readFileToTextArea():
     fileTemp.close()        
 
     # Ищем div с классом listing__items и выводим в окно
-    textResult.insert(1.0, soup.find('div', 'listing__items').prettify())
-   
-  
+#    textResult.insert(1.0, soup.find('div', 'listing__items').prettify())
+
+    car_advt_count = len(soup.findAll('div', 'listing-item')) # Узнаём количество объявлений на странице
+    # Помещаем каждое объявление в элемент списка
+    car_advt_list = list(range(car_advt_count))
+    for number in range(car_advt_count):
+        car_advt_list[number] = soup.find('div', 'listing-item') 
+        soup.find('div', 'listing-item').extract() #Удаляем блок одного объявления при каждом цикле
+
+
 # Настройка окна
 window = Tk()  
 window.title("Сбор данных")  
