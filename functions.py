@@ -19,7 +19,7 @@ def sendXmlToDatabase():
     # connection.close()
 
     # Открываем XML файл
-    fileTemp = open("avby_test.xml", "r", encoding = 'utf-8')
+    fileTemp = open("avby.xml", "r", encoding = 'utf-8')
     # Удаляем переводы строк и пробелы
     pureXml = "".join(line.strip() for line in fileTemp.read().split("\n"))
     # Грузим содержимое в soup
@@ -32,10 +32,9 @@ def sendXmlToDatabase():
     adtList = list(range(advtCount))
 
     for number in range(advtCount):
-        # Находим объявление
-        item = soup.find('listing-item__wrap') 
-        # Удаляем тег одного объявления при каждом цикле
-        soup.find('listing-item__wrap').extract()    
+        # Находим объявление и удаляем тег одного объявления при каждом цикле
+        item = soup.find('listing-item__wrap').extract()   
+
         # Создем объект класса Adt (Объявление) и добавляем в список
         adtList[number] = Adt(
             item.model.text, 
@@ -50,9 +49,12 @@ def sendXmlToDatabase():
             item.price.text, 
             item.priceusd.text, 
             item.date.text, 
-            item.image.text, 
+            item.img.text, 
             item.urlad.text
-        )       
+        )     
+
+        # Для дебага, потом убрать!
+        print(adtList[number].model, adtList[number].series, adtList[number].generation, adtList[number].location, adtList[number].year, adtList[number].engtype, adtList[number].engcapacity, adtList[number].fueltype, adtList[number].mileage, adtList[number].price, adtList[number].priceusd, adtList[number].date, adtList[number].img, adtList[number].urlad)      
 
 def listFromDirtyHtmlCode(soup, tag, classTag):
     if not classTag:
