@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing-items>
+    <listing-item__wrap>
+        <model>Toyota</model>
+        <series>RAV4</series>
+        <generation>II (XA20) Рестайлинг</generation>
+        <location>Минск</location>
+        <year>2004 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.4 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>195 000 км</mileage>
+        <price>18 698 р.</price>
+        <priceusd>≈ 7 300 $</priceusd>
+        <date>только что</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0953/9142.jpeg</img>
+        <urlad>/toyota/rav4/100088661</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Kia</model>
+        <series>Sorento</series>
+        <generation>I</generation>
+        <location>Иваново</location>
+        <year>2003 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.5 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>280 000 км</mileage>
+        <price>17 418 р.</price>
+        <priceusd>≈ 6 800 $</priceusd>
+        <date>только что</date>
+        <img>https://static1.cargurus.com/gfx/reskin/no-image-available.jpg</img>
+        <urlad>/kia/sorento/100088650</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Mercedes-Benz</model>
+        <series>SL</series>
+        <generation>R230</generation>
+        <location>Минск</location>
+        <year>2003 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>3.7 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>142 000 км</mileage>
+        <price>39 702 р.</price>
+        <priceusd>≈ 15 500 $</priceusd>
+        <date>минуту назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0802.jpeg</img>
+        <urlad>/mercedes-benz/sl/100088697</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>BMW</model>
+        <series>3 серия</series>
+        <generation>E36</generation>
+        <location>Могилев</location>
+        <year>1992 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.8 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>210 000 км</mileage>
+        <price>5 889 р.</price>
+        <priceusd>≈ 2 299 $</priceusd>
+        <date>минуту назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0952.png</img>
+        <urlad>/bmw/3-seriya/100088711</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Citroen</model>
+        <series>C5</series>
+        <generation>I Рестайлинг</generation>
+        <location>Минск</location>
+        <year>2006 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>350 000 км</mileage>
+        <price>12 807 р.</price>
+        <priceusd>≈ 5 000 $</priceusd>
+        <date>минуту назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0227.jpeg</img>
+        <urlad>/citroen/c5/100088691</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Opel</model>
+        <series>Corsa</series>
+        <generation>D</generation>
+        <location>Минск</location>
+        <year>2007 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>1.4 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>158 019 км</mileage>
+        <price>12 295 р.</price>
+        <priceusd>≈ 4 800 $</priceusd>
+        <date>минуту назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/1367.jpeg</img>
+        <urlad>/opel/corsa/100088710</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Mercedes-Benz</model>
+        <series>E-Класс</series>
+        <generation>W210 S210</generation>
+        <location>Иваново</location>
+        <year>1998 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>3.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>400 000 км</mileage>
+        <price>11 526 р.</price>
+        <priceusd>≈ 4 500 $</priceusd>
+        <date>2 минуты назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0807.jpeg</img>
+        <urlad>/mercedes-benz/e-klass/100088702</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Tiguan</series>
+        <generation>I</generation>
+        <location>Бобруйск</location>
+        <year>2008 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>206 000 км</mileage>
+        <price>23 309 р.</price>
+        <priceusd>≈ 9 100 $</priceusd>
+        <date>2 минуты назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0722.jpeg</img>
+        <urlad>/volkswagen/tiguan/100088701</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Mitsubishi</model>
+        <series>Space Runner</series>
+        <generation>I</generation>
+        <location>Гродно</location>
+        <year>1997 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.8 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>340 000 км</mileage>
+        <price>5 120 р.</price>
+        <priceusd>≈ 1999 $</priceusd>
+        <date>2 минуты назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0536/3250.jpeg</img>
+        <urlad>/mitsubishi/space-runner/100018069</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B4</generation>
+        <location>Ляховичи</location>
+        <year>1996 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.9 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>480 000 км</mileage>
+        <price>6 147 р.</price>
+        <priceusd>≈ 2 400 $</priceusd>
+        <date>4 минуты назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0502.jpeg</img>
+        <urlad>/volkswagen/passat/100088692</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Peugeot</model>
+        <series>307</series>
+        <generation>I</generation>
+        <location>Кобрин</location>
+        <year>2003 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>271 655 км</mileage>
+        <price>9 989 р.</price>
+        <priceusd>≈ 3 900 $</priceusd>
+        <date>4 минуты назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0602.jpeg</img>
+        <urlad>/peugeot/307/100088694</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Suzuki</model>
+        <series>SX4</series>
+        <generation>I</generation>
+        <location>Пинск</location>
+        <year>2008 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>87 510 км</mileage>
+        <price>14 984 р.</price>
+        <priceusd>≈ 5 850 $</priceusd>
+        <date>5 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0317.jpeg</img>
+        <urlad>/suzuki/sx4/100088674</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Lada (ВАЗ)</model>
+        <series>2121 Нива</series>
+        <generation></generation>
+        <location>Скидель</location>
+        <year>1990 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>200 000 км</mileage>
+        <price>4 098 р.</price>
+        <priceusd>≈ 1600 $</priceusd>
+        <date>5 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0677.jpeg</img>
+        <urlad>/lada-vaz/2121-niva/100088707</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Audi</model>
+        <series>90</series>
+        <generation>89 B3</generation>
+        <location>Барановичи</location>
+        <year>1990 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>111 111 км</mileage>
+        <price>3 586 р.</price>
+        <priceusd>≈ 1400 $</priceusd>
+        <date>6 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0547.jpeg</img>
+        <urlad>/audi/90/100088696</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B5</generation>
+        <location>Ельск</location>
+        <year>1997 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.8 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>460 км</mileage>
+        <price>8 453 р.</price>
+        <priceusd>≈ 3 300 $</priceusd>
+        <date>7 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0886/1498.jpeg</img>
+        <urlad>/volkswagen/passat/100077218</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Dodge</model>
+        <series>Stratus</series>
+        <generation>II</generation>
+        <location>Гродно</location>
+        <year>2001 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.4 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>215 000 км</mileage>
+        <price>4 611 р.</price>
+        <priceusd>≈ 1800 $</priceusd>
+        <date>7 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0472.jpeg</img>
+        <urlad>/dodge/stratus/100088693</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Renault</model>
+        <series>Sandero</series>
+        <generation>II</generation>
+        <location>Минск</location>
+        <year>2016 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>126 000 км</mileage>
+        <price>14 088 р.</price>
+        <priceusd>≈ 5 500 $</priceusd>
+        <date>8 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0777.jpeg</img>
+        <urlad>/renault/sandero/100088639</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B4</generation>
+        <location>Гомель</location>
+        <year>1994 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.8 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>300 000 км</mileage>
+        <price>4 482 р.</price>
+        <priceusd>≈ 1750 $</priceusd>
+        <date>9 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0042.jpeg</img>
+        <urlad>/volkswagen/passat/100088689</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Renault</model>
+        <series>Megane</series>
+        <generation>I</generation>
+        <location>Слоним</location>
+        <year>2003 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>173 000 км</mileage>
+        <price>7 940 р.</price>
+        <priceusd>≈ 3 100 $</priceusd>
+        <date>9 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0953/9982.jpeg</img>
+        <urlad>/renault/megane/100088680</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Opel</model>
+        <series>Vectra</series>
+        <generation>B Рестайлинг</generation>
+        <location>Минск</location>
+        <year>2000 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>275 000 км</mileage>
+        <price>8 325 р.</price>
+        <priceusd>≈ 3 250 $</priceusd>
+        <date>9 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0147.jpeg</img>
+        <urlad>/opel/vectra/100088695</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B3</generation>
+        <location>Дрогичин</location>
+        <year>1989 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>290 км</mileage>
+        <price>3 330 р.</price>
+        <priceusd>≈ 1300 $</priceusd>
+        <date>10 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0954/0002.jpeg</img>
+        <urlad>/volkswagen/passat/100088687</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Alfa Romeo</model>
+        <series>146</series>
+        <generation></generation>
+        <location>Фаниполь</location>
+        <year>1997 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.4 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>350 000 км</mileage>
+        <price>3 202 р.</price>
+        <priceusd>≈ 1250 $</priceusd>
+        <date>11 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0953/9812.jpeg</img>
+        <urlad>/alfa-romeo/146/100088681</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>BMW</model>
+        <series>X1</series>
+        <generation>E84</generation>
+        <location>Гродно</location>
+        <year>2010 г.</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>231 000 км</mileage>
+        <price>30 353 р.</price>
+        <priceusd>≈ 11 850 $</priceusd>
+        <date>12 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0791/8047.jpeg</img>
+        <urlad>/bmw/x1/100061400</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Lancia</model>
+        <series>Lybra</series>
+        <generation></generation>
+        <location>Гродно</location>
+        <year>2000 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.8 л</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>308 000 км</mileage>
+        <price>6 634 р.</price>
+        <priceusd>≈ 2 590 $</priceusd>
+        <date>12 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0604/4935.jpeg</img>
+        <urlad>/lancia/lybra/100030818</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Opel</model>
+        <series>Zafira</series>
+        <generation>A</generation>
+        <location>Гродно</location>
+        <year>2001 г.</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0 л</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>360 000 км</mileage>
+        <price>10 243 р.</price>
+        <priceusd>≈ 3 999 $</priceusd>
+        <date>12 минут назад</date>
+        <img>https://avcdn.av.by/advertpreview/0000/0527/3226.jpeg</img>
+        <urlad>/opel/zafira/100016305</urlad>
+    </listing-item__wrap>
+</listing-items>

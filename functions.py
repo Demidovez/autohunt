@@ -52,7 +52,14 @@ def sendXmlToDatabase():
             item.date.text, 
             item.image.text, 
             item.urlad.text
-        )
-        
+        )       
 
-    print(adtList[0])
+def listFromDirtyHtmlCode(soup, tag, classTag):
+    if not classTag:
+        resultList = str(soup).replace('<' + tag + '>', '').replace('</' + tag + '>', '').replace('\xa0', ' ').replace(' · ', ' ').replace(',', '').split('<!-- --> <!-- -->')
+    else:
+        resultList = str(soup.find(tag, classTag)).replace('<' + tag + ' class="' + classTag + '">', '').replace('</' + tag + '>', '').replace('\xa0', ' ').replace(' · ', ' ').replace(',', '').split('<!-- --> <!-- -->')
+    
+    
+
+    return resultList
