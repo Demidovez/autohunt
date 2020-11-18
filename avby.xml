@@ -1,388 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <listing-items>
     <listing-item__wrap>
-        <model>Volkswagen</model>
-        <series>Golf</series>
-        <generation>IV</generation>
-        <location>Барановичи</location>
-        <year>2001</year>
-        <engtype>механика</engtype>
-        <engcapacity>1.9</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>340</mileage>
-        <price>11962</price>
-        <priceusd>4680</priceusd>
+        <model>Tesla</model>
+        <series>Model S</series>
+        <generation>I Рестайлинг</generation>
+        <location>Минск</location>
+        <year>2016</year>
+        <engtype>автомат</engtype>
+        <engcapacity>электро</engcapacity>
+        <fueltype>запас хода 550 км</fueltype>
+        <mileage>57840</mileage>
+        <price>115527</price>
+        <priceusd>45200</priceusd>
         <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0955/8522.jpeg</image>
-        <urlad>/volkswagen/golf/100089019</urlad>
+        <image>https://static1.cargurus.com/gfx/reskin/no-image-available.jpg</image>
+        <urlad>/tesla/model-s/100090242</urlad>
     </listing-item__wrap>
     <listing-item__wrap>
-        <model>Daewoo</model>
-        <series>Nubira</series>
-        <generation>J150 J190 Рестайлинг</generation>
-        <location>Гомель</location>
-        <year>2000</year>
+        <model>Fiat</model>
+        <series>Marea</series>
+        <generation></generation>
+        <location>Волковыск</location>
+        <year>1998</year>
         <engtype>механика</engtype>
         <engcapacity>1.6</engcapacity>
         <fueltype>бензин</fueltype>
-        <mileage>380000</mileage>
-        <price>3706</price>
-        <priceusd>1450</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0955/8737.jpeg</image>
-        <urlad>/daewoo/nubira/100022389</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X3</series>
-        <generation>G01</generation>
-        <location>Минск</location>
-        <year>2020</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>8</mileage>
-        <price>187625</price>
-        <priceusd>73409</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/05/60/public_20056083_s_6dab79c.jpeg</image>
-        <urlad>/bmw/x3/20056083</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Mercedes-Benz</model>
-        <series>GL-Класс</series>
-        <generation>X166</generation>
-        <location>Минск</location>
-        <year>2012</year>
-        <engtype>автомат</engtype>
-        <engcapacity>4.7</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>187300</mileage>
-        <price>65175</price>
-        <priceusd>25500</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/01/47/public_20014778_s_299a642.jpeg</image>
-        <urlad>/mercedes-benz/gl-klass/20014778</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Lexus</model>
-        <series>LC</series>
-        <generation></generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>5.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>24500</mileage>
-        <price>173546</price>
-        <priceusd>67900</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/18/54/public_20185492_s_081bd6a.jpeg</image>
-        <urlad>/lexus/lc/20185492</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>6 серия</series>
-        <generation>F12 F13 F06 (Рестайлинг)</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>43</mileage>
-        <price>185303</price>
-        <priceusd>72500</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/01/50/public_20015082_s_142a635.jpeg</image>
-        <urlad>/bmw/6-seriya/20015082</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X5</series>
-        <generation>F15</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>115000</mileage>
-        <price>107092</price>
-        <priceusd>41900</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0554/1934.jpeg</image>
-        <urlad>/bmw/x5/100021535</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X6</series>
-        <generation>F16</generation>
-        <location>Минск</location>
-        <year>2014</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>122000</mileage>
-        <price>96357</price>
-        <priceusd>37700</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/019/96/32/public_19963206_s_099cb14.jpeg</image>
-        <urlad>/bmw/x6/19963206</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Land Rover</model>
-        <series>Range Rover</series>
-        <generation>IV</generation>
-        <location>Минск</location>
-        <year>2018</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>72000</mileage>
-        <price>251756</price>
-        <priceusd>98500</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/18/10/public_20181064_s_4043e24.jpeg</image>
-        <urlad>/land-rover/range-rover/20181064</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>3 серия</series>
-        <generation>F30 F31</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>101000</mileage>
-        <price>70287</price>
-        <priceusd>27500</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/017/19/46/public_17194684_s_b836428.jpeg</image>
-        <urlad>/bmw/3-seriya/17194684</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X3</series>
-        <generation>G01</generation>
-        <location>Минск</location>
-        <year>2018</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>22500</mileage>
-        <price>125184</price>
-        <priceusd>48979</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/016/24/65/public_16246556_s_0e2a38d.jpeg</image>
-        <urlad>/bmw/x3/16246556</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Mercedes-Benz</model>
-        <series>GLK</series>
-        <generation>X204</generation>
-        <location>Минск</location>
-        <year>2012</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.5</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>128500</mileage>
-        <price>35655</price>
-        <priceusd>13950</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/018/18/63/public_18186359_s_a182402.jpeg</image>
-        <urlad>/mercedes-benz/glk/18186359</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>5 серия</series>
-        <generation>F10 F11</generation>
-        <location>Минск</location>
-        <year>2014</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>171445</mileage>
-        <price>63642</price>
-        <priceusd>24900</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0772/4872.jpeg</image>
-        <urlad>/bmw/5-seriya/100058236</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X6</series>
-        <generation>F16</generation>
-        <location>Минск</location>
-        <year>2018</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>18900</mileage>
-        <price>140319</price>
-        <priceusd>54900</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/018/94/67/public_18946781_s_26ac260.jpeg</image>
-        <urlad>/bmw/x6/18946781</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>3 серия</series>
-        <generation>F30 F31</generation>
-        <location>Минск</location>
-        <year>2014</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>125000</mileage>
-        <price>51092</price>
-        <priceusd>19990</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0553/8038.jpeg</image>
-        <urlad>/bmw/3-seriya/100021471</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>X6</series>
-        <generation>F16</generation>
-        <location>Минск</location>
-        <year>2018</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>53901</mileage>
-        <price>145431</price>
-        <priceusd>56900</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0770/7077.jpeg</image>
-        <urlad>/bmw/x6/100058018</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Mercedes-Benz</model>
-        <series>A-Класс AMG</series>
-        <generation>W176</generation>
-        <location>Минск</location>
-        <year>2015</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>72800</mileage>
-        <price>61214</price>
-        <priceusd>23950</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/018/94/66/public_18946657_s_d413573.jpeg</image>
-        <urlad>/mercedes-benz/a-klass-amg/18946657</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>5 серия</series>
-        <generation>G30</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>75000</mileage>
-        <price>95335</price>
-        <priceusd>37300</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/020/19/47/public_20194750_s_e1697c2.jpeg</image>
-        <urlad>/bmw/5-seriya/20194750</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Lexus</model>
-        <series>IS</series>
-        <generation>II Рестайлинг</generation>
-        <location>Минск</location>
-        <year>2010</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.5</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>116371</mileage>
-        <price>41789</price>
-        <priceusd>16350</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0831/9285.jpeg</image>
-        <urlad>/lexus/is/100068099</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>BMW</model>
-        <series>3 серия</series>
-        <generation>G20</generation>
-        <location>Минск</location>
-        <year>2019</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>25200</mileage>
-        <price>124984</price>
-        <priceusd>48900</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0681/4476.jpeg</image>
-        <urlad>/bmw/3-seriya/100044010</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>MINI</model>
-        <series>Countryman</series>
-        <generation>F60</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>670</mileage>
-        <price>94313</price>
-        <priceusd>36900</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0663/9113.jpeg</image>
-        <urlad>/mini/countryman/20183627</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Mercedes-Benz</model>
-        <series>GLE Coupe</series>
-        <generation></generation>
-        <location>Минск</location>
-        <year>2015</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>181800</mileage>
-        <price>116293</price>
-        <priceusd>45500</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/019/66/96/public_19669603_s_9ade702.jpeg</image>
-        <urlad>/mercedes-benz/gle-coupe/19669603</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Renault</model>
-        <series>Koleos</series>
-        <generation>II</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>2.5</engcapacity>
-        <fueltype>бензин</fueltype>
-        <mileage>58000</mileage>
-        <price>59552</price>
-        <priceusd>23300</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0812/0188.jpeg</image>
-        <urlad>/renault/koleos/100064659</urlad>
-    </listing-item__wrap>
-    <listing-item__wrap>
-        <model>Mercedes-Benz</model>
-        <series>E-Класс</series>
-        <generation>W213 S213 X213 C238 A238</generation>
-        <location>Минск</location>
-        <year>2017</year>
-        <engtype>автомат</engtype>
-        <engcapacity>3.0</engcapacity>
-        <fueltype>дизель</fueltype>
-        <mileage>236216</mileage>
-        <price>76421</price>
-        <priceusd>29900</priceusd>
-        <date>только что</date>
-        <image>https://static.av.by/public_images/preview/018/94/67/public_18946730_s_cfdd47f.jpeg</image>
-        <urlad>/mercedes-benz/e-klass/18946730</urlad>
+        <mileage>325000</mileage>
+        <price>1853</price>
+        <priceusd>725</priceusd>
+        <date>2 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5684.jpeg</image>
+        <urlad>/fiat/marea/100072916</urlad>
     </listing-item__wrap>
     <listing-item__wrap>
         <model>BMW</model>
@@ -392,12 +40,364 @@
         <year>2015</year>
         <engtype>автомат</engtype>
         <engcapacity>2.0</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>89000</mileage>
+        <price>52396</price>
+        <priceusd>20500</priceusd>
+        <date>4 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5544.jpeg</image>
+        <urlad>/bmw/3-seriya/100090224</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Ford</model>
+        <series>Escort</series>
+        <generation>V Рестайлинг</generation>
+        <location>Бобруйск</location>
+        <year>1994</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6</engcapacity>
         <fueltype>бензин</fueltype>
-        <mileage>64477</mileage>
-        <price>50351</price>
-        <priceusd>19700</priceusd>
-        <date>только что</date>
-        <image>https://avcdn.av.by/advertpreview/0000/0845/0271.jpeg</image>
-        <urlad>/bmw/3-seriya/100070139</urlad>
+        <mileage>180000</mileage>
+        <price>256</price>
+        <priceusd>100</priceusd>
+        <date>5 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5669.jpeg</image>
+        <urlad>/ford/escort/100090249</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>BMW</model>
+        <series>5 серия</series>
+        <generation>E39</generation>
+        <location>Барановичи</location>
+        <year>1998</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.8</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>290000</mileage>
+        <price>10221</price>
+        <priceusd>3999</priceusd>
+        <date>7 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0822/5879.jpeg</image>
+        <urlad>/bmw/5-seriya/100066516</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Audi</model>
+        <series>A8</series>
+        <generation>D4</generation>
+        <location>Гродно</location>
+        <year>2010</year>
+        <engtype>автомат</engtype>
+        <engcapacity>3.0</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>175000</mileage>
+        <price>62108</price>
+        <priceusd>24300</priceusd>
+        <date>8 минут назад</date>
+        <image>https://static.av.by/public_images/preview/020/01/10/public_20011076_s_efb94dd.jpeg</image>
+        <urlad>/audi/a8/20011076</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Peugeot</model>
+        <series>5008</series>
+        <generation>I Рестайлинг</generation>
+        <location>Минск</location>
+        <year>2014</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>154700</mileage>
+        <price>31821</price>
+        <priceusd>12450</priceusd>
+        <date>9 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/0752.jpeg</image>
+        <urlad>/peugeot/5008/100090109</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Chrysler</model>
+        <series>Neon</series>
+        <generation>I</generation>
+        <location>Крупки</location>
+        <year>1996</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>260000</mileage>
+        <price>1917</price>
+        <priceusd>750</priceusd>
+        <date>9 минут назад</date>
+        <image>https://static1.cargurus.com/gfx/reskin/no-image-available.jpg</image>
+        <urlad>/chrysler/neon/100090229</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Kia</model>
+        <series>Sportage</series>
+        <generation>III Рестайлинг</generation>
+        <location>Бобруйск</location>
+        <year>2014</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>98000</mileage>
+        <price>33866</price>
+        <priceusd>13250</priceusd>
+        <date>10 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5579.jpeg</image>
+        <urlad>/kia/sportage/100090244</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Daewoo</model>
+        <series>Matiz</series>
+        <generation>M150 Рестайлинг</generation>
+        <location>Жлобин</location>
+        <year>2008</year>
+        <engtype>механика</engtype>
+        <engcapacity>0.8</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>160000</mileage>
+        <price>1917</price>
+        <priceusd>750</priceusd>
+        <date>14 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5174.jpeg</image>
+        <urlad>/daewoo/matiz/100090227</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Peugeot</model>
+        <series>406</series>
+        <generation>I</generation>
+        <location>Минск</location>
+        <year>1998</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>300000</mileage>
+        <price>7300</price>
+        <priceusd>2856</priceusd>
+        <date>14 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5499.jpeg</image>
+        <urlad>/peugeot/406/100090231</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Dodge</model>
+        <series>Journey</series>
+        <generation>I</generation>
+        <location>Минск</location>
+        <year>2008</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.0</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>210000</mileage>
+        <price>22492</price>
+        <priceusd>8800</priceusd>
+        <date>18 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5164.jpeg</image>
+        <urlad>/dodge/journey/100090220</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Hyundai</model>
+        <series>H-1(Starex)</series>
+        <generation>I</generation>
+        <location>Лепель</location>
+        <year>1998</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.5</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>300000</mileage>
+        <price>5112</price>
+        <priceusd>2000</priceusd>
+        <date>18 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/4754.jpeg</image>
+        <urlad>/hyundai/h-1-starex/100090218</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>SEAT</model>
+        <series>Alhambra</series>
+        <generation>I</generation>
+        <location>Дрогичин</location>
+        <year>1999</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.9</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>405000</mileage>
+        <price>11629</price>
+        <priceusd>4550</priceusd>
+        <date>18 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5309.jpeg</image>
+        <urlad>/seat/alhambra/100090233</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Buick</model>
+        <series>Encore</series>
+        <generation></generation>
+        <location>Минск</location>
+        <year>2017</year>
+        <engtype>автомат</engtype>
+        <engcapacity>1.4</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>35000</mileage>
+        <price>33482</price>
+        <priceusd>13100</priceusd>
+        <date>19 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5034.jpeg</image>
+        <urlad>/buick/encore/100090222</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B6</generation>
+        <location>Гродно</location>
+        <year>2006</year>
+        <engtype>механика</engtype>
+        <engcapacity>2.0</engcapacity>
+        <fueltype>дизель</fueltype>
+        <mileage>294000</mileage>
+        <price>14822</price>
+        <priceusd>5799</priceusd>
+        <date>20 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0527/0466.jpeg</image>
+        <urlad>/volkswagen/passat/100016269</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Toyota</model>
+        <series>Auris</series>
+        <generation>I (E150)</generation>
+        <location>Молодечно</location>
+        <year>2007</year>
+        <engtype>автомат</engtype>
+        <engcapacity>1.6</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>225000</mileage>
+        <price>14569</price>
+        <priceusd>5700</priceusd>
+        <date>20 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5044.jpeg</image>
+        <urlad>/toyota/auris/100090225</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Rover</model>
+        <series>400</series>
+        <generation>HH-R</generation>
+        <location>Марьина горка</location>
+        <year>1996</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>300000</mileage>
+        <price>1789</price>
+        <priceusd>700</priceusd>
+        <date>21 минуту назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0962/5114.jpeg</image>
+        <urlad>/rover/400/100090230</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>BMW</model>
+        <series>X5</series>
+        <generation>E53</generation>
+        <location>Гродно</location>
+        <year>2001</year>
+        <engtype>автомат</engtype>
+        <engcapacity>3.0</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>300000</mileage>
+        <price>14057</price>
+        <priceusd>5500</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0820/1029.jpeg</image>
+        <urlad>/bmw/x5/100066089</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Rover</model>
+        <series>25</series>
+        <generation></generation>
+        <location>Гродно</location>
+        <year>2000</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.4</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>354000</mileage>
+        <price>4319</price>
+        <priceusd>1690</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0565/0786.jpeg</image>
+        <urlad>/rover/25/100023418</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B6</generation>
+        <location>Гродно</location>
+        <year>2007</year>
+        <engtype>автомат</engtype>
+        <engcapacity>1.8</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>198000</mileage>
+        <price>15333</price>
+        <priceusd>5999</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0923/5564.jpeg</image>
+        <urlad>/volkswagen/passat/100083560</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Mazda</model>
+        <series>6</series>
+        <generation>II Рестайлинг</generation>
+        <location>Гродно</location>
+        <year>2011</year>
+        <engtype>автомат</engtype>
+        <engcapacity>2.0</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>166000</mileage>
+        <price>21725</price>
+        <priceusd>8500</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://static.av.by/public_images/preview/019/96/29/public_19962932_s_9e779aa.jpeg</image>
+        <urlad>/mazda/6/19962932</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Opel</model>
+        <series>Meriva</series>
+        <generation>I</generation>
+        <location>Гродно</location>
+        <year>2005</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.4</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>317000</mileage>
+        <price>8818</price>
+        <priceusd>3450</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0724/9328.jpeg</image>
+        <urlad>/opel/meriva/100050500</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Volkswagen</model>
+        <series>Passat</series>
+        <generation>B7</generation>
+        <location>Гродно</location>
+        <year>2012</year>
+        <engtype>автомат</engtype>
+        <engcapacity>1.4</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>184000</mileage>
+        <price>21342</price>
+        <priceusd>8350</priceusd>
+        <date>24 минуты назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0924/2244.jpeg</image>
+        <urlad>/volkswagen/passat/100083684</urlad>
+    </listing-item__wrap>
+    <listing-item__wrap>
+        <model>Toyota</model>
+        <series>Corolla</series>
+        <generation>VII (E100)</generation>
+        <location>Барановичи</location>
+        <year>1995</year>
+        <engtype>механика</engtype>
+        <engcapacity>1.6</engcapacity>
+        <fueltype>бензин</fueltype>
+        <mileage>258000</mileage>
+        <price>3195</price>
+        <priceusd>1250</priceusd>
+        <date>27 минут назад</date>
+        <image>https://avcdn.av.by/advertpreview/0000/0954/3507.jpeg</image>
+        <urlad>/toyota/corolla/100088756</urlad>
     </listing-item__wrap>
 </listing-items>

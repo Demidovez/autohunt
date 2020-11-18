@@ -1,23 +1,8 @@
-import mysql.connector
 from bs4 import BeautifulSoup
-from classes.Adt import Adt
+import requests
+import json
 
 def sendXmlToDatabase():  
-    # #Подключаемся к нашей базе данных
-    # connection = mysql.connector.connect(host='', database='', user='', password='')
-
-    # #Создаем курсор
-    # cursor = connection.cursor()
-
-    # #Отбираем все строки из таблицы test
-    # query = 'select * from test;'
-    # cursor.execute(query)
-    # res = cursor.fetchall()
-
-    # #Закрываем курсор и подключение к БД              
-    # cursor.close()
-    # connection.close()
-
     # Открываем XML файл
     fileTemp = open("avby.xml", "r", encoding = 'utf-8')
     # Удаляем переводы строк и пробелы
@@ -36,25 +21,24 @@ def sendXmlToDatabase():
         item = soup.find('listing-item__wrap').extract()   
 
         # Создем объект класса Adt (Объявление) и добавляем в список
-        adtList[number] = Adt(
-            item.model.text, 
-            item.series.text, 
-            item.generation.text, 
-            item.location.text, 
-            item.year.text, 
-            item.engtype.text, 
-            item.engcapacity.text, 
-            item.fueltype.text, 
-            item.mileage.text, 
-            item.price.text, 
-            item.priceusd.text, 
-            item.date.text, 
-            item.image.text, 
-            item.urlad.text
-        )     
+        adtList[number] = {
+            'model': item.model.text, 
+            'series': item.series.text, 
+            'generation': item.generation.text, 
+            'location': item.location.text, 
+            'year': item.year.text, 
+            'engtype': item.engtype.text, 
+            'engcapacity': item.engcapacity.text, 
+            'fueltype': item.fueltype.text, 
+            'mileage': item.mileage.text, 
+            'price': item.price.text, 
+            'priceusd': item.priceusd.text, 
+            'date': item.date.text, 
+            'image': item.image.text, 
+            'urlad': item.urlad.text
+        }     
 
-        # Для дебага, потом убрать!
-        print(adtList[number].model, adtList[number].series, adtList[number].generation, adtList[number].location, adtList[number].year, adtList[number].engtype, adtList[number].engcapacity, adtList[number].fueltype, adtList[number].mileage, adtList[number].price, adtList[number].priceusd, adtList[number].date, adtList[number].image, adtList[number].urlad)      
+    requests.post('http://82.146.46.106:5000/save_adt', json=json.dumps(adtList))     
 
 def listFromDirtyHtmlCode(soup, tag, classTag):
     if not classTag:
