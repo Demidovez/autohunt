@@ -20,7 +20,7 @@ def sendXmlToDatabase():
         # Находим объявление и удаляем тег одного объявления при каждом цикле
         item = soup.find('listing-item__wrap').extract()   
 
-        # Создем объект класса Adt (Объявление) и добавляем в список
+        # Создем простой объект с полями и добавляем в список
         adtList[number] = {
             'model': item.model.text, 
             'series': item.series.text, 
@@ -38,7 +38,8 @@ def sendXmlToDatabase():
             'urlad': item.urlad.text
         }     
 
-    requests.post('http://82.146.46.106:5000/save_adt', json=json.dumps(adtList))     
+    # Отправляем на сервер в виде json-строки
+    requests.post('http://82.146.46.106:5000/save_adt', json = json.dumps(adtList))     
 
 def listFromDirtyHtmlCode(soup, tag, classTag):
     if not classTag:
@@ -46,6 +47,4 @@ def listFromDirtyHtmlCode(soup, tag, classTag):
     else:
         resultList = str(soup.find(tag, classTag)).replace('<' + tag + ' class="' + classTag + '">', '').replace('</' + tag + '>', '').replace('\xa0', ' ').replace(' · ', ' ').replace(',', '').split('<!-- --> <!-- -->')
     
-    
-
     return resultList
