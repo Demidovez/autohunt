@@ -1,7 +1,7 @@
 # Класс объявления
 
 class Adt:
-    def __init__(self, model, series, generation, location, year, engtype, engcapacity, fueltype, mileage, price, priceusd, date, img, urlad):
+    def __init__(self, model, series, generation, location, year, engtype, engcapacity, fueltype, mileage, price, priceusd, date, image, urlad):
         self.model       = model
         self.series      = series
         self.generation  = generation
@@ -14,5 +14,5 @@ class Adt:
         self.price       = price
         self.priceusd    = priceusd
         self.date        = date
-        self.img         = img
+        self.image       = image
         self.urlad       = urlad

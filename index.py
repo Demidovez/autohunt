@@ -68,7 +68,7 @@ def readFileToTextArea():
         priceusd = adt.find('div', 'listing-item__priceusd').text if adt.find('div', 'listing-item__priceusd') is not None else ''
         date = adt.find('div', 'listing-item__date').text if adt.find('div', 'listing-item__date') is not None else ''
             
-        img = adt.img['data-srcset'].split(' ')[0] if adt.img is not None else 'https://static1.cargurus.com/gfx/reskin/no-image-available.jpg'
+        image = adt.img['data-srcset'].split(' ')[0] if adt.img is not None else 'https://static1.cargurus.com/gfx/reskin/no-image-available.jpg'
         urlad = adt.find('a', 'listing-item__link')['href']    
 
         # Пишем параметры в файл
@@ -85,7 +85,7 @@ def readFileToTextArea():
         xmlFile.write('        <price>' + price + '</price>\n')
         xmlFile.write('        <priceusd>' + priceusd + '</priceusd>\n')
         xmlFile.write('        <date>' + date + '</date>\n')
-        xmlFile.write('        <img>' + img + '</img>\n')
+        xmlFile.write('        <image>' + image + '</image>\n')
         xmlFile.write('        <urlad>' + urlad + '</urlad>\n')
         xmlFile.write('    </listing-item__wrap>\n')
 

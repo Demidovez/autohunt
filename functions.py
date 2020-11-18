@@ -49,12 +49,12 @@ def sendXmlToDatabase():
             item.price.text, 
             item.priceusd.text, 
             item.date.text, 
-            item.img.text, 
+            item.image.text, 
             item.urlad.text
         )     
 
         # Для дебага, потом убрать!
-        print(adtList[number].model, adtList[number].series, adtList[number].generation, adtList[number].location, adtList[number].year, adtList[number].engtype, adtList[number].engcapacity, adtList[number].fueltype, adtList[number].mileage, adtList[number].price, adtList[number].priceusd, adtList[number].date, adtList[number].img, adtList[number].urlad)      
+        print(adtList[number].model, adtList[number].series, adtList[number].generation, adtList[number].location, adtList[number].year, adtList[number].engtype, adtList[number].engcapacity, adtList[number].fueltype, adtList[number].mileage, adtList[number].price, adtList[number].priceusd, adtList[number].date, adtList[number].image, adtList[number].urlad)      
 
 def listFromDirtyHtmlCode(soup, tag, classTag):
     if not classTag:
