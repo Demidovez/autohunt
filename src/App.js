@@ -1,11 +1,27 @@
-import { Grid, Item, Label, Segment, Button, Icon } from "semantic-ui-react";
+import {
+  Grid,
+  Item,
+  Label,
+  Segment,
+  Button,
+  Icon,
+  Header,
+} from "semantic-ui-react";
 import React from "react";
+import axios from "axios";
 import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isStart: false };
+    this.state = { isStart: false, advts: [] };
+  }
+
+  componentDidMount() {
+    axios.get(`http://82.146.46.106/server/all_advts`).then((res) => {
+      const advts = res.data;
+      this.setState({ advts });
+    });
   }
 
   startStopParsing = () => {
@@ -18,8 +34,8 @@ class App extends React.Component {
     return (
       <Grid>
         <Grid.Row>
-          <Grid.Column width={5}></Grid.Column>{" "}
-          <Grid.Column width={6}>
+          <Grid.Column width={4}></Grid.Column>{" "}
+          <Grid.Column width={8}>
             <Button
               icon
               labelPosition="left"
@@ -27,51 +43,126 @@ class App extends React.Component {
               onClick={this.startStopParsing}
             >
               <Icon name={this.state.isStart ? "pause" : "play"} />
-              {this.state.isStart ? "Stop" : "Start"}
+              {this.state.isStart ? "Стоп" : "Старт"}
             </Button>
-            <Item.Group divided>
-              <Segment>
-                <Item>
-                  <Item.Image
-                    src="https://avcdn.av.by/advertbig/0000/0978/5567.jpeg"
-                    size="small"
-                  />
-                  <Item.Content>
-                    <Item.Header as="a">12 Years a Slave</Item.Header>
-                    <Item.Meta>
-                      <span className="cinema">Union Square 14</span>
-                    </Item.Meta>
-                    <Item.Description>Union Square 14</Item.Description>
-                    <Item.Extra>
-                      <Label>IMAX</Label>
-                      <Label icon="globe" content="Additional Languages" />
-                    </Item.Extra>
-                  </Item.Content>
-                </Item>
-              </Segment>
 
-              <Segment>
+            <Segment>
+              <Item.Group>
                 <Item>
                   <Item.Image
                     src="https://avcdn.av.by/advertbig/0000/0978/5567.jpeg"
-                    size="small"
+                    size="medium"
+                    rounded
                   />
                   <Item.Content>
-                    <Item.Header as="a">12 Years a Slave</Item.Header>
+                    <Header
+                      verticalAlign="top"
+                      className="header-advt"
+                      size="large"
+                    >
+                      Opel Zafira A Рестайлинг
+                    </Header>
                     <Item.Meta>
-                      <span className="cinema">Union Square 14</span>
+                      <Label color="blue">
+                        8 805 р.
+                        <Label.Detail>3 450 $</Label.Detail>
+                      </Label>
+                      {"  "}
+                      <span>2004 г.</span>
                     </Item.Meta>
-                    <Item.Description>Union Square 14</Item.Description>
+                    <Item.Meta>
+                      <Label>опубликовано вчера</Label>
+                      <Label>2.0 л</Label>
+                      <Label>342 500 км</Label>
+                    </Item.Meta>
+                    <Item.Description>
+                      минивэн, передний привод, синий
+                    </Item.Description>
                     <Item.Extra>
-                      <Label>IMAX</Label>
-                      <Label icon="globe" content="Additional Languages" />
+                      <Label>автомат</Label>
+                      <Label icon="globe" content="дизель" />
                     </Item.Extra>
+                    <div>
+                      <Icon></Icon>
+                    </div>
+                    <Label
+                      attached="bottom right"
+                      icon="linkify"
+                      as="a"
+                      href="https://cars.av.by/opel/zafira/100092901"
+                      target="_blank"
+                    >
+                      https://cars.av.by/opel/zafira/100092901
+                    </Label>
                   </Item.Content>
+                  <div>
+                    <Label color="orange" ribbon="right">
+                      Минск
+                    </Label>
+                  </div>
                 </Item>
-              </Segment>
-            </Item.Group>
+              </Item.Group>
+            </Segment>
+
+            <Segment>
+              <Item.Group>
+                <Item>
+                  <Item.Image
+                    src="https://avcdn.av.by/advertbig/0000/0978/5567.jpeg"
+                    size="medium"
+                    rounded
+                  />
+                  <Item.Content>
+                    <Header
+                      verticalAlign="top"
+                      className="header-advt"
+                      size="large"
+                    >
+                      Opel Zafira A Рестайлинг
+                    </Header>
+                    <Item.Meta>
+                      <Label color="blue">
+                        8 805 р.
+                        <Label.Detail>3 450 $</Label.Detail>
+                      </Label>
+                      {"  "}
+                      <span>2004 г.</span>
+                    </Item.Meta>
+                    <Item.Meta>
+                      <Label>опубликовано вчера</Label>
+                      <Label>2.0 л</Label>
+                      <Label>342 500 км</Label>
+                    </Item.Meta>
+                    <Item.Description>
+                      минивэн, передний привод, синий
+                    </Item.Description>
+                    <Item.Extra>
+                      <Label>автомат</Label>
+                      <Label icon="globe" content="дизель" />
+                    </Item.Extra>
+                    <div>
+                      <Icon></Icon>
+                    </div>
+                    <Label
+                      attached="bottom right"
+                      icon="linkify"
+                      as="a"
+                      href="https://cars.av.by/opel/zafira/100092901"
+                      target="_blank"
+                    >
+                      https://cars.av.by/opel/zafira/100092901
+                    </Label>
+                  </Item.Content>
+                  <div>
+                    <Label color="orange" ribbon="right">
+                      Минск
+                    </Label>
+                  </div>
+                </Item>
+              </Item.Group>
+            </Segment>
           </Grid.Column>
-          <Grid.Column width={5}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
         </Grid.Row>
       </Grid>
     );
