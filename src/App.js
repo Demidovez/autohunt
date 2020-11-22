@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://82.146.46.106/server/all_advts`).then((res) => {
+    axios.get(`http://93.125.18.101/server/all_advts`).then((res) => {
       const advts = res.data;
       this.setState({ advts });
     });
