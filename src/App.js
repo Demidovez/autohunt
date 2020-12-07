@@ -1,13 +1,25 @@
-import { Grid, Button, Icon } from "semantic-ui-react";
 import React from "react";
 import axios from "axios";
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  Grid,
+  Row,
+  Col,
+  Navbar,
+  Nav,
+  Icon,
+  Dropdown,
+} from "rsuite";
 import AdvtCard from "./components/AdvtCard";
 import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isStart: false, advts: [] };
+    this.state = { isStart: false, advts: [], activeKey: null };
   }
 
   componentDidMount() {
@@ -23,37 +35,63 @@ class App extends React.Component {
     }));
   };
 
+  handleSelect = (eventKey) => {
+    this.setState({
+      activeKey: eventKey,
+    });
+  };
+
   render() {
-    const advts = this.state.advts;
+    const { advts, activeKey } = this.state;
 
     return (
-      <Grid verticalAlign="middle" id="my-container">
-        <Grid.Row>
-          <Grid.Column width={4}></Grid.Column>{" "}
-          <Grid.Column width={8}>
-            <div>
-              <Button
-                icon
-                labelPosition="left"
-                color={this.state.isStart ? "red" : "green"}
-                onClick={this.startStopParsing}
-              >
-                <Icon name={this.state.isStart ? "pause" : "play"} />
-                {this.state.isStart ? "Стоп" : "Старт"}
-              </Button>
-              {advts.map((advt, indx) => (
-                <AdvtCard key={indx} advt={advt} />
-              ))}
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4}></Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={4}></Grid.Column>
-          <Grid.Column width={8}></Grid.Column>{" "}
-          <Grid.Column width={4}></Grid.Column>{" "}
-        </Grid.Row>
-      </Grid>
+      <Container>
+        <Header>
+          <Navbar appearance="inverse">
+            <Grid fluid>
+              <Row className="show-grid">
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+                <Col xs={24} sm={24} md={16} lg={16}>
+                  <Navbar.Header></Navbar.Header>
+                  <Navbar.Body>
+                    <Nav onSelect={this.handleSelect} activeKey={activeKey}>
+                      <Nav.Item eventKey="1" icon={<Icon icon="home" />}>
+                        Home
+                      </Nav.Item>
+                      <Nav.Item eventKey="2">News</Nav.Item>
+                      <Nav.Item eventKey="3">Products</Nav.Item>
+                      <Dropdown title="About">
+                        <Dropdown.Item eventKey="4">Company</Dropdown.Item>
+                        <Dropdown.Item eventKey="5">Team</Dropdown.Item>
+                        <Dropdown.Item eventKey="6">Contact</Dropdown.Item>
+                      </Dropdown>
+                    </Nav>
+                    <Nav pullRight>
+                      <Nav.Item icon={<Icon icon="cog" />}>Settings</Nav.Item>
+                    </Nav>
+                  </Navbar.Body>
+                </Col>
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+              </Row>
+            </Grid>
+          </Navbar>
+        </Header>
+        <Content>
+          <Grid fluid>
+            <Row className="show-grid">
+              <Col xs={24} sm={24} md={4} lg={4}></Col>
+              <Col xs={24} sm={24} md={4} lg={4}></Col>
+              <Col xs={24} sm={24} md={12} lg={12}>
+                {advts.map((advt, indx) => (
+                  <AdvtCard key={indx} advt={advt} className="advt-item" />
+                ))}
+              </Col>
+              <Col xs={24} sm={24} md={4} lg={4}></Col>
+            </Row>
+          </Grid>
+        </Content>
+        <Footer>Footer</Footer>
+      </Container>
     );
   }
 }

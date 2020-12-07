@@ -40,3 +40,8 @@
 #my-container {
   height: 100vh;
 }
+
+/* TODO: Использовать в CSS module style components */
+.advt-item {
+  margin: 10px;
+}

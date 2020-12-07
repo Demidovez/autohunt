@@ -1,59 +1,67 @@
 import React from "react";
-import { Item, Label, Segment, Header } from "semantic-ui-react";
+import {
+  Panel,
+  Sidebar,
+  Container,
+  Header,
+  Footer,
+  Content,
+  Button,
+} from "rsuite";
+import css from "./index.module.css";
 
 class AdvtCard extends React.Component {
+  formatNumber = (num) =>
+    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+
   render() {
-    const { advt } = this.props;
+    const { advt, className } = this.props;
 
     return (
-      <Segment>
-        <Item.Group>
-          <Item>
-            <Item.Image src={advt.image} size="medium" rounded />
-            <Item.Content>
-              <Header className="header-advt" size="large">
+      <Panel className={`${className} ${css.container}`}>
+        <Container>
+          <Sidebar>
+            <div className={css.img_wrapper}>
+              <img src={advt.image} />
+            </div>
+          </Sidebar>
+          <Container>
+            <Header>
+              <h4>
                 {advt.model} {advt.series} {advt.generation}
-              </Header>
-              <Item.Meta>
-                <Label color="blue">
-                  {advt.price}
-                  <Label.Detail>{advt.price_usd}</Label.Detail>
-                </Label>
-                {"  "}
-                <span>{advt.year}</span>
-              </Item.Meta>
-              <Item.Meta>
-                <Label>{advt.date}</Label>
-                <Label>{advt.engcapacity}</Label>
-                <Label>{advt.mileage}</Label>
-              </Item.Meta>
-              <Item.Description>
-                {advt.model} {advt.series} {advt.generation} {advt.price}{" "}
-                {advt.priceusd} {advt.year} {advt.date} {advt.engcapacity}{" "}
-                {advt.mileage}
-              </Item.Description>
-              <Item.Extra>
-                <Label>{advt.engtype}</Label>
-                <Label icon="globe" content={advt.fueltype} />
-              </Item.Extra>
-              <Label
-                attached="bottom right"
-                icon="linkify"
-                as="a"
-                href={advt.urlad}
+              </h4>
+            </Header>
+            <Content>
+              <div className={css.price}>
+                <span>{this.formatNumber(advt.price)} р.</span>{" "}
+                <span>{this.formatNumber(advt.price_usd)} $</span>
+              </div>
+              <div className={css.mileage}>
+                Пробег: <span>{this.formatNumber(advt.mileage)} км. </span>
+              </div>
+              <div className={css.option}>
+                {advt.year} г., {advt.transmission}, {advt.volume_engine} л.,{" "}
+                {advt.fuel}, {advt.carcase}, {advt.gearing}, {advt.color}
+              </div>
+            </Content>
+            <Footer>
+              <Button
+                appearance="primary"
+                href={`https://${advt.site}${advt.url}`}
                 target="_blank"
               >
-                {advt.urlad}
-              </Label>
-            </Item.Content>
-            <div>
-              <Label color="orange" ribbon="right">
-                {advt.location}
-              </Label>
-            </div>
-          </Item>
-        </Item.Group>
-      </Segment>
+                Источник
+              </Button>
+              <Button appearance="ghost" href={advt.url}>
+                Подробнее
+              </Button>
+              <div className={css.city}>
+                Город: <span>{advt.city}</span>
+              </div>
+            </Footer>
+          </Container>
+        </Container>
+      </Panel>
     );
   }
 }

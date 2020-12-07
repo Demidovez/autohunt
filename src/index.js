@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "rsuite/dist/styles/rsuite-default.css";
 import App from "./App";
-import Development from "./Development";
-import "semantic-ui-css/semantic.min.css";
+import Development from "./pages/Development";
 
 const isService = false;
 
