@@ -14,6 +14,8 @@ import {
   Dropdown,
 } from "rsuite";
 import AdvtCard from "./components/AdvtCard";
+import SearchBar from "./components/SearchBar";
+import Filter from "./components/Filter";
 import "./App.css";
 
 class App extends React.Component {
@@ -49,7 +51,7 @@ class App extends React.Component {
         <Header>
           <Navbar appearance="inverse">
             <Grid fluid>
-              <Row className="show-grid">
+              <Row>
                 <Col xs={24} sm={24} md={4} lg={4}></Col>
                 <Col xs={24} sm={24} md={16} lg={16}>
                   <Navbar.Header></Navbar.Header>
@@ -78,9 +80,18 @@ class App extends React.Component {
         </Header>
         <Content>
           <Grid fluid>
-            <Row className="show-grid">
+            <Row>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
+              <Col xs={24} sm={24} md={16} lg={16}>
+                <SearchBar className="search-bar" />
+              </Col>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
+            </Row>
+            <Row>
+              <Col xs={24} sm={24} md={4} lg={4}></Col>
+              <Col xs={24} sm={24} md={4} lg={4}>
+                <Filter className="filter" />
+              </Col>
               <Col xs={24} sm={24} md={12} lg={12}>
                 {advts.map((advt, indx) => (
                   <AdvtCard key={indx} advt={advt} className="advt-item" />
