@@ -8,7 +8,7 @@ import {
   Content,
   Button,
 } from "rsuite";
-import css from "./index.module.css";
+import css from "./advtcard.module.css";
 
 class AdvtCard extends React.Component {
   formatNumber = (num) =>

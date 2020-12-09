@@ -1,7 +1,8 @@
 import { Grid, Header, Image, Container } from "semantic-ui-react";
 import React from "react";
+import css from "./servicepage.module.css";
 
-class Development extends React.Component {
+class ServicePage extends React.Component {
   render() {
     return (
       <Grid verticalAlign="middle" id="my-container">
@@ -47,4 +48,4 @@ class Development extends React.Component {
   }
 }
 
-export default Development;
+export default ServicePage;

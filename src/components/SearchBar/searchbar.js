@@ -1,6 +1,6 @@
 import React from "react";
 import { InputGroup, Input, Icon } from "rsuite";
-import css from "./index.module.css";
+import css from "./searchbar.module.css";
 
 class SearchBar extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
     return (
       <div className={className}>
         <InputGroup size="lg" inside className={css.container}>
-          <Input placeholder="Поиск" />
+          <Input placeholder="Поиск..." />
           <InputGroup.Button>
             <Icon icon="search" />
           </InputGroup.Button>

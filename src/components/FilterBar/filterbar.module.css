@@ -1,0 +1,52 @@
+.container {
+  background: white;
+  font-family: "Open Sans", sans-serif;
+  color: black;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 16px;
+  padding-bottom: 0px;
+}
+
+.container .rs-col {
+  padding: 0;
+}
+
+.user_choice {
+  margin-top: 10px;
+}
+
+.block_choice {
+  margin-bottom: 20px;
+}
+
+.container .check_radio_box > div {
+  padding-left: 26px;
+  padding-bottom: 0px;
+  min-height: 26px;
+}
+
+.container .check_radio_box label span {
+  left: 0px;
+}
+
+.container .circle_picker {
+  margin-top: 10px;
+}
+
+.container .total {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.container .total span {
+  color: #3498ff;
+  font-size: 20px;
+  font-family: "Roboto Slab", serif;
+}
+
+.container .total button {
+  color: #3498ff;
+}

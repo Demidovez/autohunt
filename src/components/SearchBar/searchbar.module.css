@@ -1,0 +1,8 @@
+.container {
+  font-family: "Open Sans", sans-serif;
+}
+
+.container input {
+  border: none;
+  height: 50px;
+}
