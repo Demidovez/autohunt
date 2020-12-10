@@ -42,10 +42,6 @@
 }
 
 /* TODO: Использовать в CSS module style components */
-.advt-item {
-  margin: 10px 10px 15px 10px;
-}
-
 .search-bar {
   margin: 15px 10px 5px 10px;
 }

@@ -12,8 +12,12 @@ import { CirclePicker } from "react-color";
 import css from "./filterbar.module.css";
 
 class Filter extends React.Component {
+  componentDidMount() {
+    this.props.onChange();
+  }
+
   render() {
-    const { className } = this.props;
+    const { className, onChange } = this.props;
 
     return (
       <div className={className}>
@@ -22,8 +26,16 @@ class Filter extends React.Component {
             <p className={css.label}>Цена</p>
             <div className={css.two_input_wrap}>
               <InputGroup className={css.user_choice}>
-                <InputNumber size="md" placeholder="от" />
-                <InputNumber size="md" placeholder="до" />
+                <InputNumber
+                  size="md"
+                  placeholder="от"
+                  onChange={(minPrice) => onChange({ minPrice })}
+                />
+                <InputNumber
+                  size="md"
+                  placeholder="до"
+                  onChange={(maxPrice) => onChange({ maxPrice })}
+                />
               </InputGroup>
             </div>
             <Checkbox className={css.check_radio_box}> Обмен</Checkbox>
