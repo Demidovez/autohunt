@@ -25,7 +25,8 @@ const FilterPage = observer(
               <Col xs={24} sm={24} md={4} lg={4}>
                 <FilterBar
                   className="filter"
-                  onChange={filterStore.startGetAdvts}
+                  fetchCars={filterStore.getCars}
+                  onEditFilter={filterStore.startGetAdvts}
                 />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12}>

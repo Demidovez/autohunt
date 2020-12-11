@@ -12,12 +12,60 @@ import { CirclePicker } from "react-color";
 import css from "./filterbar.module.css";
 
 class Filter extends React.Component {
-  componentDidMount() {
-    this.props.onChange();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      minPrice: null,
+      maxPrice: null,
+      isExchange: false,
+      model: null,
+      series: null,
+      generation: null,
+      carModels: [],
+      carSeries: [],
+      carGenerations: [],
+    };
   }
 
+  componentDidMount() {
+    this.props.onEditFilter();
+
+    this.props.fetchCars().then((carModels) => this.setState({ carModels }));
+  }
+
+  setPrice = (price) =>
+    this.setState({ ...price }, () => this.props.onEditFilter(this.state)); // в запрос уходят лишние поля стейта
+
+  setIsExchange = (value) =>
+    this.setState({ isExchange: !value }, () =>
+      this.props.onEditFilter(this.state)
+    ); // в запрос уходят лишние поля стейта
+
+  setModel = (model) =>
+    this.props
+      .fetchCars(model)
+      .then((carSeries) =>
+        this.setState({ carSeries, model }, () =>
+          this.props.onEditFilter(this.state)
+        )
+      );
+
+  setSeries = (series) =>
+    this.props
+      .fetchCars(this.state.model, series)
+      .then((carGenerations) =>
+        this.setState({ carGenerations, series }, () =>
+          this.props.onEditFilter(this.state)
+        )
+      );
+
+  setGeneration = (generation) =>
+    this.setState({ generation }, () => this.props.onEditFilter(this.state));
+
   render() {
-    const { className, onChange } = this.props;
+    const { className } = this.props;
+    const { isExchange, carModels, carSeries, carGenerations } = this.state;
 
     return (
       <div className={className}>
@@ -29,34 +77,47 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="от"
-                  onChange={(minPrice) => onChange({ minPrice })}
+                  onChange={(minPrice) => this.setPrice({ minPrice })}
                 />
                 <InputNumber
                   size="md"
                   placeholder="до"
-                  onChange={(maxPrice) => onChange({ maxPrice })}
+                  onChange={(maxPrice) => this.setPrice({ maxPrice })}
                 />
               </InputGroup>
             </div>
-            <Checkbox className={css.check_radio_box}> Обмен</Checkbox>
+            <Checkbox
+              className={css.check_radio_box}
+              value={isExchange}
+              onChange={(value) => this.setIsExchange(value)}
+            >
+              {" "}
+              Обмен
+            </Checkbox>
           </div>
           <div className={css.block_choice}>
             <p className={css.label}>Модель</p>
             <SelectPicker
               placement="rightStart"
               placeholder="Модель"
+              data={carModels}
+              onChange={(model) => this.setModel(model)}
               block
               className={css.user_choice}
             />
             <SelectPicker
               placement="rightStart"
               placeholder="Серия"
+              data={carSeries}
+              onChange={(series) => this.setSeries(series)}
               block
               className={css.user_choice}
             />
             <SelectPicker
               placement="rightStart"
               placeholder="Поколение"
+              data={carGenerations}
+              onChange={(generation) => this.setGeneration(generation)}
               block
               className={css.user_choice}
             />
