@@ -2,15 +2,6 @@ import { action, makeObservable, observable } from "mobx";
 import axios from "axios";
 
 class FilterStore {
-  filterOptions = {
-    minPrice: null,
-    maxPrice: null,
-    isExchange: null,
-    model: null,
-    series: null,
-    generation: null,
-  };
-
   advts = [];
 
   constructor() {
@@ -18,21 +9,19 @@ class FilterStore {
       advts: observable,
       startGetAdvts: action,
       setAdvts: action,
-      getCars: action,
+      getInitInfo: action,
     });
   }
 
-  startGetAdvts = (newFilterOptions) => {
-    this.filterOptions = { ...this.filterOptions, ...newFilterOptions };
-
+  startGetAdvts = (filterOptions) => {
     axios
-      .post(`https://server.autohunt.by/all_advts`, this.filterOptions)
+      .post(`https://server.autohunt.by/all_advts`, { ...filterOptions })
       .then((res) => this.setAdvts(res.data));
   };
 
   setAdvts = (advts) => (this.advts = advts);
 
-  getCars = async (model, series) => {
+  getInitInfo = async (model, series) => {
     let result = {};
 
     if (model && series) {
