@@ -2,10 +2,10 @@ import React from "react";
 import { Footer } from "rsuite";
 import css from "./footer.module.css";
 
-class Header extends React.Component {
+class FooterSite extends React.Component {
   render() {
     return <Footer>Footer</Footer>;
   }
 }
 
-export default Header;
+export default FooterSite;

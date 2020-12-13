@@ -25,3 +25,16 @@ code {
 .rs-input-group-inside.rs-input-group-lg > .rs-input-group-btn {
   height: 55px;
 }
+
+.rs-picker-default.rs-picker-disabled .rs-btn {
+  background: #bbbbbb !important;
+  color: #000000;
+}
+
+.rs-picker-default.rs-picker-disabled .rs-btn .rs-picker-toggle-placeholder {
+  color: #000000;
+}
+
+.rs-divider-horizontal.rs-divider-with-text {
+  margin: 20px 0;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Tooltip, Whisper } from "rsuite";
 import css from "./colorpicker.module.css";
 
 class ColorPicker extends React.Component {
@@ -6,7 +7,7 @@ class ColorPicker extends React.Component {
     super(props);
 
     this.state = {
-      selected: [],
+      selected: [...props.value],
       white: "#ffffff",
       lights: ["#ffffff", "#ffff00"],
     };
@@ -15,48 +16,63 @@ class ColorPicker extends React.Component {
   setActive = (color) => {
     const { selected } = this.state;
 
-    if (selected.indexOf(color.value) > -1) {
-      selected.splice(selected.indexOf(color.value), 1);
+    if (selected.indexOf(color.label) > -1) {
+      selected.splice(selected.indexOf(color.label), 1);
     } else {
-      selected.push(color.value);
+      selected.push(color.label);
     }
 
-    this.setState({ selected }, () => this.props.onChange(color));
+    this.setState({ selected }, () => this.props.onChange(color.label));
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selected.length !== this.props.value.length) {
+      this.setState({ selected: [...this.props.value] });
+    }
+  }
 
   render() {
     const { colors } = this.props;
     const { selected, white, lights } = this.state;
 
-    console.log(colors);
-
     return (
       <div className={css.container}>
         {colors.map((color, indx) => (
-          <div
+          <Whisper
+            placement="top"
+            trigger="hover"
             key={indx}
-            style={{ backgroundColor: color.value }}
-            className={`${color.value === white ? css.white : ""} ${
-              lights.indexOf(color.value) > -1 ? css.black_ok : ""
-            } ${selected.indexOf(color.value) > -1 ? css.active : ""}`}
-            onClick={() => this.setActive(color)}
+            delayShow={1000}
+            speaker={<Tooltip>{color.label}</Tooltip>}
+          >
+            <div
+              style={{ backgroundColor: color.value }}
+              className={`${css.item} ${
+                color.value === white ? css.white : ""
+              } ${lights.includes(color.value) ? css.black_ok : ""} ${
+                selected.includes(color.label) ? css.active : ""
+              }`}
+              onClick={() => this.setActive(color)}
+            >
+              <span></span>
+            </div>
+          </Whisper>
+        ))}
+        <Whisper
+          placement="top"
+          trigger="hover"
+          delayShow={1000}
+          speaker={<Tooltip>другой</Tooltip>}
+        >
+          <div
+            className={`${css.item} ${css.another} ${css.black_ok} ${
+              selected.includes("другой") ? css.active : ""
+            }`}
+            onClick={() => this.setActive({ label: "другой" })}
           >
             <span></span>
           </div>
-        ))}
-        <div
-          style={{
-            backgroundImage: `linear-gradient(circle, ${colors
-              .map((color) => color.value)
-              .join(",")})`,
-          }}
-          className={`${css.black_ok} ${
-            selected.indexOf("??????") > -1 ? css.active : ""
-          }`}
-          onClick={() => this.setActive({ value: "??????" })}
-        >
-          <span>?</span>
-        </div>
+        </Whisper>
       </div>
     );
   }

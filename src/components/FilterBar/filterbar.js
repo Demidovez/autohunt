@@ -4,11 +4,14 @@ import {
   InputNumber,
   InputGroup,
   Checkbox,
-  SelectPicker,
   Button,
   Icon,
+  CheckPicker,
+  Divider,
+  FlexboxGrid,
 } from "rsuite";
 import ColorPicker from "../ColorPicker/colorpicker";
+import ModelPicker from "../ModelPicker/modelpicker";
 import css from "./filterbar.module.css";
 
 class Filter extends React.Component {
@@ -16,34 +19,33 @@ class Filter extends React.Component {
     super(props);
 
     this.state = {
-      prices: [0, 999999],
-      maxPrice: null,
-      isExchange: false,
-      model: null,
-      series: null,
-      generation: null,
-      carcase: null,
-      fuel: null,
-      carModels: [],
-      carSeries: [],
-      carGenerations: [],
       carCarcases: [],
       carEngines: [],
       carColors: [],
-      years: [1900, 3000],
+      countModels: 1,
+      prices: [null, null],
+      isExchange: false,
+      models: [{ model: null, series: null, generation: null }],
+      carcases: [],
+      fuels: [],
+      years: [null, null],
       transmissions: [],
       gearings: [],
-      volumes: [0, 100],
-      mileages: [0, 99999999],
+      volumes: [null, null],
+      mileages: [null, null],
+      colors: [],
+      founded: 0,
+      isChangeFilter: false,
     };
   }
 
   componentDidMount() {
-    this.props.onEditFilter(this.state);
+    this.props
+      .onEditFilter(this.state)
+      .then((count) => this.setState({ founded: count }));
 
     this.props.fetchInfo().then((carInfo) => {
       this.setState({
-        carModels: carInfo.filter((info) => info.type === "car_info"),
         carCarcases: carInfo.filter((info) => info.type === "carcase"),
         carEngines: carInfo.filter((info) => info.type === "fuel"),
         carColors: carInfo.filter((info) => info.type === "color"),
@@ -51,78 +53,72 @@ class Filter extends React.Component {
     });
   }
 
-  setPrice = (newPrices) => {
-    const priceDefault = [0, 99999999];
-
-    const prices = newPrices.map((price, indx) =>
-      price ? parseFloat(price) : priceDefault[indx]
+  setStateBy = (newValue) => {
+    this.setState({ isChangeFilter: true, ...newValue }, () =>
+      this.props
+        .onEditFilter(this.state)
+        .then((count) => this.setState({ founded: count }))
     );
-
-    this.setState({ prices }, () => this.props.onEditFilter(this.state));
   };
 
-  setIsExchange = (value) =>
-    this.setState({ isExchange: !value }, () =>
-      this.props.onEditFilter(this.state)
-    );
+  formatNumber = (num) =>
+    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
 
-  setModel = (model) =>
-    this.props
-      .fetchInfo(model)
-      .then((carSeries) =>
-        this.setState({ carSeries, model }, () =>
-          this.props.onEditFilter(this.state)
-        )
-      );
+  setPrice = (newPrices) => {
+    const prices = newPrices.map((price) => (price ? parseFloat(price) : null));
 
-  setSeries = (series) =>
-    this.props
-      .fetchInfo(this.state.model, series)
-      .then((carGenerations) =>
-        this.setState({ carGenerations, series }, () =>
-          this.props.onEditFilter(this.state)
-        )
-      );
+    console.log(prices);
 
-  setGeneration = (generation) =>
-    this.setState({ generation }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ prices });
+  };
+
+  setIsExchange = (value) => this.setStateBy({ isExchange: !value });
+
+  setModelInfo = (model, indx) => {
+    const { models } = this.state;
+
+    models[indx].model = model.model;
+    models[indx].series = model.series;
+    models[indx].generation = model.generation;
+
+    this.setStateBy({ models });
+  };
+
+  removeModel = (indx) => {
+    let models = this.state.models;
+    models.splice(indx, 1);
+
+    this.setStateBy({ models });
+  };
 
   setYear = (newYears) => {
-    const yearsDefault = [1900, 3000];
+    const years = newYears.map((year) => (year ? parseInt(year) : null));
 
-    const years = newYears.map((year, indx) =>
-      year ? parseInt(year) : yearsDefault[indx]
-    );
-
-    this.setState({ years }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ years });
   };
 
-  setCarcase = (carcase) =>
-    this.setState({ carcase }, () => this.props.onEditFilter(this.state));
+  setCarcase = (carcases) => this.setStateBy({ carcases });
 
-  setFuel = (fuel) =>
-    this.setState({ fuel }, () => this.props.onEditFilter(this.state));
+  setFuel = (fuels) => this.setStateBy({ fuels });
 
   setTransmission = (transmission) => {
     let transmissions = this.state.transmissions;
 
-    if (transmissions.indexOf(transmission) > -1) {
+    if (transmissions.includes(transmission)) {
       transmissions.splice(transmissions.indexOf(transmission), 1);
     } else {
       transmissions.push(transmission);
     }
 
-    this.setState({ transmissions }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ transmissions });
   };
 
   setVolEngine = (newVolumes) => {
-    const volumesDefault = [0, 100];
-
-    const volumes = newVolumes.map((volume, indx) =>
-      volume ? parseFloat(volume) : volumesDefault[indx]
+    const volumes = newVolumes.map((volume) =>
+      volume ? parseFloat(volume) : null
     );
 
-    this.setState({ volumes }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ volumes });
   };
 
   setGearing = (gearingList) => {
@@ -140,35 +136,76 @@ class Filter extends React.Component {
       gearingList.map((gearing) => gearings.push(gearing));
     }
 
-    this.setState({ gearings }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ gearings });
   };
 
   setMileage = (newMileages) => {
-    const mileagesDefault = [0, 99999999];
-
-    const mileages = newMileages.map((mileage, indx) =>
-      mileage ? parseFloat(mileage) : mileagesDefault[indx]
+    const mileages = newMileages.map((mileage) =>
+      mileage ? parseFloat(mileage) : null
     );
 
-    this.setState({ mileages }, () => this.props.onEditFilter(this.state));
+    this.setStateBy({ mileages });
   };
 
-  setColor = (label) => console.log(label);
+  setColor = (label) => {
+    let colors = this.state.colors;
+
+    if (colors.includes(label)) {
+      colors.splice(colors.indexOf(label), 1);
+    } else {
+      colors.push(label);
+    }
+
+    this.setStateBy({ colors });
+  };
+
+  addModel = () => {
+    const { models, countModels } = this.state;
+
+    models.push({ model: null, series: null, generation: null });
+
+    this.setStateBy({
+      countModels: countModels + 1,
+      models,
+    });
+  };
+
+  resetFilter = () =>
+    this.setStateBy({
+      prices: [null, null],
+      isExchange: false,
+      models: [{ model: null, series: null, generation: null }],
+      carcases: [],
+      fuels: [],
+      years: [null, null],
+      transmissions: [],
+      gearings: [],
+      volumes: [null, null],
+      mileages: [null, null],
+      colors: [],
+      isChangeFilter: false,
+      countModels: 1,
+    });
 
   render() {
     const { className } = this.props;
     const {
       prices,
       isExchange,
-      carModels,
-      carSeries,
-      carGenerations,
       carCarcases,
       carEngines,
       carColors,
       years,
       volumes,
       mileages,
+      founded,
+      models,
+      carcases,
+      fuels,
+      transmissions,
+      gearings,
+      colors,
+      isChangeFilter,
     } = this.state;
 
     return (
@@ -181,11 +218,15 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="от"
+                  value={prices[0]}
+                  min={0}
                   onChange={(minPrice) => this.setPrice([minPrice, prices[1]])}
                 />
                 <InputNumber
                   size="md"
                   placeholder="до"
+                  value={prices[1]}
+                  min={0}
                   onChange={(maxPrice) => this.setPrice([prices[0], maxPrice])}
                 />
               </InputGroup>
@@ -193,6 +234,7 @@ class Filter extends React.Component {
             <Checkbox
               className={css.check_radio_box}
               value={isExchange}
+              checked={isExchange}
               onChange={(value) => this.setIsExchange(value)}
             >
               {" "}
@@ -201,30 +243,36 @@ class Filter extends React.Component {
           </div>
           <div className={css.block_choice}>
             <p className={css.label}>Модель</p>
-            <SelectPicker
-              placement="rightStart"
-              placeholder="Модель"
-              data={carModels}
-              onChange={(model) => this.setModel(model)}
-              block
-              className={css.user_choice}
-            />
-            <SelectPicker
-              placement="rightStart"
-              placeholder="Серия"
-              data={carSeries}
-              onChange={(series) => this.setSeries(series)}
-              block
-              className={css.user_choice}
-            />
-            <SelectPicker
-              placement="rightStart"
-              placeholder="Поколение"
-              data={carGenerations}
-              onChange={(generation) => this.setGeneration(generation)}
-              block
-              className={css.user_choice}
-            />
+            {models.map((model, indx) => (
+              <div key={indx}>
+                {indx > 0 && <Divider>или</Divider>}
+                <div className={css.user_choice}>
+                  <FlexboxGrid align="middle">
+                    <FlexboxGrid.Item colspan={models.length > 1 ? 21 : 24}>
+                      <ModelPicker
+                        model={model}
+                        className={css.user_choice}
+                        fetchInfo={this.props.fetchInfo}
+                        onChangeInfo={(model) => this.setModelInfo(model, indx)}
+                      />
+                    </FlexboxGrid.Item>
+                    <FlexboxGrid.Item colspan={models.length > 1 ? 3 : 0}>
+                      {models.length > 1 && (
+                        <div
+                          className={css.remove_model}
+                          onClick={() => this.removeModel(indx)}
+                        >
+                          <Icon icon="trash-o" size="lg" />
+                        </div>
+                      )}
+                    </FlexboxGrid.Item>
+                  </FlexboxGrid>
+                </div>
+              </div>
+            ))}
+            <div onClick={this.addModel} className={css.link_add_model}>
+              Добавить модель
+            </div>
           </div>
           <div className={css.block_choice}>
             <p className={css.label}>Год выпуска</p>
@@ -233,11 +281,15 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="с"
+                  value={years[0]}
+                  min={1930}
                   onChange={(fromYear) => this.setYear([fromYear, years[1]])}
                 />
                 <InputNumber
                   size="md"
                   placeholder="до"
+                  value={years[1]}
+                  min={1930}
                   onChange={(toYear) => this.setYear([years[0], toYear])}
                 />
               </InputGroup>
@@ -245,23 +297,27 @@ class Filter extends React.Component {
           </div>
           <div className={css.block_choice}>
             <p className={css.label}>Кузов</p>
-            <SelectPicker
-              placement="rightStart"
-              placeholder="Любой"
-              data={carCarcases}
-              onChange={(carcase) => this.setCarcase(carcase)}
+            <CheckPicker
+              sticky
               block
+              placeholder="Любой"
+              placement="rightStart"
+              data={carCarcases}
+              value={carcases}
+              onChange={(carcase) => this.setCarcase(carcase)}
               className={css.user_choice}
             />
           </div>
           <div className={css.block_choice}>
             <p className={css.label}>Двигатель</p>
-            <SelectPicker
-              placement="rightStart"
+            <CheckPicker
+              sticky
+              block
+              value={fuels}
               placeholder="Любой"
+              placement="rightStart"
               data={carEngines}
               onChange={(fuel) => this.setFuel(fuel)}
-              block
               className={css.user_choice}
             />
           </div>
@@ -269,6 +325,7 @@ class Filter extends React.Component {
             <p className={css.label}>Коробка передач</p>
             <Checkbox
               className={css.check_radio_box}
+              checked={transmissions.includes("автомат")}
               onChange={() => this.setTransmission("автомат")}
             >
               {" "}
@@ -276,6 +333,7 @@ class Filter extends React.Component {
             </Checkbox>
             <Checkbox
               className={css.check_radio_box}
+              checked={transmissions.includes("механика")}
               onChange={() => this.setTransmission("механика")}
             >
               {" "}
@@ -289,6 +347,8 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="от"
+                  value={volumes[0]}
+                  min={0}
                   onChange={(minVolEngine) =>
                     this.setVolEngine([minVolEngine, volumes[1]])
                   }
@@ -296,6 +356,8 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="до"
+                  value={volumes[1]}
+                  min={0}
                   onChange={(maxVolEngine) =>
                     this.setVolEngine([volumes[0], maxVolEngine])
                   }
@@ -307,6 +369,7 @@ class Filter extends React.Component {
             <p className={css.label}>Привод</p>
             <Checkbox
               className={css.check_radio_box}
+              checked={gearings.includes("передний")}
               onChange={() => this.setGearing(["передний", "передний привод"])}
             >
               {" "}
@@ -314,6 +377,7 @@ class Filter extends React.Component {
             </Checkbox>
             <Checkbox
               className={css.check_radio_box}
+              checked={gearings.includes("задний")}
               onChange={() => this.setGearing(["задний", "задний привод"])}
             >
               {" "}
@@ -321,6 +385,7 @@ class Filter extends React.Component {
             </Checkbox>
             <Checkbox
               className={css.check_radio_box}
+              checked={gearings.includes("полный")}
               onChange={() =>
                 this.setGearing([
                   "полный",
@@ -340,6 +405,8 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="от"
+                  value={mileages[0]}
+                  min={0}
                   onChange={(minMileage) =>
                     this.setMileage([minMileage, mileages[1]])
                   }
@@ -347,6 +414,8 @@ class Filter extends React.Component {
                 <InputNumber
                   size="md"
                   placeholder="до"
+                  value={mileages[1]}
+                  min={0}
                   onChange={(maxMileage) =>
                     this.setMileage([mileages[0], maxMileage])
                   }
@@ -358,17 +427,20 @@ class Filter extends React.Component {
             <p className={css.label}>Цвет</p>
             <ColorPicker
               colors={[...carColors]}
-              onChange={(color) => this.setColor(color.label)}
+              value={colors}
+              onChange={(label) => this.setColor(label)}
               className={css.circle_picker}
             />
           </div>
           <div className={`${css.block_choice} ${css.total} `}>
             <p className={css.label}>
-              Найдено: <span>9 990</span>
+              Найдено: <span>{this.formatNumber(founded)}</span>
             </p>
-            <Button appearance="link">
-              <Icon icon="close" /> сбросить фильтр
-            </Button>
+            {isChangeFilter && (
+              <Button appearance="link" onClick={() => this.resetFilter()}>
+                <Icon icon="close" /> сбросить фильтр
+              </Button>
+            )}
           </div>
         </Panel>
       </div>

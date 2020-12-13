@@ -3,7 +3,7 @@
   font-size: 0px;
 }
 
-.container > div {
+.container > .item {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -11,25 +11,22 @@
   margin-right: 8px;
   margin-top: 8px;
   color: white;
-  transform: scale(1);
-  transition: transform 100ms ease 0s;
   position: relative;
 }
 
-.container > div.black_ok {
+.container > .item.black_ok {
   color: black;
 }
 
-.container > div.white {
+.container > .item.white {
   box-shadow: #b1b0b0 0px 0px 0px 1px inset;
 }
 
-.container > div:hover {
-  transform: scale(1.2);
+.container > .item:hover {
   cursor: pointer;
 }
 
-.container > div span {
+.container > .item span {
   display: none;
   position: absolute;
   margin-left: 5px;
@@ -42,6 +39,16 @@
   transform: rotate(-45deg);
 }
 
-.container .active span {
+.container .item.active span {
   display: inline-block;
+}
+
+.container .item.another {
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }

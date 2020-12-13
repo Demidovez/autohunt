@@ -13,11 +13,16 @@ class FilterStore {
     });
   }
 
-  startGetAdvts = (filterOptions) => {
+  startGetAdvts = (filterOptions) =>
     axios
       .post(`https://server.autohunt.by/all_advts`, { ...filterOptions })
-      .then((res) => this.setAdvts(res.data));
-  };
+      .then((res) => {
+        const { advts, count } = res.data;
+
+        this.setAdvts(advts);
+
+        return count;
+      });
 
   setAdvts = (advts) => (this.advts = advts);
 

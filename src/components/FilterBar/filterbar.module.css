@@ -10,6 +10,10 @@
   padding-bottom: 0px;
 }
 
+.label span {
+  padding-left: 10px;
+}
+
 .container .rs-col {
   padding: 0;
 }
@@ -49,4 +53,22 @@
 
 .container .total button {
   color: #3498ff;
+}
+
+.container .link_add_model {
+  color: #3498ff;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  margin-top: 7px;
+}
+
+.container .link_add_model:hover {
+  border-color: #3498ff;
+}
+
+.container .remove_model {
+  text-align: center;
+  color: #ff3434;
+  cursor: pointer;
 }
