@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  Grid,
-  Row,
-  Col,
-  Navbar,
-  Nav,
-  Icon,
-  Dropdown,
-  Header as HeaderSite,
-} from "rsuite";
+import { Grid, Row, Col, Navbar, Nav, Icon, Header } from "rsuite";
 import css from "./header.module.css";
 
-class Header extends React.Component {
+class HeaderSite extends React.Component {
   constructor(props) {
     super(props);
     this.state = { activeKey: null };
@@ -27,7 +18,7 @@ class Header extends React.Component {
     const { activeKey } = this.state;
 
     return (
-      <HeaderSite>
+      <Header>
         <Navbar appearance="inverse">
           <Grid fluid>
             <Row>
@@ -52,9 +43,9 @@ class Header extends React.Component {
             </Row>
           </Grid>
         </Navbar>
-      </HeaderSite>
+      </Header>
     );
   }
 }
 
-export default Header;
+export default HeaderSite;

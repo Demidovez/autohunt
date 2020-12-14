@@ -34,6 +34,8 @@ class Filter extends React.Component {
       volumes: [null, null],
       mileages: [null, null],
       colors: [],
+      currencyUnit: "р.",
+      currency: "BYN",
       founded: 0,
       isChangeFilter: false,
     };
@@ -66,8 +68,6 @@ class Filter extends React.Component {
 
   setPrice = (newPrices) => {
     const prices = newPrices.map((price) => (price ? parseFloat(price) : null));
-
-    console.log(prices);
 
     this.setStateBy({ prices });
   };
@@ -170,6 +170,12 @@ class Filter extends React.Component {
     });
   };
 
+  changeCurrency = (currency, currencyUnit) => {
+    if (currency !== this.state.currency) {
+      this.setStateBy({ currency, currencyUnit });
+    }
+  };
+
   resetFilter = () =>
     this.setStateBy({
       prices: [null, null],
@@ -184,6 +190,8 @@ class Filter extends React.Component {
       mileages: [null, null],
       colors: [],
       isChangeFilter: false,
+      currencyUnit: "р.",
+      currency: "BYN",
       countModels: 1,
     });
 
@@ -206,13 +214,35 @@ class Filter extends React.Component {
       gearings,
       colors,
       isChangeFilter,
+      currency,
+      currencyUnit,
     } = this.state;
 
     return (
       <div className={className}>
         <Panel className={`${className} ${css.container}`}>
           <div className={css.block_choice}>
-            <p className={css.label}>Цена</p>
+            <FlexboxGrid align="middle">
+              <FlexboxGrid.Item colspan={14}>
+                <p className={css.label}>Цена, {currencyUnit}</p>
+              </FlexboxGrid.Item>
+              <FlexboxGrid.Item colspan={10}>
+                <div className={css.currency}>
+                  <div
+                    onClick={() => this.changeCurrency("BYN", "р.")}
+                    className={currency === "BYN" ? css.active_currency : ""}
+                  >
+                    BYN
+                  </div>
+                  <div
+                    onClick={() => this.changeCurrency("USD", "$")}
+                    className={currency === "USD" ? css.active_currency : ""}
+                  >
+                    USD
+                  </div>
+                </div>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
             <div className={css.two_input_wrap}>
               <InputGroup className={css.user_choice}>
                 <InputNumber

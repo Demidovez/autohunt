@@ -7,6 +7,7 @@ import {
   Footer,
   Content,
   Button,
+  FlexboxGrid,
 } from "rsuite";
 import css from "./advtcard.module.css";
 
@@ -45,19 +46,31 @@ class AdvtCard extends React.Component {
               </div>
             </Content>
             <Footer>
-              <Button
-                appearance="primary"
-                href={`https://${advt.site}${advt.url}`}
-                target="_blank"
-              >
-                Источник
-              </Button>
-              <Button appearance="ghost" href={advt.url}>
-                Подробнее
-              </Button>
-              <div className={css.city}>
-                Город: <span>{advt.city}</span>
-              </div>
+              <FlexboxGrid align="bottom">
+                <FlexboxGrid.Item colspan={16}>
+                  <Button
+                    appearance="primary"
+                    href={`https://${advt.site}${advt.url}`}
+                    target="_blank"
+                  >
+                    Источник
+                  </Button>
+                  <Button appearance="ghost" href={advt.url}>
+                    Подробнее
+                  </Button>
+                  <div className={css.city}>
+                    Город: <span>{advt.city}</span>
+                  </div>
+                </FlexboxGrid.Item>
+                <FlexboxGrid.Item colspan={8}>
+                  <div className={css.source}>
+                    <p>Источник</p>
+                    <a href={`https://${advt.site}${advt.url}`} target="_blank">
+                      <img src={`${advt.site}.png`} alt={`${advt.site}`} />
+                    </a>
+                  </div>
+                </FlexboxGrid.Item>
+              </FlexboxGrid>
             </Footer>
           </Container>
         </Container>

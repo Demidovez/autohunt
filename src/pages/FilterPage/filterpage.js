@@ -30,7 +30,12 @@ const FilterPage = observer(
                 />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12}>
-                <AdvtList advts={filterStore.advts} />
+                <AdvtList
+                  advts={filterStore.advts}
+                  updateId={filterStore.updateId}
+                  getMore={filterStore.moreGetAdvts}
+                  allCount={filterStore.allCount}
+                />
               </Col>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
             </Row>

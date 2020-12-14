@@ -72,3 +72,29 @@
   color: #ff3434;
   cursor: pointer;
 }
+
+.container .currency {
+  text-align: right;
+}
+
+.container .currency > div {
+  color: #3498ff;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  margin-left: 7px;
+}
+
+.container .currency > div:hover {
+  border-color: #3498ff;
+}
+
+.container .currency > div.active_currency {
+  color: inherit;
+  font-weight: 600;
+}
+
+.container .currency > div.active_currency:hover {
+  border-color: transparent;
+  cursor: initial;
+}
