@@ -16,6 +16,7 @@ code {
   background: #f1f1f1;
 }
 
+/* TODO: Найти где они пропасаны и указать родительский клас ....-overwrite */
 .rs-input-group.rs-input-group-inside input.rs-input ~ .rs-input-group-btn {
   top: 0px;
   right: 0px;
@@ -37,4 +38,27 @@ code {
 
 .rs-divider-horizontal.rs-divider-with-text {
   margin: 20px 0;
+}
+
+.sortadvts-overwrite .rs-picker-subtle .rs-btn:hover,
+.sortadvts-overwrite .rs-picker-subtle .rs-picker-toggle:hover,
+.sortadvts-overwrite .rs-picker-subtle .rs-btn:active:hover,
+.sortadvts-overwrite .rs-picker-subtle .rs-picker-toggle:active:hover,
+.sortadvts-overwrite .rs-picker-subtle .rs-btn.active,
+.sortadvts-overwrite .rs-picker-subtle .rs-picker-toggle.active,
+.sortadvts-overwrite .rs-picker-subtle .rs-btn:active,
+.sortadvts-overwrite .rs-picker-subtle .rs-picker-toggle:active {
+  background-color: transparent;
+}
+.sortadvts-overwrite .rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.sortadvts-overwrite
+  .rs-picker-has-value
+  .rs-picker-toggle
+  .rs-picker-toggle-value,
+.sortadvts-overwrite .rs-picker-has-value .rs-btn .rs-picker-toggle-value:focus,
+.sortadvts-overwrite
+  .rs-picker-has-value
+  .rs-picker-toggle
+  .rs-picker-toggle-value:focus {
+  color: inherit;
 }

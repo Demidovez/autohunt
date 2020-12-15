@@ -42,9 +42,6 @@
 }
 
 /* TODO: Использовать в CSS module style components */
-.search-bar {
-  margin: 15px 10px 5px 10px;
-}
 
 .filter {
   margin: 10px 0px 10px 5px;

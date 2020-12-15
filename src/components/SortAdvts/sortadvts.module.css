@@ -1,0 +1,19 @@
+.container {
+  font-family: "Open Sans", sans-serif;
+  margin: 4px 10px 0;
+}
+
+.sortbutton {
+  text-align: right;
+}
+
+.tagswrap {
+  margin-top: 7px;
+}
+
+.container .tagswrap > div {
+  background-color: rgb(224, 224, 224);
+  margin-bottom: 8px;
+  margin-left: 0px;
+  margin-right: 10px;
+}

@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import SearchBar from "../../components/SearchBar/searchbar";
 import FilterBar from "../../components/FilterBar/filterbar";
 import AdvtList from "../../components/AdvtList/advtlist";
+import SortAdvts from "../../components/SortAdvts/sortadvts";
 import filterStore from "../../stores/filterStore";
 import css from "./filterpage.module.css";
 
@@ -16,7 +17,7 @@ const FilterPage = observer(
             <Row>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
               <Col xs={24} sm={24} md={16} lg={16}>
-                <SearchBar className="search-bar" />
+                <SearchBar className={css.searchbar} />
               </Col>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
             </Row>
@@ -30,6 +31,7 @@ const FilterPage = observer(
                 />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12}>
+                <SortAdvts />
                 <AdvtList
                   advts={filterStore.advts}
                   updateId={filterStore.updateId}
