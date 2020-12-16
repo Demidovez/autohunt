@@ -26,12 +26,13 @@ const FilterPage = observer(
               <Col xs={24} sm={24} md={4} lg={4}>
                 <FilterBar
                   className="filter"
+                  options={filterStore.filterOptions}
                   fetchInfo={filterStore.getInitInfo}
-                  onEditFilter={filterStore.startGetAdvts}
+                  onEditFilter={filterStore.onEditFilter}
                 />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12}>
-                <SortAdvts />
+                <SortAdvts listTags={filterStore.listTags} />
                 <AdvtList
                   advts={filterStore.advts}
                   updateId={filterStore.updateId}
