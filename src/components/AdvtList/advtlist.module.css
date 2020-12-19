@@ -15,3 +15,7 @@
 .more button:focus {
   background-color: white;
 }
+
+.loader {
+  margin-top: 50px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "rsuite";
+import { Button, Loader } from "rsuite";
 import AdvtCard from "../AdvtCard/advtcard";
 import css from "./advtlist.module.css";
 
@@ -8,14 +8,15 @@ class AdvtList extends React.Component {
     super(props);
 
     this.state = {
-      isLoading: false,
+      isLoadingMore: false,
+      isLoading: true,
       advts: [],
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.updateId !== this.props.updateId) {
-      this.setState({ advts: [...this.props.advts] });
+      this.setState({ advts: [...this.props.advts], isLoading: false });
     }
   }
 
@@ -23,30 +24,39 @@ class AdvtList extends React.Component {
     num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
 
   showMore = () => {
-    this.setState({ isLoading: true });
+    this.setState({ isLoadingMore: true });
 
     this.props.getMore().then((advts) =>
       this.setState({
         advts: [...this.state.advts, ...advts],
-        isLoading: false,
+        isLoadingMore: false,
       })
     );
   };
 
   render() {
     const { allCount } = this.props;
-    const { isLoading, advts } = this.state;
+    const { isLoading, isLoadingMore, advts } = this.state;
 
     return (
       <div>
-        {advts.map((advt) => (
-          <AdvtCard key={advt.id} advt={advt} className={css.advt} />
-        ))}
-        {advts.length !== allCount && (
+        {isLoading && (
+          <Loader
+            className={css.loader}
+            size="md"
+            center
+            content="Загрузка..."
+          />
+        )}
+        {isLoading === false &&
+          advts.map((advt) => (
+            <AdvtCard key={advt.id} advt={advt} className={css.advt} />
+          ))}
+        {isLoading === false && advts.length !== allCount && (
           <div className={css.more}>
             <Button
               appearance="default"
-              loading={isLoading}
+              loading={isLoadingMore}
               onClick={this.showMore}
             >
               Показать еще

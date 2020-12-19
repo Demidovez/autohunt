@@ -15,9 +15,9 @@ const SortAdvts = observer(
           <FlexboxGrid align="middle">
             <FlexboxGrid.Item colspan={18}>
               <div className={css.tagswrap}>
-                {this.props.listTags.map((tag, indx) => (
+                {this.props.tags.map((tag, indx) => (
                   <Tag closable onClose={() => this.closeTag(tag)} key={indx}>
-                    {tag}
+                    {tag.label}
                   </Tag>
                 ))}
               </div>
@@ -25,28 +25,13 @@ const SortAdvts = observer(
             <FlexboxGrid.Item colspan={6}>
               <div className={css.sortbutton}>
                 <SelectPicker
-                  data={[
-                    {
-                      label: "Новые объявления",
-                      value: "Новые объявления",
-                    },
-                    {
-                      label: "Старые объявления",
-                      value: "Старые объявления",
-                    },
-                    {
-                      label: "Дешевые авто",
-                      value: "Дешевые авто",
-                    },
-                    {
-                      label: "Дорогие авто",
-                      value: "Дорогие авто",
-                    },
-                  ]}
+                  data={this.props.orderData}
                   appearance="subtle"
                   cleanable={false}
                   searchable={false}
-                  placeholder="Новые объявления"
+                  value={this.props.orderValue}
+                  placeholder={this.props.orderValue.label}
+                  onSelect={this.props.onSort}
                 />
               </div>
             </FlexboxGrid.Item>

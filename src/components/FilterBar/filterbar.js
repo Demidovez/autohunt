@@ -40,11 +40,7 @@ class Filter extends React.Component {
   formatNumber = (num) =>
     num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
 
-  setPrice = (newPrices) => {
-    const prices = newPrices.map((price) => (price ? parseFloat(price) : null));
-
-    this.props.onEditFilter({ prices });
-  };
+  setPrice = (prices) => this.props.onEditFilter({ prices });
 
   setIsExchange = (value) => this.props.onEditFilter({ isExchange: !value });
 
@@ -71,15 +67,41 @@ class Filter extends React.Component {
     this.props.onEditFilter({ years });
   };
 
-  setCarcase = (carcases) => this.props.onEditFilter({ carcases });
+  setCarcase = (carcases) => {
+    const newCarcases = [...this.props.options.carcases].map((oldCarcase) =>
+      carcases.includes(oldCarcase) ? oldCarcase : null
+    );
 
-  setFuel = (fuels) => this.props.onEditFilter({ fuels });
+    carcases.forEach((carcase) => {
+      if (!newCarcases.includes(carcase)) {
+        newCarcases.push(carcase);
+      }
+    });
+
+    this.props.onEditFilter({ carcases: newCarcases });
+  };
+
+  setFuel = (fuels) => {
+    const newFuels = [...this.props.options.fuels].map((oldFuel) =>
+      fuels.includes(oldFuel) ? oldFuel : null
+    );
+
+    fuels.forEach((fuel) => {
+      if (!newFuels.includes(fuel)) {
+        newFuels.push(fuel);
+      }
+    });
+
+    this.props.onEditFilter({ fuels: newFuels });
+  };
 
   setTransmission = (transmission) => {
-    let transmissions = this.props.options.transmissions;
+    let transmissions = [...this.props.options.transmissions];
 
     if (transmissions.includes(transmission)) {
-      transmissions.splice(transmissions.indexOf(transmission), 1);
+      transmissions = transmissions.map((oldTransmission) =>
+        transmission === oldTransmission ? null : oldTransmission
+      );
     } else {
       transmissions.push(transmission);
     }
@@ -87,45 +109,31 @@ class Filter extends React.Component {
     this.props.onEditFilter({ transmissions });
   };
 
-  setVolEngine = (newVolumes) => {
-    const volumes = newVolumes.map((volume) =>
-      volume ? parseFloat(volume) : null
-    );
-
-    this.props.onEditFilter({ volumes });
-  };
+  setVolEngine = (volumes) => this.props.onEditFilter({ volumes });
 
   setGearing = (gearingList) => {
-    let gearings = this.props.options.gearings;
+    let gearings = [...this.props.options.gearings];
 
-    const isFoundGearing = gearingList.some(
-      (gearing) => gearings.indexOf(gearing) >= 0
-    );
-
-    if (isFoundGearing) {
-      gearingList.map((gearing) =>
-        gearings.splice(gearings.indexOf(gearing), 1)
-      );
-    } else {
-      gearingList.map((gearing) => gearings.push(gearing));
-    }
+    gearingList.forEach((gearing) => {
+      if (gearings.includes(gearing)) {
+        gearings = gearings.map((oldGearing) =>
+          gearing === oldGearing ? null : oldGearing
+        );
+      } else {
+        gearings.push(gearing);
+      }
+    });
 
     this.props.onEditFilter({ gearings });
   };
 
-  setMileage = (newMileages) => {
-    const mileages = newMileages.map((mileage) =>
-      mileage ? parseFloat(mileage) : null
-    );
-
-    this.props.onEditFilter({ mileages });
-  };
+  setMileage = (mileages) => this.props.onEditFilter({ mileages });
 
   setColor = (label) => {
-    let colors = this.props.options.colors;
+    let colors = [...this.props.options.colors];
 
     if (colors.includes(label)) {
-      colors.splice(colors.indexOf(label), 1);
+      colors = colors.map((oldColor) => (label === oldColor ? null : oldColor));
     } else {
       colors.push(label);
     }
@@ -290,7 +298,7 @@ class Filter extends React.Component {
               placement="rightStart"
               data={carCarcases}
               value={carcases}
-              onChange={(carcase) => this.setCarcase(carcase)}
+              onChange={(carcases) => this.setCarcase(carcases)}
               className={css.user_choice}
             />
           </div>
@@ -315,7 +323,7 @@ class Filter extends React.Component {
               onChange={() => this.setTransmission("автомат")}
             >
               {" "}
-              Автоматическая
+              автоматическая
             </Checkbox>
             <Checkbox
               className={css.check_radio_box}
@@ -323,7 +331,7 @@ class Filter extends React.Component {
               onChange={() => this.setTransmission("механика")}
             >
               {" "}
-              Механическая
+              механическая
             </Checkbox>
           </div>
           <div className={css.block_choice}>
@@ -335,6 +343,7 @@ class Filter extends React.Component {
                   placeholder="от"
                   value={volumes[0]}
                   min={0}
+                  step={0.2}
                   onChange={(minVolEngine) =>
                     this.setVolEngine([minVolEngine, volumes[1]])
                   }
@@ -344,6 +353,7 @@ class Filter extends React.Component {
                   placeholder="до"
                   value={volumes[1]}
                   min={0}
+                  step={0.2}
                   onChange={(maxVolEngine) =>
                     this.setVolEngine([volumes[0], maxVolEngine])
                   }
@@ -413,7 +423,7 @@ class Filter extends React.Component {
             <p className={css.label}>Цвет</p>
             <ColorPicker
               colors={[...carColors]}
-              value={colors}
+              selected={colors}
               onChange={(label) => this.setColor(label)}
               className={css.circle_picker}
             />

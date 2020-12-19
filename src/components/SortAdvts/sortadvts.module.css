@@ -1,6 +1,6 @@
 .container {
   font-family: "Open Sans", sans-serif;
-  margin: 4px 10px 0;
+  margin: 10px 10px 0;
 }
 
 .sortbutton {
@@ -8,7 +8,7 @@
 }
 
 .tagswrap {
-  margin-top: 7px;
+  /* margin-top: 7px; */
 }
 
 .container .tagswrap > div {
