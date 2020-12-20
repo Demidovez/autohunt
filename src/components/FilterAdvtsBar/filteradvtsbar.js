@@ -12,9 +12,9 @@ import {
 } from "rsuite";
 import ColorPicker from "../ColorPicker/colorpicker";
 import ModelPicker from "../ModelPicker/modelpicker";
-import css from "./filterbar.module.css";
+import css from "./filteradvtsbar.module.css";
 
-class Filter extends React.Component {
+class FilterAdvtsBar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,8 +26,6 @@ class Filter extends React.Component {
   }
 
   componentDidMount() {
-    this.props.onEditFilter();
-
     this.props.fetchInfo().then((carInfo) => {
       this.setState({
         carCarcases: carInfo.filter((info) => info.type === "carcase"),
@@ -38,11 +36,11 @@ class Filter extends React.Component {
   }
 
   formatNumber = (num) =>
-    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+    num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ") : num;
 
-  setPrice = (prices) => this.props.onEditFilter({ prices });
+  setPrice = (prices) => this.props.onEdit({ prices });
 
-  setIsExchange = (value) => this.props.onEditFilter({ isExchange: !value });
+  setIsExchange = (value) => this.props.onEdit({ isExchange: !value });
 
   setModelInfo = (model, indx) => {
     const { models } = this.props.options;
@@ -51,20 +49,20 @@ class Filter extends React.Component {
     models[indx].series = model.series;
     models[indx].generation = model.generation;
 
-    this.props.onEditFilter({ models });
+    this.props.onEdit({ models });
   };
 
   removeModel = (indx) => {
     let models = this.props.options.models;
     models.splice(indx, 1);
 
-    this.props.onEditFilter({ models });
+    this.props.onEdit({ models });
   };
 
   setYear = (newYears) => {
     const years = newYears.map((year) => (year ? parseInt(year) : null));
 
-    this.props.onEditFilter({ years });
+    this.props.onEdit({ years });
   };
 
   setCarcase = (carcases) => {
@@ -78,7 +76,7 @@ class Filter extends React.Component {
       }
     });
 
-    this.props.onEditFilter({ carcases: newCarcases });
+    this.props.onEdit({ carcases: newCarcases });
   };
 
   setFuel = (fuels) => {
@@ -92,7 +90,7 @@ class Filter extends React.Component {
       }
     });
 
-    this.props.onEditFilter({ fuels: newFuels });
+    this.props.onEdit({ fuels: newFuels });
   };
 
   setTransmission = (transmission) => {
@@ -106,28 +104,26 @@ class Filter extends React.Component {
       transmissions.push(transmission);
     }
 
-    this.props.onEditFilter({ transmissions });
+    this.props.onEdit({ transmissions });
   };
 
-  setVolEngine = (volumes) => this.props.onEditFilter({ volumes });
+  setVolEngine = (volumes) => this.props.onEdit({ volumes });
 
-  setGearing = (gearingList) => {
+  setGearing = (gearing) => {
     let gearings = [...this.props.options.gearings];
 
-    gearingList.forEach((gearing) => {
-      if (gearings.includes(gearing)) {
-        gearings = gearings.map((oldGearing) =>
-          gearing === oldGearing ? null : oldGearing
-        );
-      } else {
-        gearings.push(gearing);
-      }
-    });
+    if (gearings.includes(gearing)) {
+      gearings = gearings.map((oldGearing) =>
+        gearing === oldGearing ? null : oldGearing
+      );
+    } else {
+      gearings.push(gearing);
+    }
 
-    this.props.onEditFilter({ gearings });
+    this.props.onEdit({ gearings });
   };
 
-  setMileage = (mileages) => this.props.onEditFilter({ mileages });
+  setMileage = (mileages) => this.props.onEdit({ mileages });
 
   setColor = (label) => {
     let colors = [...this.props.options.colors];
@@ -138,27 +134,24 @@ class Filter extends React.Component {
       colors.push(label);
     }
 
-    this.props.onEditFilter({ colors });
+    this.props.onEdit({ colors });
   };
 
   addModel = () => {
-    const { models, countModels } = this.props.options;
+    const { models } = this.props.options;
 
     models.push({ model: null, series: null, generation: null });
 
-    this.props.onEditFilter({
-      countModels: countModels + 1,
+    this.props.onEdit({
       models,
     });
   };
 
-  changeCurrency = (currency, currencyUnit) => {
-    if (currency !== this.props.options.currency) {
-      this.props.onEditFilter({ currency, currencyUnit });
+  changeCurrency = (label, unit) => {
+    if (label !== this.props.options.currency.label) {
+      this.props.onEdit({ currency: { label, unit } });
     }
   };
-
-  resetFilter = () => this.props.onEditFilter();
 
   render() {
     const {
@@ -167,20 +160,17 @@ class Filter extends React.Component {
       years,
       volumes,
       mileages,
-      founded,
       models,
       carcases,
       fuels,
       transmissions,
       gearings,
       colors,
-      isChangeFilter,
       currency,
-      currencyUnit,
     } = this.props.options;
 
     const { carCarcases, carEngines, carColors } = this.state;
-    const { className } = this.props;
+    const { className, count, isChanged, onReset } = this.props;
 
     return (
       <div className={className}>
@@ -188,19 +178,23 @@ class Filter extends React.Component {
           <div className={css.block_choice}>
             <FlexboxGrid align="middle">
               <FlexboxGrid.Item colspan={14}>
-                <p className={css.label}>Цена, {currencyUnit}</p>
+                <p className={css.label}>Цена, {currency.unit}</p>
               </FlexboxGrid.Item>
               <FlexboxGrid.Item colspan={10}>
                 <div className={css.currency}>
                   <div
                     onClick={() => this.changeCurrency("BYN", "р.")}
-                    className={currency === "BYN" ? css.active_currency : ""}
+                    className={
+                      currency.label === "BYN" ? css.active_currency : ""
+                    }
                   >
                     BYN
                   </div>
                   <div
                     onClick={() => this.changeCurrency("USD", "$")}
-                    className={currency === "USD" ? css.active_currency : ""}
+                    className={
+                      currency.label === "USD" ? css.active_currency : ""
+                    }
                   >
                     USD
                   </div>
@@ -292,7 +286,6 @@ class Filter extends React.Component {
           <div className={css.block_choice}>
             <p className={css.label}>Кузов</p>
             <CheckPicker
-              sticky
               block
               placeholder="Любой"
               placement="rightStart"
@@ -305,7 +298,6 @@ class Filter extends React.Component {
           <div className={css.block_choice}>
             <p className={css.label}>Двигатель</p>
             <CheckPicker
-              sticky
               block
               value={fuels}
               placeholder="Любой"
@@ -366,7 +358,7 @@ class Filter extends React.Component {
             <Checkbox
               className={css.check_radio_box}
               checked={gearings.includes("передний")}
-              onChange={() => this.setGearing(["передний", "передний привод"])}
+              onChange={() => this.setGearing("передний")}
             >
               {" "}
               Передний
@@ -374,7 +366,7 @@ class Filter extends React.Component {
             <Checkbox
               className={css.check_radio_box}
               checked={gearings.includes("задний")}
-              onChange={() => this.setGearing(["задний", "задний привод"])}
+              onChange={() => this.setGearing("задний")}
             >
               {" "}
               Задний
@@ -382,13 +374,7 @@ class Filter extends React.Component {
             <Checkbox
               className={css.check_radio_box}
               checked={gearings.includes("полный")}
-              onChange={() =>
-                this.setGearing([
-                  "полный",
-                  "подключаемый полный привод",
-                  "постоянный полный привод",
-                ])
-              }
+              onChange={() => this.setGearing("полный")}
             >
               {" "}
               Полный
@@ -430,10 +416,10 @@ class Filter extends React.Component {
           </div>
           <div className={`${css.block_choice} ${css.total} `}>
             <p className={css.label}>
-              Найдено: <span>{this.formatNumber(founded)}</span>
+              Найдено: <span>{this.formatNumber(count)}</span>
             </p>
-            {isChangeFilter && (
-              <Button appearance="link" onClick={() => this.resetFilter()}>
+            {isChanged && (
+              <Button appearance="link" onClick={onReset}>
                 <Icon icon="close" /> сбросить фильтр
               </Button>
             )}
@@ -444,4 +430,4 @@ class Filter extends React.Component {
   }
 }
 
-export default Filter;
+export default FilterAdvtsBar;

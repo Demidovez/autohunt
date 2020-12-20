@@ -2,10 +2,10 @@ import React from "react";
 import { Content, Grid, Row, Col } from "rsuite";
 import { observer } from "mobx-react";
 import SearchBar from "../../components/SearchBar/searchbar";
-import FilterBar from "../../components/FilterBar/filterbar";
+import FilterAdvtsBar from "../../components/FilterAdvtsBar/filteradvtsbar";
 import AdvtList from "../../components/AdvtList/advtlist";
 import SortAdvts from "../../components/SortAdvts/sortadvts";
-import filterStore from "../../stores/filterStore";
+import filterAdvtsStore from "../../stores/filterAdvtsStore";
 import css from "./filterpage.module.css";
 
 const FilterPage = observer(
@@ -24,25 +24,29 @@ const FilterPage = observer(
             <Row>
               <Col xs={24} sm={24} md={4} lg={4}></Col>
               <Col xs={24} sm={24} md={4} lg={4}>
-                <FilterBar
+                <FilterAdvtsBar
                   className="filter"
-                  options={filterStore.filterOptions}
-                  fetchInfo={filterStore.getInitInfo}
-                  onEditFilter={filterStore.onEditFilter}
+                  options={filterAdvtsStore.filterOptions}
+                  count={filterAdvtsStore.count}
+                  isChanged={filterAdvtsStore.isChanged}
+                  fetchInfo={filterAdvtsStore.getInitInfo}
+                  onEdit={filterAdvtsStore.onEditFilter}
+                  onReset={filterAdvtsStore.onResetFilter}
                 />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12}>
                 <SortAdvts
-                  tags={filterStore.tags}
-                  orderValue={filterStore.orderValue}
-                  orderData={filterStore.orderData}
-                  onSort={filterStore.onSort}
+                  tags={filterAdvtsStore.tags}
+                  orderValue={filterAdvtsStore.orderValue}
+                  orderData={filterAdvtsStore.orderData}
+                  onSort={filterAdvtsStore.onSort}
+                  onCloseTag={filterAdvtsStore.onCloseTag}
                 />
                 <AdvtList
-                  advts={filterStore.advts}
-                  updateId={filterStore.updateId}
-                  getMore={filterStore.moreGetAdvts}
-                  allCount={filterStore.filterOptions.founded}
+                  advts={filterAdvtsStore.advts}
+                  count={filterAdvtsStore.count}
+                  updateId={filterAdvtsStore.updateId}
+                  getMore={filterAdvtsStore.getMoreAdvts}
                 />
               </Col>
               <Col xs={24} sm={24} md={4} lg={4}></Col>

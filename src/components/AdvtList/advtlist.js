@@ -14,6 +14,10 @@ class AdvtList extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.updateId;
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.updateId !== this.props.updateId) {
       this.setState({ advts: [...this.props.advts], isLoading: false });
@@ -21,7 +25,7 @@ class AdvtList extends React.Component {
   }
 
   formatNumber = (num) =>
-    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+    num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ") : num;
 
   showMore = () => {
     this.setState({ isLoadingMore: true });
@@ -35,7 +39,7 @@ class AdvtList extends React.Component {
   };
 
   render() {
-    const { allCount } = this.props;
+    const { count } = this.props;
     const { isLoading, isLoadingMore, advts } = this.state;
 
     return (
@@ -52,7 +56,7 @@ class AdvtList extends React.Component {
           advts.map((advt) => (
             <AdvtCard key={advt.id} advt={advt} className={css.advt} />
           ))}
-        {isLoading === false && advts.length !== allCount && (
+        {isLoading === false && advts.length !== count && (
           <div className={css.more}>
             <Button
               appearance="default"
@@ -62,7 +66,7 @@ class AdvtList extends React.Component {
               Показать еще
             </Button>
             <span>
-              {this.formatNumber(advts.length)} из {this.formatNumber(allCount)}
+              {this.formatNumber(advts.length)} из {this.formatNumber(count)}
             </span>
           </div>
         )}

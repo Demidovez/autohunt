@@ -5,18 +5,20 @@ import css from "./sortadvts.module.css";
 
 const SortAdvts = observer(
   class extends React.Component {
-    closeTag = (tag) => {
-      console.log(tag);
-    };
-
     render() {
+      const { tags, orderData, orderValue, onSort, onCloseTag } = this.props;
+
       return (
         <div className={`sortadvts-overwrite ${css.container}`}>
           <FlexboxGrid align="middle">
             <FlexboxGrid.Item colspan={18}>
               <div className={css.tagswrap}>
-                {this.props.tags.map((tag, indx) => (
-                  <Tag closable onClose={() => this.closeTag(tag)} key={indx}>
+                {tags.map((tag, indx) => (
+                  <Tag
+                    closable
+                    onClose={() => onCloseTag(tag, indx)}
+                    key={indx}
+                  >
                     {tag.label}
                   </Tag>
                 ))}
@@ -25,13 +27,13 @@ const SortAdvts = observer(
             <FlexboxGrid.Item colspan={6}>
               <div className={css.sortbutton}>
                 <SelectPicker
-                  data={this.props.orderData}
+                  data={orderData}
                   appearance="subtle"
                   cleanable={false}
                   searchable={false}
-                  value={this.props.orderValue}
-                  placeholder={this.props.orderValue.label}
-                  onSelect={this.props.onSort}
+                  value={orderValue}
+                  placeholder={orderValue.label}
+                  onSelect={onSort}
                 />
               </div>
             </FlexboxGrid.Item>
