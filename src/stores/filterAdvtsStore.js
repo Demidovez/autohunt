@@ -289,10 +289,33 @@ class FilterAdvtsStore {
 
     this.tags.splice(indexOfTags, 1);
 
-    if (field === "model" || field === "series" || field === "generation") {
+    if (field === "model") {
+      this.tags = this.tags.filter(
+        (t) => t.field + t.index !== "series" + index
+      );
+      this.tags = this.tags.filter(
+        (t) => t.field + t.index !== "generation" + index
+      );
+
+      this.filterOptions["models"][index] = {
+        model: null,
+        series: null,
+        generation: null,
+      };
+    } else if (field === "series") {
+      this.tags = this.tags.filter(
+        (t) => t.field + t.index !== "generation" + index
+      );
+
       this.filterOptions["models"][index] = {
         ...this.filterOptions["models"][index],
-        [field]: null,
+        series: null,
+        generation: null,
+      };
+    } else if (field === "generation") {
+      this.filterOptions["models"][index] = {
+        ...this.filterOptions["models"][index],
+        generation: null,
       };
     } else if (this.filterOptions[field].length) {
       this.filterOptions[field][index] = this.defaultOptions[field][index];
