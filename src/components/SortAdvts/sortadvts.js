@@ -1,12 +1,19 @@
 import React from "react";
 import { FlexboxGrid, SelectPicker, Tag } from "rsuite";
 import { observer } from "mobx-react";
+import filterAdvtsStore from "../../stores/filterAdvtsStore";
 import css from "./sortadvts.module.css";
 
 const SortAdvts = observer(
   class extends React.Component {
     render() {
-      const { tags, orderData, orderValue, onSort, onCloseTag } = this.props;
+      const {
+        tags,
+        orderData,
+        orderValue,
+        onSort,
+        onCloseTag,
+      } = filterAdvtsStore;
 
       return (
         <div className={`sortadvts-overwrite ${css.container}`}>
@@ -16,7 +23,7 @@ const SortAdvts = observer(
                 {tags.map((tag, indx) => (
                   <Tag
                     closable
-                    onClose={() => onCloseTag(tag, indx)}
+                    onClick={() => onCloseTag(tag, indx)}
                     key={indx}
                   >
                     {tag.label}

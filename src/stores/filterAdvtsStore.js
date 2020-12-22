@@ -4,10 +4,9 @@ import {
   makeObservable,
   observable,
   autorun,
-  toJS,
+  runInAction,
 } from "mobx";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 class FilterAdvtsStore {
   // Значения фильтра
@@ -17,7 +16,7 @@ class FilterAdvtsStore {
   defaultOptions = {
     prices: [null, null],
     isExchange: false,
-    models: [{ model: null, series: null, generation: null }],
+    models: [{ model: null, series: null, generation: null, index: 0 }],
     carcases: [],
     fuels: [],
     years: [null, null],
@@ -36,11 +35,11 @@ class FilterAdvtsStore {
   // Найденные объявления
   advts = [];
 
+  // Дополнительные объявления (после нажатия Показать еще)
+  moreAdvts = [];
+
   // Количество объявлений
   count = [];
-
-  // ID обновления списка объявления
-  updateId = null;
 
   // Сдвиг по найденным для отобржания после нажатия Показать еще
   offsetAdvts = 0;
@@ -76,52 +75,36 @@ class FilterAdvtsStore {
     makeObservable(this, {
       filterOptions: observable,
       advts: observable,
+      moreAdvts: observable,
       count: observable,
-      updateId: observable,
       tags: observable,
       orderValue: observable,
       isChanged: computed,
       setTag: action,
       onEditFilter: action,
       onResetFilter: action,
-      getInitInfo: action,
       getMoreAdvts: action,
       onSort: action,
       onCloseTag: action,
-      setAdvts: action,
-      setCount: action,
-      setUpdateId: action,
+      onChangeCountModel: action,
     });
 
     // Обновляем список объявлений при изменении фильтра
     autorun(() =>
-      this.getAdvts(this.filterOptions)
-        .then(({ advts, count }) => {
-          this.setAdvts(advts);
-          this.setCount(count);
-        })
-        .then(() => this.setUpdateId(uuidv4()))
+      this.getAdvts(this.filterOptions).then(({ advts, count }) => {
+        runInAction(() => {
+          this.advts = advts;
+          this.moreAdvts = [];
+          this.count = count;
+        });
+      })
     );
   }
 
+  // Изменились ли опции фильтра?
   get isChanged() {
     return this.tags.length ? true : false;
   }
-
-  // Устанавливаем найденные объявления
-  setAdvts = (advts) => {
-    this.advts = advts;
-  };
-
-  // Устанавливаем количество объявлений
-  setCount = (count) => {
-    this.count = count;
-  };
-
-  // Устанавливае ID обновления списка объявления
-  setUpdateId = (updateId) => {
-    this.updateId = updateId;
-  };
 
   // Изменения опции фильтра
   onEditFilter = (option) => {
@@ -131,6 +114,32 @@ class FilterAdvtsStore {
     };
 
     this.setTag(option);
+  };
+
+  // Добавляем или удаляем модель авто
+  onChangeCountModel = (model) => {
+    const models = this.filterOptions.models;
+
+    if (model) {
+      this.tags = this.tags.filter(
+        (tag) =>
+          !["model", "series", "generation"]
+            .map((field) => field + model.index)
+            .includes(tag.field + tag.index)
+      );
+
+      this.filterOptions.models = models.filter((m) => m.index !== model.index);
+    } else {
+      this.filterOptions.models = [
+        ...models,
+        {
+          model: null,
+          series: null,
+          generation: null,
+          index: models[models.length - 1].index + 1,
+        },
+      ];
+    }
   };
 
   // Достаем из сервера объявления по опциям
@@ -173,14 +182,16 @@ class FilterAdvtsStore {
           maybeTags.push({ field, label, value, index });
         });
       } else if (field === "models") {
-        Object.entries(value).map((label) =>
-          maybeTags.push({
-            field: label[0], // TODO: Нужно уточнить field
-            label: label[1],
-            value: label[1],
-            index,
-          })
-        );
+        Object.entries(value)
+          .filter((f) => f[0] !== "index")
+          .map((label) =>
+            maybeTags.push({
+              field: label[0], // TODO: Нужно уточнить field
+              label: label[1],
+              value: label[1],
+              index,
+            })
+          );
       } else if (field === "carcases") {
         maybeTags.push({ field, label: value, value, index });
       } else if (field === "fuels") {
@@ -250,7 +261,9 @@ class FilterAdvtsStore {
     return this.getAdvts({
       ...this.filterOptions,
       offset: this.offsetAdvts,
-    }).then(({ advts }) => [...advts]);
+    }).then(({ advts }) =>
+      runInAction(() => (this.moreAdvts = [...this.moreAdvts, ...advts]))
+    );
   };
 
   // Сортировка объявлений
@@ -261,26 +274,6 @@ class FilterAdvtsStore {
       ...this.filterOptions,
       order: value,
     };
-  };
-
-  // Определяем список названий моделей, кузовов, двигателей и цветов авто
-  getInitInfo = async (model, series) => {
-    let postOptions = {};
-
-    if (model && series) {
-      postOptions = {
-        model,
-        series,
-      };
-    } else if (model) {
-      postOptions = {
-        model,
-      };
-    }
-
-    return await axios
-      .post(`https://server.autohunt.by/get_cars_name`, postOptions)
-      .then(({ data }) => data);
   };
 
   // Закрытие тега

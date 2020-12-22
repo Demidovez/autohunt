@@ -1,108 +1,92 @@
 import React from "react";
 import { SelectPicker } from "rsuite";
+import { observer } from "mobx-react";
+import carNamesStore from "../../stores/carNamesStore";
 import css from "./modelpicker.module.css";
 
-class ModelPicker extends React.Component {
-  constructor(props) {
-    super(props);
+const ModelPicker = observer(
+  class extends React.Component {
+    constructor(props) {
+      super(props);
 
-    this.state = {
-      carModels: [],
-      carSeries: [],
-      carGenerations: [],
+      this.state = {
+        seriesNames: [],
+        generationNames: [],
 
-      model: null,
-      series: null,
-      generation: null,
-    };
-  }
+        model: null,
+        series: null,
+        generation: null,
+      };
+    }
 
-  componentDidMount() {
-    this.props.fetchInfo().then((carInfo) => {
-      this.setState({
-        carModels: carInfo.filter((info) => info.type === "car_info"),
+    setModel = (model) =>
+      carNamesStore.getSeriesAndGenerationNames(model).then((seriesNames) =>
+        this.setStateBy({
+          seriesNames,
+          model,
+          series: null,
+          generation: null,
+        })
+      );
+
+    setSeries = (series) =>
+      carNamesStore
+        .getSeriesAndGenerationNames(this.state.model, series)
+        .then((generationNames) =>
+          this.setStateBy({ generationNames, series, generation: null })
+        );
+
+    setGeneration = (generation) => this.setStateBy({ generation });
+
+    setStateBy = (field) =>
+      this.setState({ ...field }, () => {
+        const { model, series, generation } = this.state;
+
+        this.props.onChangeInfo({ model, series, generation });
       });
-    });
-  }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { model, series, generation } = this.props.model;
+    render() {
+      const {
+        seriesNames,
+        generationNames,
+        model,
+        series,
+        generation,
+      } = this.state;
 
-    if (
-      prevState.model !== model ||
-      prevState.series !== series ||
-      prevState.generation !== generation
-    ) {
-      this.setState({ ...this.props.model });
+      return (
+        <div>
+          <SelectPicker
+            placement="rightStart"
+            placeholder="Модель"
+            data={carNamesStore.modelNames}
+            value={model}
+            onChange={(model) => this.setModel(model)}
+            block
+          />
+          <SelectPicker
+            placement="rightStart"
+            placeholder="Серия"
+            data={seriesNames}
+            value={series}
+            disabled={!model}
+            className={css.selectpicker}
+            onChange={(series) => this.setSeries(series)}
+            block
+          />
+          <SelectPicker
+            placement="rightStart"
+            placeholder="Поколение"
+            data={generationNames}
+            value={generation}
+            disabled={!series || generationNames.length === 0}
+            onChange={(generation) => this.setGeneration(generation)}
+            block
+          />
+        </div>
+      );
     }
   }
-
-  setModel = (model) =>
-    this.props
-      .fetchInfo(model)
-      .then((carSeries) =>
-        this.setStateBy({ carSeries, model, series: null, generation: null })
-      );
-
-  setSeries = (series) =>
-    this.props
-      .fetchInfo(this.state.model, series)
-      .then((carGenerations) =>
-        this.setStateBy({ carGenerations, series, generation: null })
-      );
-
-  setGeneration = (generation) => this.setStateBy({ generation });
-
-  setStateBy = (newValue) =>
-    this.setState({ ...newValue }, () => {
-      const { model, series, generation } = this.state;
-      this.props.onChangeInfo({ model, series, generation });
-    });
-
-  render() {
-    const {
-      carModels,
-      carSeries,
-      carGenerations,
-      model,
-      series,
-      generation,
-    } = this.state;
-
-    const { className } = this.props;
-
-    return (
-      <div>
-        <SelectPicker
-          placement="rightStart"
-          placeholder="Модель"
-          data={carModels}
-          value={model}
-          onChange={(model) => this.setModel(model)}
-          block
-        />
-        <SelectPicker
-          placement="rightStart"
-          placeholder="Серия"
-          data={carSeries}
-          value={series}
-          disabled={!model}
-          className={css.selectpicker}
-          onChange={(series) => this.setSeries(series)}
-          block
-        />
-        <SelectPicker
-          placement="rightStart"
-          placeholder="Поколение"
-          data={carGenerations}
-          value={generation}
-          disabled={!series || carGenerations.length === 0}
-          onChange={(generation) => this.setGeneration(generation)}
-          block
-        />
-      </div>
-    );
-  }
-}
+);
 
 export default ModelPicker;

@@ -7,13 +7,14 @@
   text-align: right;
 }
 
-.tagswrap {
-  /* margin-top: 7px; */
-}
-
 .container .tagswrap > div {
   background-color: rgb(224, 224, 224);
   margin-bottom: 8px;
   margin-left: 0px;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.container .tagswrap > div:hover {
+  text-decoration: line-through;
 }
