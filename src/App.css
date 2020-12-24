@@ -37,6 +37,6 @@
   }
 }
 
-#my-container {
-  height: 100vh;
+.main-content {
+  min-height: 100vh;
 }

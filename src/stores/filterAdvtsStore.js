@@ -258,7 +258,7 @@ class FilterAdvtsStore {
 
     // TODO: Если на сервер спарсятся новые объявы, то на сайте после нажатия кнопки могут подгрузиться дубли
 
-    return this.getAdvts({
+    this.getAdvts({
       ...this.filterOptions,
       offset: this.offsetAdvts,
     }).then(({ advts }) =>

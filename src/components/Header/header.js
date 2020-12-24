@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Row, Col, Navbar, Nav, Icon, Header } from "rsuite";
+import { Link } from "react-router-dom";
 import css from "./header.module.css";
 
 class HeaderSite extends React.Component {
@@ -27,15 +28,32 @@ class HeaderSite extends React.Component {
                 <Navbar.Header></Navbar.Header>
                 <Navbar.Body>
                   <Nav onSelect={this.handleSelect} activeKey={activeKey}>
-                    <Nav.Item eventKey="1" icon={<Icon icon="home" />}>
-                      Поиск
+                    <Nav.Item
+                      eventKey="1"
+                      icon={<Icon icon="home" />}
+                      componentClass={Link}
+                      to="/"
+                    >
+                      Главная
                     </Nav.Item>
-                    <Nav.Item eventKey="2">Новости</Nav.Item>
-                    <Nav.Item eventKey="3">О нас</Nav.Item>
-                    <Nav.Item eventKey="4">Контакты</Nav.Item>
+                    <Nav.Item eventKey="2" componentClass={Link} to="/news">
+                      Новости
+                    </Nav.Item>
+                    <Nav.Item eventKey="3" componentClass={Link} to="/about">
+                      О нас
+                    </Nav.Item>
+                    <Nav.Item eventKey="4" componentClass={Link} to="/contacts">
+                      Контакты
+                    </Nav.Item>
                   </Nav>
                   <Nav pullRight>
-                    <Nav.Item icon={<Icon icon="avatar" />}>Кабинет</Nav.Item>
+                    <Nav.Item
+                      icon={<Icon icon="avatar" />}
+                      componentClass={Link}
+                      to="/account"
+                    >
+                      Кабинет
+                    </Nav.Item>
                   </Nav>
                 </Navbar.Body>
               </Col>

@@ -43,7 +43,7 @@ class ServicePage extends React.Component {
       //     <Grid.Column width={4}></Grid.Column>{" "}
       //   </Grid.Row>
       // </Grid>
-      <div></div>
+      <div>Сервис</div>
     );
   }
 }

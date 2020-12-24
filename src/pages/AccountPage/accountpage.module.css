@@ -1,0 +1,13 @@
+.breadcrumb > ol {
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin: 0px 15px;
+}
+
+.header1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 23px;
+  color: black;
+  line-height: 38px;
+  margin: 0px 14px 10px;
+}
