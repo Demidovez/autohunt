@@ -14,23 +14,38 @@ import ServicePage from "./pages/ServicePage/servicepage";
 import "./App.css";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isServiceMode: true,
+    };
+  }
+
   render() {
+    const { isServiceMode } = this.state;
+
     return (
-      <Scrollbars autoHeight autoHeightMin="100vh">
-        <Container className="main-content">
-          <Header />
-          <Switch>
-            <Route path="/news" component={NewsPage} />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/contacts" component={ContactPage} />
-            <Route path="/account" component={AccountPage} />
-            <Route path="/service" component={ServicePage} />
-            <Route exact path="/" component={FilterPage} />
-            <Redirect to="/" />
-          </Switch>
-          <Footer />
-        </Container>
-      </Scrollbars>
+      <div>
+        {isServiceMode && <ServicePage />}
+        {!isServiceMode && (
+          <Scrollbars autoHeight autoHeightMin="100vh">
+            <Container className="main-content">
+              <Header />
+              <Switch>
+                <Route path="/news" component={NewsPage} />
+                <Route path="/about" component={AboutPage} />
+                <Route path="/contacts" component={ContactPage} />
+                <Route path="/account" component={AccountPage} />
+                <Route path="/service" component={ServicePage} />
+                <Route exact path="/" component={FilterPage} />
+                <Redirect to="/" />
+              </Switch>
+              <Footer />
+            </Container>
+          </Scrollbars>
+        )}
+      </div>
     );
   }
 }

@@ -1,49 +1,84 @@
 import React from "react";
+import { Container, Content, Grid, Row, Col, Modal, Button } from "rsuite";
+import LoginAdmin from "../../components/LoginAdmin/loginadmin";
 import css from "./servicepage.module.css";
 
 class ServicePage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      show: false,
+    };
+  }
+
+  closeLogin = () => {
+    this.setState({ show: false });
+  };
+
+  openLogin = () => {
+    this.setState({ show: true });
+  };
+
   render() {
     return (
-      // <Grid verticalAlign="middle" id="my-container">
-      //   <Grid.Row>
-      //     <Grid.Column width={4}></Grid.Column>{" "}
-      //     <Grid.Column width={8}>
-      //       <Container textAlign="center">
-      //         <Image src="/logo.jpg" size="small" circular inline />
-      //         <Header as="h1">AutoHunt.by</Header>
-      //         <Header as="h2">Сервис в процессе разработки</Header>
-      //         <div>
-      //           2020 © AutoHUNT – автомобильная поисковая система. Все права
-      //           защищены.
-      //         </div>
-      //         <div>
-      //           <br />
-      //         </div>
-      //         <div>
-      //           Индивидуальный предприниматель Макашин Александр Евгеньевич, УНП
-      //           491266969, <br />
-      //           Государственная регистрация от 16.08.2017г. произведена
-      //           Светлогорским районным исполнительным комитетом. <br />
-      //           Юр. адрес: 247431, г. Светлогорск, ул.Шоссейная 19/46
-      //           <br />
-      //           Время работы: 9:00—21:00 пн—пт.
-      //           <br />
-      //           Телефон: +375 (29) 329-21-75
-      //           <br />
-      //           E-mail: malexoff@gmail.com
-      //           <br />
-      //         </div>
-      //       </Container>
-      //     </Grid.Column>
-      //     <Grid.Column width={4}></Grid.Column>
-      //   </Grid.Row>
-      //   <Grid.Row>
-      //     <Grid.Column width={4}></Grid.Column>
-      //     <Grid.Column width={8}></Grid.Column>{" "}
-      //     <Grid.Column width={4}></Grid.Column>{" "}
-      //   </Grid.Row>
-      // </Grid>
-      <div>Сервис</div>
+      <div className={css.container}>
+        <Container>
+          <Content>
+            <Grid fluid className={css.grid}>
+              <Row>
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+                <Col xs={24} sm={24} md={12} lg={16}>
+                  <div className={css.logo_img} onClick={this.openLogin}>
+                    <img src="/logo.svg" alt="logo" />
+                  </div>
+                  <h1>AutoHunt.by</h1>
+                  <h2>Сервис в процессе разработки</h2>
+                  <div>
+                    2020 © AutoHUNT – автомобильная поисковая система. Все права
+                    защищены.
+                  </div>
+                  <div>
+                    <br />
+                  </div>
+                  <div>
+                    Индивидуальный предприниматель Макашин Александр Евгеньевич,
+                    УНП 491266969, <br />
+                    Государственная регистрация от 16.08.2017г. произведена
+                    Светлогорским районным исполнительным комитетом. <br />
+                    Юр. адрес: 247431, г. Светлогорск, ул.Шоссейная 19/46
+                    <br />
+                    Время работы: 9:00—21:00 пн—пт.
+                    <br />
+                    Телефон: +375 (29) 329-21-75
+                    <br />
+                    E-mail: malexoff@gmail.com
+                    <br />
+                  </div>
+                </Col>
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+              </Row>
+            </Grid>
+          </Content>
+        </Container>
+
+        <Modal show={this.state.show} onHide={this.closeLogin}>
+          <Modal.Header>
+            <Modal.Title>Вход только для администраторов!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <LoginAdmin />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closeLogin} appearance="primary">
+              Ok
+            </Button>
+            <Button onClick={this.closeLogin} appearance="subtle">
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     );
   }
 }
