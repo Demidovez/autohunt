@@ -1,0 +1,8 @@
+.container .modal_title {
+    font-family: "Open Sans", sans-serif;
+    color: black;
+}
+
+.container .modal_footer {
+    text-align: left;
+}
