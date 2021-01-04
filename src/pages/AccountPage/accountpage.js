@@ -1,58 +1,51 @@
 import React from "react";
-import {Content, Grid, Row, Col, Breadcrumb, Button} from "rsuite";
-import {Link} from "react-router-dom";
-import ModalLogin from "../../components/ModalLogin/modallogin";
+import { Content, Grid, Row, Col, Breadcrumb, Button } from "rsuite";
+import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
+import userStore from "../../stores/userStore";
+import LoginForm from "../../components/LoginForm/loginform";
 import css from "./accountpage.module.css";
 
-class AccountPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {showModalLogin: false, isLogined: false};
-    }
-
-    closeLogin = () => {
-        this.setState({showModalLogin: false});
-    };
-
-    openLogin = () => {
-        this.setState({showModalLogin: true});
-    };
-
+const AccountPage = observer(
+  class extends React.Component {
     render() {
-        const {showModalLogin, isLogined} = this.state;
+      const { isLogined, name, tryLogin, trySignin, tryRestore } = userStore;
 
+      return (
+        <Content className={isLogined ? css.container : css.flex_container}>
+          {isLogined && (
+            <Grid fluid>
+              <Row>
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+                <Col xs={24} sm={24} md={12} lg={16}>
+                  {/* TODO: Надо хлебные крошки вынести в отдельный компонент из вне, так как они на каждой странице */}
+                  <div className={css.breadcrumb}>
+                    <Breadcrumb>
+                      <Breadcrumb.Item componentClass={Link} to="/">
+                        Главная
+                      </Breadcrumb.Item>
+                      <Breadcrumb.Item active>Аккаунт</Breadcrumb.Item>
+                    </Breadcrumb>
+                  </div>
+                  <h1 className={css.header1}>Аккаунт</h1>
+                  <p>Добрый день, {name}</p>
+                </Col>
+                <Col xs={24} sm={24} md={4} lg={4}></Col>
+              </Row>
+            </Grid>
+          )}
 
-        return (
-            <Content>
-                <Grid fluid>
-                    <Row>
-                        <Col xs={24} sm={24} md={4} lg={4}></Col>
-                        <Col xs={24} sm={24} md={12} lg={16}>
-                            {/* TODO: Надо хлебные крошки вынести в отдельный компонент из вне, так как они на каждой странице */}
-                            <div className={css.breadcrumb}>
-                                <Breadcrumb>
-                                    <Breadcrumb.Item componentClass={Link} to="/">
-                                        Главная
-                                    </Breadcrumb.Item>
-                                    <Breadcrumb.Item active>Аккаунт</Breadcrumb.Item>
-                                </Breadcrumb>
-                            </div>
-                            <h1 className={css.header1}>Аккаунт</h1>
-                            {!isLogined && <Button onClick={this.openLogin}>Войти</Button>}
-                        </Col>
-                        <Col xs={24} sm={24} md={4} lg={4}></Col>
-                    </Row>
-                    <Row>
-                        <Col xs={24} sm={24} md={4} lg={4}></Col>
-                        <Col xs={24} sm={24} md={12} lg={16}></Col>
-                        <Col xs={24} sm={24} md={4} lg={4}></Col>
-                    </Row>
-                </Grid>
-                <ModalLogin show={showModalLogin} onClose={this.closeLogin}/>
-            </Content>
-
-        );
+          {!isLogined && (
+            <LoginForm
+              login={tryLogin}
+              signin={trySignin}
+              forgot={tryRestore}
+            />
+          )}
+        </Content>
+      );
     }
-}
+  }
+);
 
 export default AccountPage;

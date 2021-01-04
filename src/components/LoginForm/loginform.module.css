@@ -1,0 +1,36 @@
+.container {
+  flex: 1;
+  display: flex;
+}
+
+.container > div {
+  background-color: white;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto;
+  flex: 1;
+}
+
+.container .header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.container .header > div {
+  font-size: 16px;
+  color: gray;
+}
+
+.container .header > div + div {
+  text-align: right;
+}
+
+.container .header .active {
+  font-weight: 600;
+  color: black;
+}
+
+.container .header :not(.active):hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

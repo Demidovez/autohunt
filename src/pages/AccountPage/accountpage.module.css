@@ -1,7 +1,6 @@
-.breadcrumb > ol {
-  padding-left: 0px;
-  margin-bottom: 0px;
-  margin: 0px 15px;
+.flex_container {
+  display: flex;
+  align-items: center;
 }
 
 .header1 {
@@ -10,4 +9,10 @@
   color: black;
   line-height: 38px;
   margin: 0px 14px 10px;
+}
+
+.breadcrumb > ol {
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin: 0px 15px;
 }
