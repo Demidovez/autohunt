@@ -7,7 +7,7 @@ import css from "./newspage.module.css";
 class NewsPage extends React.Component {
   render() {
     return (
-      <Content>
+      <Content className={css.container}>
         <Grid fluid>
           <Row>
             <Col xs={24} sm={24} md={4} lg={4}></Col>

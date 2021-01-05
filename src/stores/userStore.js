@@ -20,6 +20,7 @@ class UserStore {
       tryLogin: action,
       trySignin: action,
       tryRestore: action,
+      tryLogout: action,
     });
 
     // Проверка авторизован ли пользователь
@@ -84,6 +85,16 @@ class UserStore {
     //       });
     //     }
     //   });
+  };
+
+  // Попытка разлогиниться
+  tryLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    this.name = "";
+    this.isLogined = false;
+    this.role = "GUEST";
   };
 }
 

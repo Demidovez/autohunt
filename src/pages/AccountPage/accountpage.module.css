@@ -1,6 +1,11 @@
+.container {
+  margin: 0 20px;
+}
+
 .flex_container {
   display: flex;
   align-items: center;
+  margin: 0 20px;
 }
 
 .header1 {
@@ -8,11 +13,24 @@
   font-size: 23px;
   color: black;
   line-height: 38px;
-  margin: 0px 14px 10px;
+  margin: 0px 0px 10px;
 }
 
 .breadcrumb > ol {
   padding-left: 0px;
   margin-bottom: 0px;
-  margin: 0px 15px;
+}
+
+.sidenav {
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sidenav a span {
+  color: black;
+}
+
+.sidenav li[class*="rs-nav-item-active"] a span {
+  color: inherit;
 }
