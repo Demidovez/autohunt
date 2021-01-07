@@ -3,6 +3,7 @@ import { Container } from "rsuite";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import PageWrapper from "./components/PageWrapper/pagewrapper";
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
 import FilterPage from "./pages/FilterPage/filterpage";
@@ -32,15 +33,17 @@ class App extends React.Component {
           <Scrollbars autoHeight autoHeightMin="100vh">
             <Container className="main-content">
               <Header />
-              <Switch>
-                <Route path="/news" component={NewsPage} />
-                <Route path="/about" component={AboutPage} />
-                <Route path="/contacts" component={ContactPage} />
-                <Route path="/account" component={AccountPage} />
-                <Route path="/service" component={ServicePage} />
-                <Route exact path="/" component={FilterPage} />
-                <Redirect to="/" />
-              </Switch>
+              <PageWrapper>
+                <Switch>
+                  <Route path="/news" component={NewsPage} />
+                  <Route path="/about" component={AboutPage} />
+                  <Route path="/contacts" component={ContactPage} />
+                  <Route path="/account" component={AccountPage} />
+                  <Route path="/service" component={ServicePage} />
+                  <Route exact path="/" component={FilterPage} />
+                  <Redirect to="/" />
+                </Switch>
+              </PageWrapper>
               <Footer />
             </Container>
           </Scrollbars>

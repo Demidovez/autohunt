@@ -1,13 +1,3 @@
-.container {
-  margin: 0 20px;
-}
-
-.flex_container {
-  display: flex;
-  align-items: center;
-  margin: 0 20px;
-}
-
 .header1 {
   font-family: "Open Sans", sans-serif;
   font-size: 23px;
@@ -19,18 +9,4 @@
 .breadcrumb > ol {
   padding-left: 0px;
   margin-bottom: 0px;
-}
-
-.sidenav {
-  background-color: white;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.sidenav a span {
-  color: black;
-}
-
-.sidenav li[class*="rs-nav-item-active"] a span {
-  color: inherit;
 }

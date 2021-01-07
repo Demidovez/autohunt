@@ -1,5 +1,5 @@
 import React from "react";
-import { Content, Grid, Row, Col } from "rsuite";
+import { Grid, Row, Col } from "rsuite";
 import SearchBar from "../../components/SearchBar/searchbar";
 import FilterAdvtsBar from "../../components/FilterAdvtsBar/filteradvtsbar";
 import AdvtList from "../../components/AdvtList/advtlist";
@@ -9,28 +9,20 @@ import css from "./filterpage.module.css";
 class FilterPage extends React.Component {
   render() {
     return (
-      <Content>
+      <div>
+        <SearchBar className={css.searchbar} />
         <Grid fluid>
           <Row>
-            <Col xs={24} sm={24} md={4} lg={4}></Col>
-            <Col xs={24} sm={24} md={16} lg={16}>
-              <SearchBar className={css.searchbar} />
-            </Col>
-            <Col xs={24} sm={24} md={4} lg={4}></Col>
-          </Row>
-          <Row>
-            <Col xs={24} sm={24} md={4} lg={4}></Col>
-            <Col xs={24} sm={24} md={4} lg={4}>
+            <Col xs={24} sm={24} md={4} lg={6}>
               <FilterAdvtsBar className={css.filter} />
             </Col>
-            <Col xs={24} sm={24} md={12} lg={12}>
+            <Col xs={24} sm={24} md={12} lg={18}>
               <SortAdvts />
               <AdvtList />
             </Col>
-            <Col xs={24} sm={24} md={4} lg={4}></Col>
           </Row>
         </Grid>
-      </Content>
+      </div>
     );
   }
 }
