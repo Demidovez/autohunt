@@ -23,7 +23,10 @@ class AdvtCard extends React.Component {
         <Container>
           <Sidebar>
             <div className={css.img_wrapper}>
-              <img src={advt.image} />
+              <img
+                src={advt.image}
+                alt={`${advt.model} ${advt.series} ${advt.generation}`}
+              />
             </div>
           </Sidebar>
           <Container>
@@ -65,7 +68,11 @@ class AdvtCard extends React.Component {
                 <FlexboxGrid.Item colspan={8}>
                   <div className={css.source}>
                     <p>Источник</p>
-                    <a href={`https://${advt.site}${advt.url}`} target="_blank">
+                    <a
+                      href={`https://${advt.site}${advt.url}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <img src={`${advt.site}.png`} alt={`${advt.site}`} />
                     </a>
                   </div>

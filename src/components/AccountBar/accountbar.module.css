@@ -11,7 +11,11 @@
   color: inherit;
 }
 
-.logout > div {
+.logout_link {
+  border-radius: 0px 0px 6px 6px;
+}
+
+.logout_link > div {
   padding: 15px;
   padding-left: 56px;
   color: black;
@@ -19,9 +23,14 @@
   cursor: pointer;
   position: relative;
   line-height: 1.25;
+  transition: background-color 0.3s linear;
 }
 
-.logout > div i {
+.logout_link > div:hover {
+  background-color: #e5e5ea;
+}
+
+.logout_link > div i {
   color: #8e8e93;
   font-size: 16px;
   margin-right: 20px;

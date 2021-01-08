@@ -67,7 +67,7 @@ class AccountBar extends React.Component {
               </Nav>
             </Sidenav.Body>
           </Sidenav>
-          <Panel onClick={this.openModal} className={css.logout}>
+          <Panel onClick={this.openModal} className={css.logout_link}>
             <Icon icon="sign-out" /> <span>Выйти</span>
           </Panel>
         </Panel>

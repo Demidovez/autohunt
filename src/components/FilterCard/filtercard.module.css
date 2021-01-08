@@ -1,0 +1,70 @@
+.container {
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
+  transition: background-color 0.3s linear;
+}
+
+.container.disabled {
+  background-color: #e5e5ea;
+}
+
+.container h4 {
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+.container a {
+  min-width: 110px;
+  margin-right: 10px;
+}
+
+.count_advts {
+  display: inline-block;
+}
+
+.count_advts span {
+  font-size: 12px;
+  font-weight: 400;
+  color: gray;
+}
+
+.count_advts .new_advts {
+  color: limegreen;
+}
+
+.controls_wrapper {
+  text-align: right;
+}
+
+.controls_wrapper > span {
+  display: inline-block;
+}
+
+.controls_wrapper i {
+  margin-left: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.remove_icon {
+  color: red;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal i {
+  color: #ffb300;
+  font-size: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.container .tagswrap > div {
+  background-color: rgb(224, 224, 224);
+  margin: 0px 10px 10px 0px;
+}
