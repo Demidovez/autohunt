@@ -1,15 +1,27 @@
 import React from "react";
-import { Grid, Row, Col, Navbar, Nav, Icon, Header } from "rsuite";
+import {
+  Grid,
+  Row,
+  Col,
+  Navbar,
+  Nav,
+  Icon,
+  Header,
+  Badge,
+  Whisper,
+  Popover,
+} from "rsuite";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import userStore from "../../stores/userStore";
+import Notification from "../Notification/notification";
 import css from "./header.module.css";
 
 const HeaderSite = observer(
   class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { activeKey: null };
+      this.state = { activeKey: null, isHaveNotification: true };
     }
 
     handleSelect = (eventKey) => {
@@ -19,12 +31,12 @@ const HeaderSite = observer(
     };
 
     render() {
-      const { activeKey } = this.state;
+      const { activeKey, isHaveNotification } = this.state;
 
       const { name, isLogined } = userStore;
 
       return (
-        <div>
+        <div className={css.container}>
           <Header>
             <Navbar appearance="inverse">
               <Grid fluid>
@@ -60,10 +72,43 @@ const HeaderSite = observer(
                           Контакты
                         </Nav.Item>
                       </Nav>
-                      <Nav pullRight>
+                      <Nav
+                        pullRight
+                        onSelect={this.handleSelect}
+                        activeKey={activeKey}
+                      >
+                        {isLogined && (
+                          <Whisper
+                            placement="bottomEnd"
+                            trigger="click"
+                            enterable
+                            speaker={
+                              <Popover>
+                                <div className={css.notifications}>
+                                  <Notification />
+                                  <Notification />
+                                  <Notification />
+                                  <Notification />
+                                </div>
+                                <div>Закрыть все</div>
+                              </Popover>
+                            }
+                          >
+                            <Nav.Item className={css.notification_icon}>
+                              {isHaveNotification ? (
+                                <Badge>
+                                  <Icon icon="bell" size="lg" />
+                                </Badge>
+                              ) : (
+                                <Icon icon="bell-o" size="lg" />
+                              )}
+                            </Nav.Item>
+                          </Whisper>
+                        )}
                         <Nav.Item
                           icon={<Icon icon="avatar" />}
                           componentClass={Link}
+                          eventKey="5"
                           to="/account"
                         >
                           {isLogined ? name : "Войти"}

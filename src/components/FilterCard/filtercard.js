@@ -20,7 +20,7 @@ class FilterCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNotification: false,
+      isEnableNotification: false,
       title: "Шкода Октавия",
       showModal: false,
       enabled: true,
@@ -31,12 +31,14 @@ class FilterCard extends React.Component {
     num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
 
   toggleNotification = () => {
-    this.setState({ isNotification: !this.state.isNotification }, () =>
-      Alert.success(
-        `Уведомления по фильтру ${this.state.title} ${
-          this.state.isNotification ? "включены" : "отключены"
-        }!`
-      )
+    this.setState(
+      { isEnableNotification: !this.state.isEnableNotification },
+      () =>
+        Alert.success(
+          `Уведомления по фильтру ${this.state.title} ${
+            this.state.isEnableNotification ? "включены" : "отключены"
+          }!`
+        )
     );
   };
 
@@ -61,7 +63,7 @@ class FilterCard extends React.Component {
   };
 
   render() {
-    const { isNotification, title, showModal, enabled } = this.state;
+    const { isEnableNotification, title, showModal, enabled } = this.state;
 
     return (
       <Panel className={`${css.container} ${!enabled && css.disabled}`}>
@@ -107,7 +109,7 @@ class FilterCard extends React.Component {
                 <div className={css.controls_wrapper}>
                   <Toggle checked={enabled} onChange={this.stateFilter} />
                   <Icon
-                    icon={isNotification ? "bell-o" : "bell-slash"}
+                    icon={isEnableNotification ? "bell-o" : "bell-slash"}
                     size="lg"
                     onClick={this.toggleNotification}
                   />

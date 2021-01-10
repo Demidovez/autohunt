@@ -1,0 +1,27 @@
+.container .notification_icon i {
+  margin-top: 2px;
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+.container .notification_icon a > div {
+  margin-right: 6px;
+}
+
+.container .notification_icon a > div i {
+  margin-right: 0px;
+}
+
+.notifications > div + div {
+  margin-top: 10px;
+}
+
+.notifications + div {
+  text-align: right;
+  line-height: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.notifications + div:hover {
+  text-decoration: underline;
+}
