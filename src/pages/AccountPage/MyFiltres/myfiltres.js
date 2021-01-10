@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Content } from "rsuite";
-import FilterCard from "../FilterCard/filtercard";
+import FilterCard from "../../../components/FilterCard/filtercard";
 import css from "./myfiltres.module.css";
 
 class MyFiltres extends React.Component {

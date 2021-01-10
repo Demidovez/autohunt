@@ -1,12 +1,12 @@
 import React from "react";
-import { Content, Grid, Row, Col, Breadcrumb, FlexboxGrid } from "rsuite";
+import { Breadcrumb, FlexboxGrid } from "rsuite";
 import { Switch, Route, Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import userStore from "../../stores/userStore";
 import LoginForm from "../../components/LoginForm/loginform";
-import MyFiltres from "../../components/MyFiltres/myfiltres";
-import FoundedAuto from "../../components/FoundedAuto/foundedauto";
-import Settings from "../../components/Settings/settings";
+import MyFiltres from "./MyFiltres/myfiltres";
+import FoundedAuto from "./FoundedAuto/foundedauto";
+import Settings from "./Settings/settings";
 import css from "./accountpage.module.css";
 import AccountBar from "../../components/AccountBar/accountbar";
 

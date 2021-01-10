@@ -7,6 +7,11 @@
   color: black;
 }
 
+.sidenav a span span {
+  color: #8e8e93;
+  font-size: 14px;
+}
+
 .sidenav li[class*="rs-nav-item-active"] a span {
   color: inherit;
 }

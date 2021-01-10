@@ -5,6 +5,7 @@ import filterAdvtsStore from "../../stores/filterAdvtsStore";
 import AdvtCard from "../AdvtCard/advtcard";
 import css from "./advtlist.module.css";
 
+// TODO: Observer вынести родителю
 const AdvtList = observer(
   class extends React.Component {
     formatNumber = (num) =>

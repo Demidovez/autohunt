@@ -1,12 +1,12 @@
 import React from "react";
-import { Sidenav, Nav, Icon, Modal, Button, Panel } from "rsuite";
+import { Sidenav, Nav, Icon, Modal, Button, Panel, Divider } from "rsuite";
 import { Link } from "react-router-dom";
 import css from "./accountbar.module.css";
 
 class AccountBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeKey: null, show: false };
+    this.state = { activeKey: null, show: false, countFoundedAuto: 12 };
   }
 
   handleSelect = (eventKey) => {
@@ -28,7 +28,7 @@ class AccountBar extends React.Component {
   };
 
   render() {
-    const { activeKey } = this.state;
+    const { activeKey, countFoundedAuto } = this.state;
 
     return (
       <div>
@@ -54,7 +54,9 @@ class AccountBar extends React.Component {
                   to="/account/auto"
                   icon={<Icon icon="car" />}
                 >
-                  <span>Найденные авто</span>
+                  <span>
+                    Найденные авто <span>({countFoundedAuto})</span>
+                  </span>
                 </Nav.Item>
                 <Nav.Item
                   eventKey="settings"
