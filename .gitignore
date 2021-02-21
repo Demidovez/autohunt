@@ -27,3 +27,4 @@ yarn-error.log*
 /public/*.jpg
 
 /.idea
+yarn.lock

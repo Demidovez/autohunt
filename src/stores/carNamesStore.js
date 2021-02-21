@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, runInAction } from "mobx";
+import { makeObservable, observable, runInAction } from "mobx";
 import axios from "axios";
 
 class CarNamesStore {
