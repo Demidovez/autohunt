@@ -52,3 +52,16 @@ export const getGenerations = async (options) => {
     throw new Error(e);
   }
 };
+
+export const getNews = async (options) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/all_news",
+      options
+    );
+
+    return { news: data.news, count: data.count };
+  } catch (e) {
+    throw new Error(e);
+  }
+};
