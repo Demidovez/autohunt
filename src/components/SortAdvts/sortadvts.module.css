@@ -1,20 +1,5 @@
 .container {
   font-family: "Open Sans", sans-serif;
-  margin: 10px 10px 0;
-}
-
-.sortbutton {
+  margin: 10px 0 0 10px;
   text-align: right;
-}
-
-.container .tagswrap > div {
-  background-color: rgb(224, 224, 224);
-  margin-bottom: 8px;
-  margin-left: 0px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.container .tagswrap > div:hover {
-  text-decoration: line-through;
 }

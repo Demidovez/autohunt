@@ -1,48 +1,47 @@
 import React from "react";
 import { Button, Loader } from "rsuite";
-import { observer } from "mobx-react";
-import filterAdvtsStore from "../../stores/filterAdvtsStore";
 import AdvtCard from "../AdvtCard/advtcard";
+import { getMoreAdvertsAction } from "../../actions/creators/filterBarActionCreators";
+import { formatNumber } from "../../helpers";
 import css from "./advtlist.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-// TODO: Observer вынести родителю
-const AdvtList = observer(
-  class extends React.Component {
-    formatNumber = (num) =>
-      num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ") : num;
+function AdvtList() {
+  const {
+    countAllAdverts,
+    adverts,
+    moreAdverts,
+    filterOptions,
+    offset,
+  } = useSelector((state) => state.filterBar);
+  const dispatch = useDispatch();
 
-    render() {
-      const { count, advts, getMoreAdvts, moreAdvts } = filterAdvtsStore;
+  const getMoreAdverts = () =>
+    dispatch(getMoreAdvertsAction(filterOptions, offset));
 
-      return (
-        <div>
-          {advts.length === 0 && (
-            <Loader
-              className={css.loader}
-              size="md"
-              center
-              content="Загрузка..."
-            />
-          )}
-          {advts.length > 0 &&
-            [...advts, ...moreAdvts].map((advt) => (
-              <AdvtCard key={advt.id} advt={advt} className={css.advt} />
-            ))}
-          {advts.length > 0 && advts.length !== count && (
-            <div className={css.more}>
-              <Button appearance="default" onClick={getMoreAdvts}>
-                Показать еще
-              </Button>
-              <span>
-                {this.formatNumber(advts.length + moreAdvts.length)} из{" "}
-                {this.formatNumber(count)}
-              </span>
-            </div>
-          )}
+  return (
+    <div>
+      {adverts.length === 0 && (
+        <Loader className={css.loader} size="md" center content="Загрузка..." />
+      )}
+      {adverts.length > 0 &&
+        [...adverts, ...moreAdverts].map((advt) => (
+          <AdvtCard key={advt.id} advt={advt} className={css.advt} />
+        ))}
+      {adverts.length > 0 && adverts.length !== countAllAdverts && (
+        <div className={css.more}>
+          <Button appearance="default" onClick={getMoreAdverts}>
+            Показать еще
+          </Button>
+          <span>
+            {formatNumber(adverts.length + moreAdverts.length) +
+              " из " +
+              formatNumber(countAllAdverts)}
+          </span>
         </div>
-      );
-    }
-  }
-);
+      )}
+    </div>
+  );
+}
 
 export default AdvtList;

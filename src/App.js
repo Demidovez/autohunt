@@ -12,7 +12,6 @@ import AboutPage from "./pages/AboutPage/aboutpage";
 import ContactPage from "./pages/ContactPage/contactpage";
 import AccountPage from "./pages/AccountPage/accountpage";
 import ServicePage from "./pages/ServicePage/servicepage";
-import "./App.css";
 
 function App() {
   const [isServiceMode] = React.useState(false);

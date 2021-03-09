@@ -1,92 +1,92 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SelectPicker } from "rsuite";
-import { observer } from "mobx-react";
-import carNamesStore from "../../stores/carNamesStore";
 import css from "./modelpicker.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllSeriesOfModelAction,
+  getAllGenerationsOfSeriesAction,
+} from "../../actions/creators/modelAutoNamesActionCreators";
 
-const ModelPicker = observer(
-  class extends React.Component {
-    constructor(props) {
-      super(props);
+function ModelPicker(props) {
+  const state = useSelector((state) => state.optionCarNames);
+  const dispatch = useDispatch();
 
-      this.state = {
-        seriesNames: [],
-        generationNames: [],
+  const { model, series, generation, onChangeInfo } = props;
 
-        model: null,
-        series: null,
-        generation: null,
-      };
+  useEffect(() => {
+    if (model.name) {
+      dispatch(getAllSeriesOfModelAction(model.name));
     }
 
-    setModel = (model) =>
-      carNamesStore.getSeriesAndGenerationNames(model).then((seriesNames) =>
-        this.setStateBy({
-          seriesNames,
-          model,
-          series: null,
-          generation: null,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [model.name]);
+
+  useEffect(() => {
+    if (model.name && series.name) {
+      dispatch(
+        getAllGenerationsOfSeriesAction({
+          model: model.name,
+          series: series.name,
         })
       );
-
-    setSeries = (series) =>
-      carNamesStore
-        .getSeriesAndGenerationNames(this.state.model, series)
-        .then((generationNames) =>
-          this.setStateBy({ generationNames, series, generation: null })
-        );
-
-    setGeneration = (generation) => this.setStateBy({ generation });
-
-    setStateBy = (field) =>
-      this.setState({ ...field }, () => {
-        const { model, series, generation } = this.state;
-
-        this.props.onChangeInfo({ model, series, generation });
-      });
-
-    render() {
-      const {
-        seriesNames,
-        generationNames,
-        model,
-        series,
-        generation,
-      } = this.state;
-
-      return (
-        <div>
-          <SelectPicker
-            placement="rightStart"
-            placeholder="Модель"
-            data={carNamesStore.modelNames}
-            value={model}
-            onChange={(model) => this.setModel(model)}
-            block
-          />
-          <SelectPicker
-            placement="rightStart"
-            placeholder="Серия"
-            data={seriesNames}
-            value={series}
-            disabled={!model}
-            className={css.selectpicker}
-            onChange={(series) => this.setSeries(series)}
-            block
-          />
-          <SelectPicker
-            placement="rightStart"
-            placeholder="Поколение"
-            data={generationNames}
-            value={generation}
-            disabled={!series || generationNames.length === 0}
-            onChange={(generation) => this.setGeneration(generation)}
-            block
-          />
-        </div>
-      );
     }
-  }
-);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [series.name]);
+
+  const handleChangeOption = (model, series, generation) =>
+    onChangeInfo({
+      model: model,
+      series: model && series,
+      generation: model && series && generation,
+      id: props.model.id,
+    });
+
+  const { modelNames, seriesNames, generationNames } = state;
+
+  return (
+    <div>
+      <SelectPicker
+        placement="rightStart"
+        placeholder="Модель"
+        data={modelNames}
+        value={model.name}
+        onChange={(changedModel) =>
+          handleChangeOption(changedModel, series.name, generation.name)
+        }
+        block
+      />
+      <SelectPicker
+        placement="rightStart"
+        placeholder="Серия"
+        data={seriesNames.find((series) => series.model === model.name)?.series}
+        value={series.name}
+        disabled={!model.name}
+        className={css.selectpicker}
+        onChange={(changedSeries) =>
+          handleChangeOption(model.name, changedSeries, generation.name)
+        }
+        block
+      />
+      <SelectPicker
+        placement="rightStart"
+        placeholder="Поколение"
+        data={
+          generationNames.find(
+            (generation) =>
+              generation.model === model.name &&
+              generation.series === series.name
+          )?.generations
+        }
+        value={generation.name}
+        disabled={!series.name || !generationNames || !model.name}
+        onChange={(changedGeneration) =>
+          handleChangeOption(model.name, series.name, changedGeneration)
+        }
+        block
+      />
+    </div>
+  );
+}
 
 export default ModelPicker;
