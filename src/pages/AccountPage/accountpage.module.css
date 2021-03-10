@@ -3,10 +3,5 @@
   font-size: 23px;
   color: black;
   line-height: 38px;
-  margin: 0px 0px 10px;
-}
-
-.breadcrumb > ol {
-  padding-left: 0px;
-  margin-bottom: 0px;
+  margin: 0 0 10px;
 }

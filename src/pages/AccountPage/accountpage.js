@@ -1,35 +1,32 @@
 import React from "react";
-import { Breadcrumb, FlexboxGrid } from "rsuite";
-import { Switch, Route, Link } from "react-router-dom";
+import { FlexboxGrid } from "rsuite";
+import { Switch, Route } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/loginform";
-import MyFiltres from "./MyFiltres/myfiltres";
+import MyFilters from "./MyFilters/myfilters";
 import FoundedAuto from "./FoundedAuto/foundedauto";
 import Settings from "./Settings/settings";
 import css from "./accountpage.module.css";
 import AccountBar from "../../components/AccountBar/accountbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  tryLoginUserAction,
+  trySigninUserAction,
+  tryLogoutUserAction,
+} from "../../actions/creators/userActionCreators";
 
 function AccountPage() {
   const { isLogined } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const tryLogin = () => {};
-  const trySignin = () => {};
+  const tryLogin = (loginValue) => dispatch(tryLoginUserAction(loginValue));
+  const trySignin = (signinValue) => dispatch(trySigninUserAction(signinValue));
   const tryRestore = () => {};
-  const tryLogout = () => {};
+  const tryLogout = () => dispatch(tryLogoutUserAction());
 
   return (
     <div>
       {isLogined && (
         <div>
-          {/* TODO: Надо хлебные крошки вынести в отдельный компонент из вне, так как они на каждой странице */}
-          <div className={css.breadcrumb}>
-            <Breadcrumb>
-              <Breadcrumb.Item componentClass={Link} to="/">
-                Главная
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>Аккаунт</Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
           <h1 className={css.header1}>Аккаунт</h1>
           <FlexboxGrid align="top">
             <FlexboxGrid.Item colspan={5}>
@@ -37,7 +34,7 @@ function AccountPage() {
             </FlexboxGrid.Item>
             <FlexboxGrid.Item colspan={19}>
               <Switch>
-                <Route path="/account/filtres" component={MyFiltres} />
+                <Route path="/account/filters" component={MyFilters} />
                 <Route path="/account/auto" component={FoundedAuto} />
                 <Route path="/account/settings" component={Settings} />
               </Switch>

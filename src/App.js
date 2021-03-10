@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage/aboutpage";
 import ContactPage from "./pages/ContactPage/contactpage";
 import AccountPage from "./pages/AccountPage/accountpage";
 import ServicePage from "./pages/ServicePage/servicepage";
+import Breadcrumbs from "./components/Breadcrumbs/breadcrumbs";
 
 function App() {
   const [isServiceMode] = React.useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Scrollbars autoHeight autoHeightMin="100vh">
           <Container className="main-content">
             <Header />
+            <Breadcrumbs />
             <PageWrapper>
               <Switch>
                 <Route path="/news" component={NewsPage} />

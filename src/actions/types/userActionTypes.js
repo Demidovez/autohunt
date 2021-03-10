@@ -1,5 +1,10 @@
 const Actions = {
-  GET_ALL_MODELS: "GET_ALL_MODELS",
+  CHECK_IS_LOGINED: "CHECK_IS_LOGINED",
+  SET_USER: "SET_USER",
+  TRY_LOGOUT: "TRY_LOGOUT",
+  TRY_LOGIN: "TRY_LOGIN",
+  TRY_SIGNIN: "TRY_SIGNIN",
+  LOGOUT: "LOGOUT",
 };
 
 export default Actions;

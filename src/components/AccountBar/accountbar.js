@@ -30,9 +30,9 @@ function AccountBar(props) {
           <Sidenav.Body>
             <Nav>
               <Nav.Item
-                eventKey="filtres"
+                eventKey="filters"
                 componentClass={Link}
-                to="/account/filtres"
+                to="/account/filters"
                 icon={<Icon icon="filter" />}
               >
                 <span>Мои фильтры</span>

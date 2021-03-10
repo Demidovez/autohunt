@@ -1,6 +1,4 @@
 // Pretty view of numbers
-import { closeTagAction } from "../actions/creators/filterBarActionCreators";
-
 export const formatNumber = (num) =>
   num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ") : num;
 
@@ -174,4 +172,26 @@ export const addOrRemoveItemInArray = (arrayOfItems, item) => {
   }
 
   return newArray;
+};
+
+// Get label for breadcrumb item by path
+export const getLabelBreadCrumbByPath = (path) => {
+  switch (path) {
+    case "news":
+      return "Новости";
+    case "contacts":
+      return "Контакты";
+    case "account":
+      return "Аккаунт";
+    case "about":
+      return "О нас";
+    case "filters":
+      return "Мои фильтры";
+    case "auto":
+      return "Авто";
+    case "settings":
+      return "Настройки";
+    default:
+      return path;
+  }
 };

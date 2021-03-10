@@ -59,7 +59,7 @@ function FilterCard() {
           <h4>{titleFilter}</h4>
         </Header>
         <Content>
-          <div className={css.tagswrap}>
+          <div className={css.tags_wrapper}>
             <Tag>Шкода</Tag>
             <Tag>Октавия</Tag>
             <Tag>2015</Tag>

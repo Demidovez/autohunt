@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOrderAdvertsAction } from "../../actions/creators/filterBarActionCreators";
 
 function SortAdvts() {
-  const { orderData, orderValue } = useSelector((state) => state.filterBar);
+  const { orderData } = useSelector((state) => state.filterBar);
   const dispatch = useDispatch();
 
   const onSort = (value) => dispatch(setOrderAdvertsAction(value));

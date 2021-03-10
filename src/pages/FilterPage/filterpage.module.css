@@ -1,5 +1,5 @@
 .searchbar {
-  margin: 15px 0px 5px 0px;
+  margin: 15px 0 5px 0;
 }
 
 .searchbar + div {
@@ -7,5 +7,5 @@
 }
 
 .filter {
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0 10px 0;
 }

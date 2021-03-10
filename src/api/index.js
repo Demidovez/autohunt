@@ -65,3 +65,41 @@ export const getNews = async (options) => {
     throw new Error(e);
   }
 };
+
+export const tryLoginUser = async ({ email, password }) => {
+  try {
+    const { data } = await axios.post("https://server.autohunt.by/get_user", {
+      email,
+      password,
+    });
+
+    return {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      isActive: data.isActive,
+      role: data.role,
+    };
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const trySignUser = async ({ firstname, lastname, email, password }) => {
+  try {
+    const { data } = await axios.post("https://server.autohunt.by/sign_user", {
+      firstname,
+      lastname,
+      email,
+      password,
+    });
+
+    return {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      isActive: data.isActive,
+      role: data.role,
+    };
+  } catch (e) {
+    throw new Error(e);
+  }
+};

@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Content } from "rsuite";
 import FilterCard from "../../../components/FilterCard/filtercard";
-import css from "./myfiltres.module.css";
+import css from "./myfilters.module.css";
 
-function MyFiltres() {
+function MyFilters() {
   return (
     <Container className={css.container}>
       <Content className={css.cards}>
@@ -16,4 +16,4 @@ function MyFiltres() {
   );
 }
 
-export default MyFiltres;
+export default MyFilters;

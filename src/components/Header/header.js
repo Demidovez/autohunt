@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Row,
@@ -11,18 +11,25 @@ import {
   Whisper,
   Popover,
 } from "rsuite";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Notification from "../Notification/notification";
 import css from "./header.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkIsLoginUserAction } from "../../actions/creators/userActionCreators";
 
 function HeaderSite() {
   const [activeKey, setActiveKey] = useState(null);
-  const [isHaveNotification, setIsHaveNotification] = useState(true);
+  const [isHaveNotification] = useState(true);
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const { name, isLogined } = useSelector((state) => state.user);
 
   const handleSelect = (eventKey) => setActiveKey(eventKey);
+
+  // TODO: Подумать об авторизации...
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => dispatch(checkIsLoginUserAction()), [location.pathname]);
 
   return (
     <div className={css.container}>

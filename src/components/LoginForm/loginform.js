@@ -20,7 +20,8 @@ function LoginForm(props) {
   });
 
   const [signinValue, setSigninValue] = React.useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     password2: "",
@@ -51,7 +52,8 @@ function LoginForm(props) {
     });
 
     setSigninValue({
-      name: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
       password2: "",
@@ -114,7 +116,11 @@ function LoginForm(props) {
           <Form fluid onChange={signinChange} formValue={signinValue}>
             <FormGroup>
               <ControlLabel>Имя</ControlLabel>
-              <FormControl name="name" type="text" />
+              <FormControl name="firstname" type="text" />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Фамилия</ControlLabel>
+              <FormControl name="lastname" type="text" />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Email</ControlLabel>

@@ -1,15 +1,27 @@
 import Actions from "../actions/types/userActionTypes";
 
 const initialState = {
-  name: null,
+  firstname: null,
+  lastname: null,
   isLogined: false,
+  isActive: true,
+  role: "GUEST",
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case Actions.GET_ALL_MODELS:
+    case Actions.SET_USER:
       return {
         ...state,
+        firstname: action.payload.firstname,
+        lastname: action.payload.lastname,
+        role: action.payload.role,
+        isActive: action.payload.isActive,
+        isLogined: action.payload.isActive,
+      };
+    case Actions.LOGOUT:
+      return {
+        ...initialState,
       };
     default:
       return state;
