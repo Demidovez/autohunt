@@ -3,6 +3,7 @@ import filterBarSagas from "./filterBarSagas";
 import modelAutoNamesSagas from "./modelAutoNamesSagas";
 import newsSagas from "./newsSagas";
 import userSagas from "./userSagas";
+import searchSagas from "./searchSagas";
 
 function* rootSaga() {
   yield all([
@@ -10,6 +11,7 @@ function* rootSaga() {
     modelAutoNamesSagas(),
     newsSagas(),
     userSagas(),
+    searchSagas(),
   ]);
 }
 

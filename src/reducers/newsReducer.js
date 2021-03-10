@@ -19,7 +19,7 @@ const initialState = {
   ],
 };
 
-const userReducer = (state = initialState, action) => {
+const newsReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.SET_ALL_NEWS:
       return {
@@ -38,4 +38,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default newsReducer;

@@ -3,12 +3,14 @@ import { Button, Loader } from "rsuite";
 import AdvtCard from "../AdvtCard/advtcard";
 import FilterLabel from "../FilterLabel/filterlabel";
 import css from "./foundedlist.module.css";
+import { formatNumber } from "../../helpers";
 
 function FoundedList() {
   const [countFounded] = React.useState(300);
   const [moreAdvts] = React.useState([]);
   const [advts] = React.useState([
     {
+      id: 1,
       image: "https://avcdn.av.by/advertmedium/0000/1263/1274.jpeg",
       model: "Шкода",
       series: "Октавия",
@@ -33,6 +35,7 @@ function FoundedList() {
       },
     },
     {
+      id: 2,
       image: "https://avcdn.av.by/advertmedium/0000/1263/1274.jpeg",
       model: "Шкода",
       series: "Октавия",
@@ -57,6 +60,7 @@ function FoundedList() {
       },
     },
     {
+      id: 3,
       image: "https://avcdn.av.by/advertmedium/0000/1263/1274.jpeg",
       model: "Шкода",
       series: "Октавия",
@@ -81,6 +85,7 @@ function FoundedList() {
       },
     },
     {
+      id: 4,
       image: "https://avcdn.av.by/advertmedium/0000/1263/1274.jpeg",
       model: "Шкода",
       series: "Октавия",
@@ -107,9 +112,6 @@ function FoundedList() {
   ]);
 
   const getMoreAdvts = () => {};
-
-  const formatNumber = (num) =>
-    num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ") : num;
 
   return (
     <div>

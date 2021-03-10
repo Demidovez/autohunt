@@ -23,7 +23,7 @@ function HeaderSite() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { name, isLogined } = useSelector((state) => state.user);
+  const { firstname, isLogined } = useSelector((state) => state.user);
 
   const handleSelect = (eventKey) => setActiveKey(eventKey);
 
@@ -94,7 +94,7 @@ function HeaderSite() {
                       eventKey="5"
                       to="/account"
                     >
-                      {isLogined ? name : "Войти"}
+                      {isLogined ? firstname : "Войти"}
                     </Nav.Item>
                   </Nav>
                 </Navbar.Body>
