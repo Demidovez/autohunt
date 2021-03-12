@@ -1,5 +1,10 @@
 import Actions from "../types/searchActionTypes";
 
+export const setIsLoadingAction = (key) => ({
+  type: Actions.SET_IS_LOADING,
+  payload: { key },
+});
+
 export const goClearSearchBarAction = () => ({
   type: Actions.CLEAR_SEARCH_DATA,
 });

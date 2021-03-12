@@ -7,11 +7,11 @@
     padding: 0;
   }
 
-  .popup-show > * {
+  &.popup-show > * {
     z-index: 100;
   }
 
-  .popup:after {
+  &.popup:after {
     content: "";
     display: block;
     width: 100%;
@@ -24,7 +24,7 @@
     transition: all 0.2s;
   }
 
-  .popup-show:after {
+  &.popup-show:after {
     background: rgba(0,0,0,0.5);
     z-index: 99;
   }
@@ -77,7 +77,7 @@
     font-weight: 100;
   }
 
-  .popup-show input.with-value {
+  &.popup-show input.with-value {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }

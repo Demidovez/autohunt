@@ -61,7 +61,7 @@ function SearchBar() {
 
   return (
     <div
-      className={`search-bar-component ${isPopupMode && "popup-show"} popup}`}
+      className={`search-bar-component ${isPopupMode && "popup-show"} popup`}
       onClick={onClosePopup}
     >
       <InputGroup size="lg" inside>

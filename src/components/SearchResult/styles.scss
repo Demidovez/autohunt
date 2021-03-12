@@ -9,21 +9,40 @@
   width: 100%;
   transition: max-height 0.5s ease-out;
 
+  .rs-panel-body {
+    padding-top: 0;
+  }
+
   &.show {
     max-height: 1000px;
     height: initial;
     transition: max-height 0.5s ease-in;
   }
 
-  /* TODO: Important это плохо?*/
-  .tabs > ul > li > a {
-    color: #575757 !important;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600;
+  .nothing-found {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+    opacity: 0.7;
   }
 
-  .tabs > ul > li > a::before {
-    background-color: #575757 !important;
+  .tabs {
+    margin-bottom: 15px;
+
+    /* TODO: Important это плохо?*/
+    & > ul > li > a {
+      color: #a9a9a9 !important;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+    }
+    & > ul > li.active-tab > a {
+      color: #575757 !important;
+    }
+
+    & > ul > li > a::before {
+      background-color: #575757 !important;
+    }
   }
 }
 
