@@ -1,0 +1,60 @@
+.account-bar-component {
+  .panel,
+  .sidenav {
+    background-color: white;
+  }
+
+  .sidenav a span {
+    color: black;
+  }
+
+  .sidenav a span span {
+    color: #8e8e93;
+    font-size: 14px;
+  }
+
+  .sidenav li[class*="rs-nav-item-active"] a span {
+    color: inherit;
+  }
+
+  .logout-link {
+    border-radius: 0 0 6px 6px;
+  }
+
+  .logout-link > div {
+    padding: 15px 15px 15px 56px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    line-height: 1.25;
+    transition: background-color 0.3s linear;
+  }
+
+  .logout-link > div:hover {
+    background-color: #e5e5ea;
+  }
+
+  .logout-link > div i {
+    color: #8e8e93;
+    font-size: 16px;
+    margin-right: 20px;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    line-height: 1.25;
+  }
+}
+
+.account-bar-modal {
+  text-align: center;
+}
+
+.account-bar-modal i {
+  color: #ffb300;
+  font-size: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+

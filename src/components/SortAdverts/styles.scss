@@ -1,0 +1,23 @@
+.sort-adverts-component {
+  font-family: "Open Sans", sans-serif;
+  margin: 10px 0 0 10px;
+  text-align: right;
+
+  .rs-picker-subtle .rs-btn:hover,
+  .rs-picker-subtle .rs-picker-toggle:hover,
+  .rs-picker-subtle .rs-btn:active:hover,
+  .rs-picker-subtle .rs-picker-toggle:active:hover,
+  .rs-picker-subtle .rs-btn.active,
+  .rs-picker-subtle .rs-picker-toggle.active,
+  .rs-picker-subtle .rs-btn:active,
+  .rs-picker-subtle .rs-picker-toggle:active {
+    background-color: transparent;
+  }
+
+  .rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+  .rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value,
+  .rs-picker-has-value .rs-btn .rs-picker-toggle-value:focus,
+  .rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value:focus {
+    color: inherit;
+  }
+}

@@ -1,0 +1,105 @@
+.filter-adverts-bar-component {
+  background: white;
+  font-family: "Open Sans", sans-serif;
+  color: black;
+  margin: 10px 0 10px 0;
+
+  .label {
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 0;
+  }
+
+  .label span {
+    padding-left: 10px;
+  }
+
+  .rs-col {
+    padding: 0;
+  }
+
+  .user-choice {
+    margin-top: 10px;
+  }
+
+  .block-choice {
+    margin-bottom: 20px;
+  }
+
+  .check-radio-box > div {
+    padding-left: 26px;
+    padding-bottom: 0;
+    min-height: 26px;
+  }
+
+  .check-radio-box label span {
+    left: 0;
+  }
+
+  .circle-picker {
+    margin-top: 10px;
+  }
+
+  .total {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .total span {
+    color: #3498ff;
+    font-size: 20px;
+    font-family: "Roboto Slab", serif;
+  }
+
+  .total button {
+    color: #3498ff;
+  }
+
+  .link-add-model {
+    color: #3498ff;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    display: inline-block;
+    margin-top: 7px;
+  }
+
+  .link-add-model:hover {
+    border-color: #3498ff;
+  }
+
+  .remove-model {
+    text-align: center;
+    color: #ff3434;
+    cursor: pointer;
+  }
+
+  .currency {
+    text-align: right;
+  }
+
+  .currency > div {
+    color: #3498ff;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    display: inline-block;
+    margin-left: 7px;
+  }
+
+  .currency > div:hover {
+    border-color: #3498ff;
+  }
+
+  .currency > div.active-currency {
+    color: inherit;
+    font-weight: 600;
+  }
+
+  .currency > div.active-currency:hover {
+    border-color: transparent;
+    cursor: initial;
+  }
+
+  .rs-divider-horizontal.rs-divider-with-text {
+    margin: 20px 0;
+  }
+}

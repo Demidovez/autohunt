@@ -1,0 +1,54 @@
+.settings-component {
+  margin-left: 20px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-family: "Open Sans", sans-serif;
+
+  .form > div + div span,
+  .password-wrapper > div + div span {
+    margin-top: 25px;
+  }
+
+  .form > div > span,
+  .password-wrapper > div > span {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 13px;
+  }
+
+  .password-wrapper > div > span {
+    width: 180px;
+  }
+
+  .form > div > input,
+  .password-wrapper > div > input {
+    width: calc(100% - 90px);
+    display: inline-block;
+  }
+
+  .password-wrapper > div > input {
+    width: calc(100% - 190px);
+  }
+
+  .password-wrapper button {
+    font-size: 12px;
+  }
+
+  .other-options {
+    padding-left: 20px;
+  }
+
+  .other-options a {
+    margin: 10px 0;
+    display: inline-block;
+  }
+
+  .code-bot > div {
+    width: 130px;
+    margin: 10px 0;
+  }
+}

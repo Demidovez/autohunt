@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "rsuite/dist/styles/rsuite-default.css";
 import App from "./App";
-import "./index.css";
+import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>

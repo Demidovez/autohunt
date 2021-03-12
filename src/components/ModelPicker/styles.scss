@@ -1,0 +1,15 @@
+.model-picker-component {
+  .select-picker {
+    margin: 7px 0;
+  }
+
+  .rs-picker-default.rs-picker-disabled .rs-btn {
+    background: #bbbbbb !important;
+    color: #000000;
+  }
+
+  .rs-picker-default.rs-picker-disabled .rs-btn .rs-picker-toggle-placeholder {
+    color: #000000;
+  }
+}
+

@@ -1,0 +1,70 @@
+.filter-card-component {
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
+  transition: background-color 0.3s linear;
+
+  &.disabled {
+    background-color: #e5e5ea;
+  }
+
+  h4 {
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    min-width: 110px;
+    margin-right: 10px;
+  }
+
+  .count-adverts {
+    display: inline-block;
+  }
+
+  .count-adverts span {
+    font-size: 12px;
+    font-weight: 400;
+    color: gray;
+  }
+
+  .count-adverts .new-adverts {
+    color: limegreen;
+  }
+
+  .controls-wrapper {
+    text-align: right;
+  }
+
+  .controls-wrapper > span {
+    display: inline-block;
+  }
+
+  .controls-wrapper i {
+    margin-left: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  .remove-icon {
+    color: red;
+  }
+
+  .modal {
+    text-align: center;
+  }
+
+  .modal i {
+    color: #ffb300;
+    font-size: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .tags-wrapper > div {
+    background-color: rgb(241,241,241);
+    margin: 0 10px 10px 0;
+  }
+}

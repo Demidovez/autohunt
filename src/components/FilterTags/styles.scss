@@ -1,0 +1,20 @@
+.filter-tags-component {
+  margin: 10px 10px 0;
+
+  .rs-tag {
+    background-color: #e4e4e4;
+    margin-bottom: 8px;
+    margin-left: 0;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .rs-tag + .rs-tag {
+    margin-left: 0;
+  }
+
+  .rs-tag:hover {
+    text-decoration: line-through;
+  }
+}
+

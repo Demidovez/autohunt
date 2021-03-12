@@ -7,7 +7,7 @@ export const getAdverts = async (options) => {
       options
     );
 
-    return { adverts: data.advts, count: data.count };
+    return { adverts: data.adverts, count: data.count };
   } catch (e) {
     throw new Error(e);
   }
@@ -104,15 +104,15 @@ export const trySignUser = async ({ firstname, lastname, email, password }) => {
   }
 };
 
-export const startSearch = async (searchOptions) => {
+export const startSearch = async (searchBy, searchOptions) => {
   try {
     const { data } = await axios.post(
-      "https://server.autohunt.by/search",
+      `https://server.autohunt.by/search?by=${searchBy}`,
       searchOptions
     );
 
     return {
-      foundAdverts: data.foundAdverts,
+      adverts: data.adverts,
       count: data.count,
     };
   } catch (e) {

@@ -1,0 +1,29 @@
+.search-result-component {
+  background-color: #ffffff;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  max-height: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  transition: max-height 0.5s ease-out;
+
+  &.show {
+    max-height: 1000px;
+    height: initial;
+    transition: max-height 0.5s ease-in;
+  }
+
+  /* TODO: Important это плохо?*/
+  .tabs > ul > li > a {
+    color: #575757 !important;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+  }
+
+  .tabs > ul > li > a::before {
+    background-color: #575757 !important;
+  }
+}
+

@@ -1,0 +1,32 @@
+.header-site-component {
+  .notification-icon i {
+    margin-top: 2px;
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+
+  .notification-icon a > div {
+    margin-right: 6px;
+  }
+
+  .notification-icon a > div i {
+    margin-right: 0;
+  }
+
+  .notifications > div + div {
+    margin-top: 10px;
+  }
+
+  .notifications + div {
+    text-align: right;
+    line-height: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+
+  .notifications + div:hover {
+    text-decoration: underline;
+  }
+}
+
+
