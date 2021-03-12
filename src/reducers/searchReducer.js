@@ -1,6 +1,7 @@
 import Actions from "../actions/types/searchActionTypes";
 
 const initialState = {
+  isLoading: true,
   tabs: [
     {
       key: "name",
@@ -8,7 +9,6 @@ const initialState = {
       sort: 1,
       count: [],
       adverts: [],
-      isLoading: false,
     },
     {
       key: "rubles",
@@ -16,7 +16,6 @@ const initialState = {
       sort: 2,
       count: [],
       adverts: [],
-      isLoading: false,
     },
     {
       key: "dollars",
@@ -24,7 +23,6 @@ const initialState = {
       sort: 3,
       count: [],
       adverts: [],
-      isLoading: false,
     },
     {
       key: "mileage",
@@ -32,7 +30,6 @@ const initialState = {
       sort: 4,
       count: [],
       adverts: [],
-      isLoading: false,
     },
     {
       key: "city",
@@ -40,7 +37,6 @@ const initialState = {
       sort: 5,
       count: [],
       adverts: [],
-      isLoading: false,
     },
     {
       key: "other",
@@ -48,115 +44,54 @@ const initialState = {
       sort: 6,
       count: [],
       adverts: [],
-      isLoading: false,
     },
   ],
 };
-
-// TODO: Дублирование кода в CASE
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.SET_IS_LOADING:
       return {
         ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === action.payload.key
-            ? {
-                ...tab,
-                isLoading: true,
-              }
-            : tab
-        ),
+        isLoading: true,
       };
-    case Actions.SET_ADVERTS_BY_NAME:
+    case Actions.SET_ADVERTS:
       return {
         ...state,
+        isLoading: false,
+        tabs: initialState.tabs.map((initialTab) => {
+          const loadTab = action.payload.find(
+            (loadTab) => loadTab.key === initialTab.key
+          );
 
-        tabs: state.tabs.map((tab) =>
-          tab.key === "name"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
-      };
-    case Actions.SET_ADVERTS_BY_RUBLES:
-      return {
-        ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === "rubles"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
-      };
-    case Actions.SET_ADVERTS_BY_DOLLARS:
-      return {
-        ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === "dollars"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
-      };
-    case Actions.SET_ADVERTS_BY_MILEAGE:
-      return {
-        ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === "mileage"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
-      };
-    case Actions.SET_ADVERTS_BY_CITY:
-      return {
-        ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === "city"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
-      };
-    case Actions.SET_ADVERTS_BY_OTHER:
-      return {
-        ...state,
-        tabs: state.tabs.map((tab) =>
-          tab.key === "other"
-            ? {
-                ...tab,
-                adverts: action.payload.adverts,
-                count: action.payload.count,
-                isLoading: false,
-              }
-            : tab
-        ),
+          if (loadTab) {
+            return {
+              ...initialTab,
+              adverts: loadTab.adverts,
+              count: loadTab.count,
+            };
+          } else {
+            return initialTab;
+          }
+        }),
       };
     case Actions.CLEAR_SEARCH_DATA:
       return {
         ...initialState,
+      };
+    case Actions.SET_ADVERTS_BY_KEY:
+      return {
+        ...state,
+        isLoading: false,
+        tabs: state.tabs.map((tab) =>
+          tab.key === action.payload.key
+            ? {
+                ...tab,
+                adverts: action.payload.adverts,
+                count: action.payload.count,
+              }
+            : tab
+        ),
       };
     default:
       return state;

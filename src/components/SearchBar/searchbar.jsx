@@ -4,12 +4,7 @@ import "./styles.scss";
 import { useDispatch } from "react-redux";
 import {
   goClearSearchBarAction,
-  goSearchByCityAction,
-  goSearchByDollarsAction,
-  goSearchByMileageAction,
-  goSearchByNameAction,
-  goSearchByOtherAction,
-  goSearchByRublesAction,
+  goSearchAction,
 } from "../../actions/creators/searchActionCreators";
 import SearchResult from "../SearchResult/searchresult";
 
@@ -24,14 +19,8 @@ function SearchBar() {
     if (searchStr) {
       timeoutSearchId && clearTimeout(timeoutSearchId);
 
-      // TODO: Можно ли так использовать диспатч?
       const timeoutId = setTimeout(() => {
-        dispatch(goSearchByNameAction(searchStr));
-        dispatch(goSearchByRublesAction(searchStr));
-        dispatch(goSearchByDollarsAction(searchStr));
-        dispatch(goSearchByMileageAction(searchStr));
-        dispatch(goSearchByCityAction(searchStr));
-        dispatch(goSearchByOtherAction(searchStr));
+        dispatch(goSearchAction(searchStr));
       }, 300);
 
       setTimeoutSearchId(timeoutId);
@@ -88,7 +77,7 @@ function SearchBar() {
           </InputGroup.Button>
         )}
       </InputGroup>
-      <SearchResult show={isPopupMode} />
+      {isPopupMode && <SearchResult />}
     </div>
   );
 }

@@ -1,77 +1,41 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import Actions from "../actions/types/searchActionTypes";
-import { startSearch } from "../api";
+import { startSearchBy } from "../api";
 import {
-  setAdvertsByCityAction,
-  setAdvertsByDollarsAction,
-  setAdvertsByMileageAction,
-  setAdvertsByNameAction,
-  setAdvertsByOtherAction,
-  setAdvertsByRublesAction,
+  setAdvertsAction,
   setIsLoadingAction,
+  setAdvertsByKeyAction,
 } from "../actions/creators/searchActionCreators";
 
 // TODO: Дублирование кода в воркерах
 // TODO: Добавить try-catch
-function* workerStartSearchByName(action) {
-  yield put(setIsLoadingAction("name"));
+function* workerStartSearch(action) {
+  yield put(setIsLoadingAction());
 
-  const { adverts, count } = yield call(startSearch, "name", action.payload);
+  const data = yield call(startSearchBy, "all", action.payload);
 
-  yield put(setAdvertsByNameAction(adverts, count));
+  yield put(setAdvertsAction(data));
 }
 
-function* workerStartSearchByRubles(action) {
-  yield put(setIsLoadingAction("rubles"));
+function* workerStartSearchByKey(action) {
+  yield put(setIsLoadingAction());
 
-  const { adverts, count } = yield call(startSearch, "rubles", action.payload);
+  const data = yield call(startSearchBy, action.payload.by, action.payload);
 
-  yield put(setAdvertsByRublesAction(adverts, count));
-}
-
-function* workerStartSearchByDollars(action) {
-  yield put(setIsLoadingAction("dollars"));
-
-  const { adverts, count } = yield call(startSearch, "dollars", action.payload);
-
-  yield put(setAdvertsByDollarsAction(adverts, count));
-}
-
-function* workerStartSearchByMileage(action) {
-  yield put(setIsLoadingAction("mileage"));
-
-  const { adverts, count } = yield call(startSearch, "mileage", action.payload);
-
-  yield put(setAdvertsByMileageAction(adverts, count));
-}
-
-function* workerStartSearchByCity(action) {
-  yield put(setIsLoadingAction("city"));
-
-  const { adverts, count } = yield call(startSearch, "city", action.payload);
-
-  yield put(setAdvertsByCityAction(adverts, count));
-}
-
-function* workerStartSearchByOther(action) {
-  yield put(setIsLoadingAction("other"));
-
-  const { adverts, count } = yield call(startSearch, "other", action.payload);
-
-  yield put(setAdvertsByOtherAction(adverts, count));
+  yield put(setAdvertsByKeyAction(data));
 }
 
 export default function* watcherSaga() {
-  yield takeLatest(Actions.SEARCH_ADVERTS_BY_NAME, workerStartSearchByName);
-  yield takeLatest(Actions.SEARCH_ADVERTS_BY_RUBLES, workerStartSearchByRubles);
+  yield takeLatest(Actions.SEARCH_ADVERTS, workerStartSearch);
   yield takeLatest(
-    Actions.SEARCH_ADVERTS_BY_DOLLARS,
-    workerStartSearchByDollars
+    [
+      Actions.SEARCH_ADVERTS_BY_NAME,
+      Actions.SEARCH_ADVERTS_BY_RUBLES,
+      Actions.SEARCH_ADVERTS_BY_DOLLARS,
+      Actions.SEARCH_ADVERTS_BY_MILEAGE,
+      Actions.SEARCH_ADVERTS_BY_CITY,
+      Actions.SEARCH_ADVERTS_BY_OTHER,
+    ],
+    workerStartSearchByKey
   );
-  yield takeLatest(
-    Actions.SEARCH_ADVERTS_BY_MILEAGE,
-    workerStartSearchByMileage
-  );
-  yield takeLatest(Actions.SEARCH_ADVERTS_BY_CITY, workerStartSearchByCity);
-  yield takeLatest(Actions.SEARCH_ADVERTS_BY_OTHER, workerStartSearchByOther);
 }

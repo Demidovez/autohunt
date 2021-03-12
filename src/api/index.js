@@ -104,17 +104,14 @@ export const trySignUser = async ({ firstname, lastname, email, password }) => {
   }
 };
 
-export const startSearch = async (searchBy, searchOptions) => {
+export const startSearchBy = async (searchBy, searchOptions) => {
   try {
     const { data } = await axios.post(
       `https://server.autohunt.by/search?by=${searchBy}`,
       searchOptions
     );
 
-    return {
-      adverts: data.adverts,
-      count: data.count,
-    };
+    return data;
   } catch (e) {
     throw new Error(e);
   }

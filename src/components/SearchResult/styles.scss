@@ -2,21 +2,15 @@
   background-color: #ffffff;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-  max-height: 0;
-  height: 0;
   overflow: hidden;
   position: absolute;
   width: 100%;
-  transition: max-height 0.5s ease-out;
+  max-height: 1000px;
+  height: initial;
+  transition: max-height 0.5s ease-in;
 
   .rs-panel-body {
     padding-top: 0;
-  }
-
-  &.show {
-    max-height: 1000px;
-    height: initial;
-    transition: max-height 0.5s ease-in;
   }
 
   .nothing-found {

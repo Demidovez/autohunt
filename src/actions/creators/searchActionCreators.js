@@ -1,70 +1,54 @@
 import Actions from "../types/searchActionTypes";
 
-export const setIsLoadingAction = (key) => ({
+export const setIsLoadingAction = () => ({
   type: Actions.SET_IS_LOADING,
-  payload: { key },
 });
 
 export const goClearSearchBarAction = () => ({
   type: Actions.CLEAR_SEARCH_DATA,
 });
 
-export const goSearchByNameAction = (searchStr) => ({
-  type: Actions.SEARCH_ADVERTS_BY_NAME,
+export const goSearchAction = (searchStr) => ({
+  type: Actions.SEARCH_ADVERTS,
   payload: { searchStr },
 });
 
-export const setAdvertsByNameAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_NAME,
-  payload: { adverts, count },
+export const setAdvertsAction = (data) => ({
+  type: Actions.SET_ADVERTS,
+  payload: data,
+});
+
+export const setAdvertsByKeyAction = (data) => ({
+  type: Actions.SET_ADVERTS_BY_KEY,
+  payload: data[0],
+});
+
+export const goSearchByNameAction = (searchStr) => ({
+  type: Actions.SEARCH_ADVERTS_BY_NAME,
+  payload: { searchStr, by: "name" },
 });
 
 export const goSearchByRublesAction = (searchStr) => ({
   type: Actions.SEARCH_ADVERTS_BY_RUBLES,
-  payload: { searchStr },
-});
-
-export const setAdvertsByRublesAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_RUBLES,
-  payload: { adverts, count },
+  payload: { searchStr, by: "rubles" },
 });
 
 export const goSearchByDollarsAction = (searchStr) => ({
   type: Actions.SEARCH_ADVERTS_BY_DOLLARS,
-  payload: { searchStr },
-});
-
-export const setAdvertsByDollarsAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_DOLLARS,
-  payload: { adverts, count },
+  payload: { searchStr, by: "dollars" },
 });
 
 export const goSearchByMileageAction = (searchStr) => ({
   type: Actions.SEARCH_ADVERTS_BY_MILEAGE,
-  payload: { searchStr },
-});
-
-export const setAdvertsByMileageAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_MILEAGE,
-  payload: { adverts, count },
+  payload: { searchStr, by: "mileage" },
 });
 
 export const goSearchByCityAction = (searchStr) => ({
   type: Actions.SEARCH_ADVERTS_BY_CITY,
-  payload: { searchStr },
-});
-
-export const setAdvertsByCityAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_CITY,
-  payload: { adverts, count },
+  payload: { searchStr, by: "city" },
 });
 
 export const goSearchByOtherAction = (searchStr) => ({
   type: Actions.SEARCH_ADVERTS_BY_OTHER,
-  payload: { searchStr },
-});
-
-export const setAdvertsByOtherAction = (adverts, count) => ({
-  type: Actions.SET_ADVERTS_BY_OTHER,
-  payload: { adverts, count },
+  payload: { searchStr, by: "other" },
 });
