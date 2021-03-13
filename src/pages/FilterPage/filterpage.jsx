@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Row, Col } from "rsuite";
 import Searchbar from "../../components/SearchBar/searchbar";
-import FilterAdvertsBar from "../../components/FilterAdvertsBar/filterAdvertsBar";
+import FilterAdvertsBar from "../../components/FilterAdvertsBar/filteradvertsbar";
 import AdvertList from "../../components/AdvertList/advertlist";
 import SortAdverts from "../../components/SortAdverts/sortadverts";
 import FilterTags from "../../components/FilterTags/filtertags";

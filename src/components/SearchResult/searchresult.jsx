@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Nav, Panel } from "rsuite";
+import { Loader, Nav, Panel } from "rsuite";
 import { useSelector } from "react-redux";
 
 function SearchResult() {
@@ -26,7 +26,7 @@ function SearchResult() {
 
   return (
     <Panel className="search-result-component">
-      {!isLoadingTabs && tabsWithAdverts.length > 0 && (
+      {tabsWithAdverts.length > 0 && (
         <div>
           <Nav
             activeKey={activeTab}
@@ -52,9 +52,15 @@ function SearchResult() {
         </div>
       )}
       {!isLoadingTabs && tabsWithAdverts.length === 0 && (
-        <p className="nothing-found">Ничего не найдено...</p>
+        <p className="nothing-found">Ничего не найдено :(</p>
       )}
-      {isLoadingTabs && <p className="nothing-found">Загрузка...</p>}
+      {isLoadingTabs && tabsWithAdverts.length === 0 && (
+        <p className="loading-label">Загрузка...</p>
+      )}
+      <Loader
+        content="Загрузка..."
+        className={isLoadingTabs && tabsWithAdverts.length > 0 ? "show" : ""}
+      />
     </Panel>
   );
 }

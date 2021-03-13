@@ -9,11 +9,38 @@
   height: initial;
   transition: max-height 0.5s ease-in;
 
+  .rs-loader-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    padding: 10px 20px 0 0;
+    transition: all 0.5s;
+
+    &.show {
+      opacity: 1;
+    }
+
+    .rs-loader-spin::before {
+      border-color: rgba(202,202,202, 0.8);
+    }
+
+    .rs-loader-spin::after {
+      border-color: #000000 transparent transparent;
+    }
+
+    .rs-loader-spin::before,
+    .rs-loader-spin::after {
+      border-width: 1px;
+    }
+  }
+
   .rs-panel-body {
     padding-top: 0;
   }
 
-  .nothing-found {
+  .nothing-found,
+  .loading-label {
     padding-top: 15px;
     text-align: center;
     font-size: 20px;
