@@ -20,6 +20,7 @@ export const updateListOfTagsByOne = (
       {
         field: fieldForCheck,
         value: valueForCheck,
+        type: "field",
       },
     ];
   } else {

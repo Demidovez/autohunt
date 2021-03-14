@@ -8,6 +8,8 @@ import {
 
 const initialState = {
   filterOptions: {
+    searchStr: "",
+    searchBy: "all",
     priceMin: null,
     priceMax: null,
     isExchange: false,
@@ -75,6 +77,7 @@ const initialState = {
     volumeMax: { pre: "до", post: "л." },
     mileageMin: { pre: "от", post: "км." },
     mileageMax: { pre: "до", post: "км." },
+    searchStr: { pre: "", post: "" },
   },
   adverts: [],
   moreAdverts: [],
@@ -91,6 +94,27 @@ const filterBarReducer = (state = initialState, action) => {
         moreAdverts: [],
         countAllAdverts: action.payload.count,
         isFilterChanged: state.tags.length > 0,
+      };
+    case Actions.SET_SEARCH_INFO_TO_FILTER:
+      return {
+        ...state,
+        filterOptions: {
+          ...state.filterOptions,
+          searchStr: action.payload.searchStr,
+          searchBy: action.payload.searchBy,
+        },
+        tags: updateListOfTagsByOne(
+          state.tags,
+          "searchStr",
+          action.payload.searchStr
+        ),
+        tagPostfixesPrefixes: {
+          ...state.tagPostfixesPrefixes,
+          searchStr: {
+            pre: "Поиск " + action.payload.searchBy.toLowerCase() + ":",
+            post: "",
+          },
+        },
       };
     case Actions.SET_IS_EXCHANGE_ADVERTS:
       return {

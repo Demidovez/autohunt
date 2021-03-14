@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { closeTagAction } from "../../actions/creators/filterBarActionCreators";
 import { Tag } from "rsuite";
 
 function FilterTags() {
-  const rawTags = useSelector((state) => state.filterBar.tags);
+  const tags = useSelector((state) => state.filterBar.tags);
   const preAndPostfixes = useSelector(
     (state) => state.filterBar.tagPostfixesPrefixes
   );
   const dispatch = useDispatch();
 
-  const [tags, setTags] = useState([]);
+  const addPreAndPostfixes = (tag) => {
+    const { pre, post } = preAndPostfixes[tag.field] || { pre: "", post: "" };
+    let newValue = tag.value;
 
-  useEffect(() => {
-    let tags = rawTags.map((tag) =>
-      preAndPostfixes[tag.field]
-        ? {
-            ...tag,
-            value:
-              preAndPostfixes[tag.field].pre +
-              " " +
-              tag.value +
-              " " +
-              preAndPostfixes[tag.field].post,
-          }
-        : tag
-    );
+    if (pre && post) {
+      newValue = pre + " " + tag.value + " " + post;
+    } else if (pre) {
+      newValue = pre + " " + tag.value;
+    } else if (post) {
+      newValue = tag.value + " " + post;
+    }
 
-    setTags(tags);
-  }, [rawTags, preAndPostfixes]);
+    return { ...tag, value: newValue };
+  };
 
   const onCloseTag = (tag) => {
     if (tag.type === "model") {
@@ -59,7 +54,7 @@ function FilterTags() {
     <div className="filter-tags-component">
       {tags.map((tag, index) => (
         <Tag closable onClick={() => onCloseTag(tag, index)} key={index}>
-          {tag.value}
+          {addPreAndPostfixes(tag).value}
         </Tag>
       ))}
     </div>

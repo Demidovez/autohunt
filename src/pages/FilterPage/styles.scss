@@ -1,0 +1,16 @@
+.filter-page-component {
+  .tags-and-sort-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    & > div {
+      align-self: flex-end;
+      flex: 0 1 auto;
+    }
+
+    .filter-tags-component {
+      margin: 10px 10px 0;
+    }
+  }
+}

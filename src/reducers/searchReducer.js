@@ -1,6 +1,8 @@
 import Actions from "../actions/types/searchActionTypes";
 
 const initialState = {
+  searchStr: "",
+  searchBy: "",
   isLoading: true,
   tabs: [
     {
@@ -55,6 +57,16 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
+    case Actions.SET_SEARCH_STR:
+      return {
+        ...state,
+        searchStr: action.payload,
+      };
+    case Actions.SET_SEARCH_BY:
+      return {
+        ...state,
+        searchBy: state.tabs.find((tab) => tab.key === action.payload).title,
+      };
     case Actions.SET_ADVERTS:
       return {
         ...state,
@@ -78,6 +90,7 @@ const searchReducer = (state = initialState, action) => {
     case Actions.CLEAR_SEARCH_DATA:
       return {
         ...initialState,
+        searchStr: action.payload,
       };
     case Actions.SET_ADVERTS_BY_KEY:
       return {

@@ -5,6 +5,7 @@ import FilterAdvertsBar from "../../components/FilterAdvertsBar/filteradvertsbar
 import AdvertList from "../../components/AdvertList/advertlist";
 import SortAdverts from "../../components/SortAdverts/sortadverts";
 import FilterTags from "../../components/FilterTags/filtertags";
+import "./styles.scss";
 
 function FilterPage() {
   return (
@@ -17,10 +18,14 @@ function FilterPage() {
           </Col>
           <Col xs={24} sm={24} md={12} lg={18}>
             <Row>
-              <Col xs={18} sm={18} md={18} lg={18}>
+              <Col
+                xs={24}
+                sm={24}
+                md={24}
+                lg={24}
+                className="tags-and-sort-wrapper"
+              >
                 <FilterTags />
-              </Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
                 <SortAdverts />
               </Col>
             </Row>

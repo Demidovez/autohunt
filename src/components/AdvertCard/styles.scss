@@ -1,6 +1,5 @@
 .advert-card-component {
   background: white;
-  font-family: "Open Sans", sans-serif;
 
   .img-wrapper {
     padding-right: 20px;
@@ -43,10 +42,6 @@
     font-weight: 600;
     font-size: 20px;
     font-family: "Roboto Slab", serif;
-  }
-
-  .price span {
-    vertical-align: middle;
   }
 
   .price span + span {

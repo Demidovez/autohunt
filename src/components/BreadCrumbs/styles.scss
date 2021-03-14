@@ -1,9 +1,20 @@
 .bread-crumbs-component {
-  margin: 0 20px;
+  margin: 0 5px;
 
-  .breadcrumb > ol {
-    padding-left: 0;
-    margin-bottom: 0;
+  .breadcrumb {
+    max-width: 1250px;
+    width: 100%;
+    margin: 0 auto;
+
+    & > ul {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .rs-breadcrumb {
+      margin-bottom: 0;
+      padding: 8px 0px;
+    }
   }
 }
 

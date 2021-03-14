@@ -1,5 +1,10 @@
 import Actions from "../types/filterBarActionTypes";
 
+export const setSearchInfoToFilterAction = (searchStr, searchBy) => ({
+  type: Actions.SET_SEARCH_INFO_TO_FILTER,
+  payload: { searchStr, searchBy },
+});
+
 export const getAdvertsAction = (options) => ({
   type: Actions.GET_ADVERTS,
   payload: options,

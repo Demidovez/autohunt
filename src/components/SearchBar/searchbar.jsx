@@ -1,32 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { InputGroup, Input, Icon } from "rsuite";
 import "./styles.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   goClearSearchBarAction,
+  setSearchStrAction,
   goSearchAction,
 } from "../../actions/creators/searchActionCreators";
 import SearchResult from "../SearchResult/searchresult";
+import { setSearchInfoToFilterAction } from "../../actions/creators/filterBarActionCreators";
 
 function SearchBar() {
-  const [searchStr, setSearchStr] = useState("");
+  const { filterOptions } = useSelector((state) => state.filterBar);
+  const { searchStr, searchBy } = useSelector((state) => state.search);
   const [timeoutSearchId, setTimeoutSearchId] = useState();
   const [isPopupMode, setIsPopupMode] = useState(false);
-  const searchRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (searchStr) {
       timeoutSearchId && clearTimeout(timeoutSearchId);
 
+      // TODO: Если строка является числом, то например по цене будет искать часть, а не точное совпадение
       const timeoutId = setTimeout(() => {
-        dispatch(goSearchAction(searchStr));
+        dispatch(goSearchAction(searchStr, filterOptions));
       }, 300);
 
       setTimeoutSearchId(timeoutId);
     } else {
       timeoutSearchId && clearTimeout(timeoutSearchId);
-      dispatch(goClearSearchBarAction());
+      isPopupMode && dispatch(goClearSearchBarAction(filterOptions.searchStr));
     }
 
     setIsPopupMode(!!searchStr);
@@ -34,27 +37,59 @@ function SearchBar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStr]);
 
+  useEffect(() => {
+    isPopupMode && dispatch(goSearchAction(searchStr, filterOptions));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterOptions]);
+
+  useEffect(() => {
+    dispatch(goClearSearchBarAction(filterOptions.searchStr));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterOptions.searchStr]);
+
   // TODO: Наверное можно упростить проверку
   const onClosePopup = (event) => {
     if ([...event.target.classList].includes("search-bar-component")) {
+      dispatch(goClearSearchBarAction(filterOptions.searchStr));
       setIsPopupMode(false);
     }
   };
 
   const onFocusSearch = () => setIsPopupMode(!!searchStr);
 
+  const goToFilter = () => {
+    dispatch(setSearchInfoToFilterAction(searchStr, searchBy));
+    setIsPopupMode(false);
+  };
+
+  const onKeyPress = (event) => {
+    if (event.key === "Enter") {
+      goToFilter();
+      event.target.blur();
+    }
+  };
+
   const onResetSearch = () => {
-    setSearchStr("");
+    dispatch(goClearSearchBarAction(filterOptions.searchStr));
     setIsPopupMode(!!searchStr);
   };
 
+  const setSearchStr = (searchStr) => dispatch(setSearchStrAction(searchStr));
+
+  // TODO: Убрать classPrefix (так как я отказался от CSS модулей)
   return (
     <div
       className={`search-bar-component ${isPopupMode && "popup-show"} popup`}
       onClick={onClosePopup}
     >
       <InputGroup size="lg" inside>
-        <InputGroup.Button className="input-btn-left" classPrefix="">
+        <InputGroup.Button
+          className="input-btn-left"
+          classPrefix=""
+          onClick={goToFilter}
+        >
           <Icon icon="search" />
         </InputGroup.Button>
         <Input
@@ -63,8 +98,8 @@ function SearchBar() {
           onChange={setSearchStr}
           spellCheck="false"
           onFocus={onFocusSearch}
+          onKeyPress={onKeyPress}
           className={searchStr && "with-value"}
-          ref={searchRef}
           classPrefix=""
         />
         {searchStr && (
@@ -77,7 +112,7 @@ function SearchBar() {
           </InputGroup.Button>
         )}
       </InputGroup>
-      {isPopupMode && <SearchResult />}
+      {isPopupMode && <SearchResult onToFilter={goToFilter} />}
     </div>
   );
 }
