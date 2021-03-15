@@ -6,8 +6,11 @@ import AdvertList from "../../components/AdvertList/advertlist";
 import SortAdverts from "../../components/SortAdverts/sortadverts";
 import FilterTags from "../../components/FilterTags/filtertags";
 import "./styles.scss";
+import { useSelector } from "react-redux";
 
 function FilterPage() {
+  const { countAllAdverts } = useSelector((state) => state.filterBar);
+
   return (
     <div className="filter-page-component">
       <Searchbar />
@@ -26,7 +29,7 @@ function FilterPage() {
                 className="tags-and-sort-wrapper"
               >
                 <FilterTags />
-                <SortAdverts />
+                {countAllAdverts > 0 && <SortAdverts />}
               </Col>
             </Row>
             <Row>

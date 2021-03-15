@@ -7,6 +7,8 @@ import {
 } from "../helpers";
 
 const initialState = {
+  isLoadingAdverts: false,
+  isNeedFetchAdverts: true,
   filterOptions: {
     searchStr: "",
     searchBy: "all",
@@ -87,6 +89,11 @@ const initialState = {
 
 const filterBarReducer = (state = initialState, action) => {
   switch (action.type) {
+    case Actions.GET_ADVERTS:
+      return {
+        ...state,
+        isLoadingAdverts: true,
+      };
     case Actions.SET_ADVERTS:
       return {
         ...state,
@@ -94,6 +101,8 @@ const filterBarReducer = (state = initialState, action) => {
         moreAdverts: [],
         countAllAdverts: action.payload.count,
         isFilterChanged: state.tags.length > 0,
+        isNeedFetchAdverts: false,
+        isLoadingAdverts: false,
       };
     case Actions.SET_SEARCH_INFO_TO_FILTER:
       return {
@@ -111,7 +120,11 @@ const filterBarReducer = (state = initialState, action) => {
         tagPostfixesPrefixes: {
           ...state.tagPostfixesPrefixes,
           searchStr: {
-            pre: "Поиск " + action.payload.searchBy.toLowerCase() + ":",
+            pre:
+              "Поиск " +
+              action.payload.searchTitle[0].toLowerCase() +
+              action.payload.searchTitle.slice(1) +
+              ":",
             post: "",
           },
         },
@@ -128,6 +141,7 @@ const filterBarReducer = (state = initialState, action) => {
           "isExchange",
           !state.filterOptions.isExchange ? ["обмен"] : []
         ),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_CURRENCY:
       return {
@@ -147,6 +161,9 @@ const filterBarReducer = (state = initialState, action) => {
             post: action.payload.unit,
           },
         },
+        isNeedFetchAdverts: !!(
+          state.filterOptions.priceMin || state.filterOptions.priceMax
+        ),
       };
     case Actions.SET_NUMBER_VALUE_BY_FIELD:
       return {
@@ -160,6 +177,7 @@ const filterBarReducer = (state = initialState, action) => {
           action.payload.field,
           action.payload.value
         ),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_MODEL:
       return {
@@ -183,6 +201,7 @@ const filterBarReducer = (state = initialState, action) => {
           ),
         },
         tags: updateListOfTagsByModel(state.tags, action.payload),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_CARCASES:
       return {
@@ -192,6 +211,7 @@ const filterBarReducer = (state = initialState, action) => {
           carcases: action.payload,
         },
         tags: updateListOfTagsByArray(state.tags, "carcases", action.payload),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_FUELS:
       return {
@@ -201,6 +221,7 @@ const filterBarReducer = (state = initialState, action) => {
           fuels: action.payload,
         },
         tags: updateListOfTagsByArray(state.tags, "fuels", action.payload),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_TRANSMISSIONS:
       return {
@@ -214,6 +235,7 @@ const filterBarReducer = (state = initialState, action) => {
           "transmissions",
           action.payload
         ),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_GEARINGS:
       return {
@@ -223,6 +245,7 @@ const filterBarReducer = (state = initialState, action) => {
           gearings: action.payload,
         },
         tags: updateListOfTagsByArray(state.tags, "gearings", action.payload),
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_COLORS:
       return {
@@ -232,6 +255,7 @@ const filterBarReducer = (state = initialState, action) => {
           colors: action.payload,
         },
         tags: updateListOfTagsByArray(state.tags, "colors", action.payload),
+        isNeedFetchAdverts: true,
       };
     case Actions.ADD_MODEL_AUTO:
       return {
@@ -291,12 +315,14 @@ const filterBarReducer = (state = initialState, action) => {
             ),
           ],
         },
+        isNeedFetchAdverts: true,
       };
     case Actions.SET_MORE_ADVERTS:
       return {
         ...state,
         moreAdverts: [...state.moreAdverts, ...action.payload],
         offset: state.offset + state.filterOptions.offsetStep,
+        isNeedFetchAdverts: false,
       };
     case Actions.SET_ORDER_ADVERTS:
       return {
@@ -305,6 +331,7 @@ const filterBarReducer = (state = initialState, action) => {
           ...state.filterOptions,
           order: action.payload,
         },
+        isNeedFetchAdverts: true,
       };
     case Actions.CLOSE_TAG:
       return {
@@ -320,6 +347,7 @@ const filterBarReducer = (state = initialState, action) => {
             action.payload
           ),
         },
+        isNeedFetchAdverts: true,
       };
     case Actions.RESET_FILTER:
       return {

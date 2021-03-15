@@ -4,8 +4,8 @@ export const setIsLoadingAction = () => ({
   type: Actions.SET_IS_LOADING,
 });
 
-export const goClearSearchBarAction = (resetValue) => ({
-  type: Actions.CLEAR_SEARCH_DATA,
+export const goResetSearchBarAction = (resetValue) => ({
+  type: Actions.RESET_SEARCH_DATA,
   payload: resetValue,
 });
 
@@ -22,6 +22,15 @@ export const setSearchByOneAction = (searchBy) => ({
 export const goSearchAction = (searchStr, filterOptions) => ({
   type: Actions.SEARCH_ADVERTS,
   payload: { searchStr, filterOptions },
+});
+
+export const setSearchInfoToSearchResultAction = (
+  adverts,
+  count,
+  searchBy
+) => ({
+  type: Actions.SET_SEARCH_INFO_TO_RESULT,
+  payload: { adverts, count, searchBy },
 });
 
 export const setAdvertsAction = (data) => ({

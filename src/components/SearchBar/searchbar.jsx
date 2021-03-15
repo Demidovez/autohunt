@@ -3,16 +3,22 @@ import { InputGroup, Input, Icon } from "rsuite";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  goClearSearchBarAction,
+  goResetSearchBarAction,
   setSearchStrAction,
   goSearchAction,
+  setSearchInfoToSearchResultAction,
 } from "../../actions/creators/searchActionCreators";
 import SearchResult from "../SearchResult/searchresult";
-import { setSearchInfoToFilterAction } from "../../actions/creators/filterBarActionCreators";
+import {
+  setAdvertsAction,
+  setSearchInfoToFilterAction,
+} from "../../actions/creators/filterBarActionCreators";
 
 function SearchBar() {
-  const { filterOptions } = useSelector((state) => state.filterBar);
-  const { searchStr, searchBy } = useSelector((state) => state.search);
+  const { filterOptions, adverts, countAllAdverts } = useSelector(
+    (state) => state.filterBar
+  );
+  const { searchStr, searchBy, tabs } = useSelector((state) => state.search);
   const [timeoutSearchId, setTimeoutSearchId] = useState();
   const [isPopupMode, setIsPopupMode] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +35,7 @@ function SearchBar() {
       setTimeoutSearchId(timeoutId);
     } else {
       timeoutSearchId && clearTimeout(timeoutSearchId);
-      isPopupMode && dispatch(goClearSearchBarAction(filterOptions.searchStr));
+      isPopupMode && dispatch(goResetSearchBarAction(filterOptions.searchStr));
     }
 
     setIsPopupMode(!!searchStr);
@@ -44,7 +50,7 @@ function SearchBar() {
   }, [filterOptions]);
 
   useEffect(() => {
-    dispatch(goClearSearchBarAction(filterOptions.searchStr));
+    dispatch(goResetSearchBarAction(filterOptions.searchStr));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterOptions.searchStr]);
@@ -52,15 +58,30 @@ function SearchBar() {
   // TODO: Наверное можно упростить проверку
   const onClosePopup = (event) => {
     if ([...event.target.classList].includes("search-bar-component")) {
-      dispatch(goClearSearchBarAction(filterOptions.searchStr));
+      dispatch(goResetSearchBarAction(filterOptions.searchStr));
       setIsPopupMode(false);
     }
   };
 
-  const onFocusSearch = () => setIsPopupMode(!!searchStr);
+  const onFocusSearch = () => {
+    if (filterOptions.searchStr) {
+      dispatch(
+        setSearchInfoToSearchResultAction(
+          adverts,
+          countAllAdverts,
+          filterOptions.searchBy
+        )
+      );
+      setIsPopupMode(!!searchStr);
+    }
+  };
 
   const goToFilter = () => {
-    dispatch(setSearchInfoToFilterAction(searchStr, searchBy));
+    const activeTab = tabs.find((tab) => tab.key === searchBy);
+
+    dispatch(setSearchInfoToFilterAction(searchStr, searchBy, activeTab.title));
+    dispatch(setAdvertsAction(activeTab.adverts, activeTab.count));
+
     setIsPopupMode(false);
   };
 
@@ -72,7 +93,7 @@ function SearchBar() {
   };
 
   const onResetSearch = () => {
-    dispatch(goClearSearchBarAction(filterOptions.searchStr));
+    dispatch(goResetSearchBarAction(filterOptions.searchStr));
     setIsPopupMode(!!searchStr);
   };
 

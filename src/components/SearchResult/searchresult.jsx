@@ -17,7 +17,7 @@ function SearchResult({ onToFilter }) {
     const tabsWithAdverts = tabs.filter((t) => t.count > 0);
     setTabsWithAdverts(tabsWithAdverts);
 
-    if (tabsWithAdverts.length) {
+    if (tabsWithAdverts.length && tabsWithAdverts[0].key !== activeTab) {
       setActiveTab(tabsWithAdverts[0].key);
       dispatch(setSearchByOneAction(tabsWithAdverts[0].key));
     }

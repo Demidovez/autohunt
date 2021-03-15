@@ -34,7 +34,7 @@ import { addOrRemoveItemInArray, formatNumber } from "../../helpers";
 
 const FilterAdvertsBar = () => {
   const state = useSelector((state) => state.filterBar.filterOptions);
-  const { countAllAdverts, isFilterChanged, tags } = useSelector(
+  const { countAllAdverts, isFilterChanged, isNeedFetchAdverts } = useSelector(
     (state) => state.filterBar
   );
   const optionCarNames = useSelector((state) => state.optionCarNames);
@@ -47,10 +47,10 @@ const FilterAdvertsBar = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getAdvertsAction(state));
+    isNeedFetchAdverts && dispatch(getAdvertsAction(state));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tags, state.order]);
+  }, [isNeedFetchAdverts]);
 
   const setCurrency = (label, unit) => {
     if (label !== state.currency.label) {

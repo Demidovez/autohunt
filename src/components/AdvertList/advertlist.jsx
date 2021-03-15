@@ -1,7 +1,10 @@
 import React from "react";
-import { Button, Loader } from "rsuite";
+import { Button, Icon, Loader } from "rsuite";
 import AdvertCard from "../AdvertCard/advertcard";
-import { getMoreAdvertsAction } from "../../actions/creators/filterBarActionCreators";
+import {
+  getMoreAdvertsAction,
+  onResetFilterAction,
+} from "../../actions/creators/filterBarActionCreators";
 import { formatNumber } from "../../helpers";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,16 +16,27 @@ function AdvertList() {
     moreAdverts,
     filterOptions,
     offset,
+    isLoadingAdverts,
   } = useSelector((state) => state.filterBar);
   const dispatch = useDispatch();
 
   const getMoreAdverts = () =>
     dispatch(getMoreAdvertsAction(filterOptions, offset));
 
+  const onResetFilter = () => dispatch(onResetFilterAction());
+
   return (
     <div className="advert-list-component">
-      {adverts.length === 0 && (
+      {isLoadingAdverts && (
         <Loader className="loader" size="md" center content="Загрузка..." />
+      )}
+      {!isLoadingAdverts && adverts.length === 0 && (
+        <div className="not-found-adverts">
+          <p>К сожалению, объявлений не найдено :(</p>
+          <Button onClick={onResetFilter}>
+            <Icon icon="reload" /> Сбросить фильтр
+          </Button>
+        </div>
       )}
       {adverts.length > 0 &&
         [...adverts, ...moreAdverts].map((advert) => (

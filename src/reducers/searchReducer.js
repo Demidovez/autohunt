@@ -65,7 +65,22 @@ const searchReducer = (state = initialState, action) => {
     case Actions.SET_SEARCH_BY:
       return {
         ...state,
-        searchBy: state.tabs.find((tab) => tab.key === action.payload).title,
+        searchBy: action.payload,
+      };
+    case Actions.SET_SEARCH_INFO_TO_RESULT:
+      return {
+        ...state,
+        isLoading: false,
+        searchBy: action.payload.searchBy,
+        tabs: state.tabs.map((tab) =>
+          tab.key === action.payload.searchBy
+            ? {
+                ...tab,
+                adverts: action.payload.adverts,
+                count: action.payload.count,
+              }
+            : tab
+        ),
       };
     case Actions.SET_ADVERTS:
       return {
@@ -87,7 +102,7 @@ const searchReducer = (state = initialState, action) => {
           }
         }),
       };
-    case Actions.CLEAR_SEARCH_DATA:
+    case Actions.RESET_SEARCH_DATA:
       return {
         ...initialState,
         searchStr: action.payload,
