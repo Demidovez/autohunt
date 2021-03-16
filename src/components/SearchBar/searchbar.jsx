@@ -29,7 +29,13 @@ function SearchBar() {
 
       // TODO: Если строка является числом, то например по цене будет искать часть, а не точное совпадение
       const timeoutId = setTimeout(() => {
-        dispatch(goSearchAction(searchStr, filterOptions));
+        dispatch(
+          goSearchAction(
+            searchStr,
+            tabs.map((t) => t.key),
+            filterOptions
+          )
+        );
       }, 300);
 
       setTimeoutSearchId(timeoutId);
@@ -72,7 +78,13 @@ function SearchBar() {
           filterOptions.searchBy
         )
       );
-      dispatch(goSearchAction(searchStr, filterOptions));
+      dispatch(
+        goSearchAction(
+          searchStr,
+          tabs.map((t) => t.key).filter((key) => key !== searchBy),
+          filterOptions
+        )
+      );
       setIsPopupMode(!!searchStr);
     }
   };

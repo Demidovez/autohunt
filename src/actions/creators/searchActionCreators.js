@@ -19,9 +19,9 @@ export const setSearchByOneAction = (searchBy) => ({
   payload: searchBy,
 });
 
-export const goSearchAction = (searchStr, filterOptions) => ({
+export const goSearchAction = (searchStr, searchByArray, filterOptions) => ({
   type: Actions.SEARCH_ADVERTS,
-  payload: { searchStr, filterOptions },
+  payload: { searchStr, searchByArray, filterOptions },
 });
 
 export const setSearchInfoToSearchResultAction = (

@@ -6,15 +6,9 @@
   position: absolute;
   width: 100%;
   max-height: 2000px;
-  //height: initial;
-  //transition: max-height 5s ease-in;
-
-  &.show {
-    height: initial;
-  }
 
   .filter-tags-component {
-    margin: 10px 20px 0;
+    margin: 10px 20px 5px 20px;
   }
 
   .rs-loader-wrapper {
@@ -74,7 +68,7 @@
       }
     }
 
-    & > ul > li.active-tab > a {
+    & > ul > li.active > a {
       color: #575757 !important;
     }
 

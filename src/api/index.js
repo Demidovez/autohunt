@@ -104,10 +104,10 @@ export const trySignUser = async ({ firstname, lastname, email, password }) => {
   }
 };
 
-export const startSearchBy = async (searchBy, searchOptions) => {
+export const startSearchBy = async (searchOptions) => {
   try {
     const { data } = await axios.post(
-      `https://server.autohunt.by/search?by=${searchBy}`,
+      "https://server.autohunt.by/search",
       searchOptions
     );
 

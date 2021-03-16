@@ -14,7 +14,10 @@ function SearchResult({ onToFilter }) {
   useLayoutEffect(() => {
     const tabWithAdverts = tabs.find((t) => t.count > 0);
 
-    tabWithAdverts && dispatch(setSearchByOneAction(tabWithAdverts.key));
+    if (tabWithAdverts && !searchBy) {
+      dispatch(setSearchByOneAction(tabWithAdverts.key));
+    }
+
     setHasSomeAdverts(!!tabWithAdverts);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -23,7 +26,7 @@ function SearchResult({ onToFilter }) {
   const onSelectTab = (searchBy) => dispatch(setSearchByOneAction(searchBy));
 
   return (
-    <Panel className={`search-result-component`}>
+    <Panel className="search-result-component">
       <FilterTags />
       {hasSomeAdverts && (
         <div>
@@ -37,12 +40,14 @@ function SearchResult({ onToFilter }) {
               <Nav.Item
                 eventKey={tab.key}
                 key={tab.key}
-                className={`${tab.key === searchBy ? "active-tab" : ""} ${
+                className={`${tab.key === searchBy ? "active" : ""} ${
                   !tab.count ? "disabled" : ""
                 }`}
-                disabled={!tab.count}
+                disabled={!tab.adverts.length}
               >
-                <Badge content={!!tab.count && tab.count}>{tab.title}</Badge>
+                <Badge content={!!tab.adverts.length && tab.count}>
+                  {tab.title}
+                </Badge>
               </Nav.Item>
             ))}
             <Loader content="Загрузка..." className={isLoading ? "show" : ""} />

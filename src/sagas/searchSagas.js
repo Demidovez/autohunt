@@ -12,7 +12,7 @@ import {
 function* workerStartSearch(action) {
   yield put(setIsLoadingAction());
 
-  const data = yield call(startSearchBy, "all", action.payload);
+  const data = yield call(startSearchBy, action.payload);
 
   yield put(setAdvertsAction(data));
 }
@@ -28,6 +28,7 @@ function* workerStartSearchByKey(action) {
 export default function* watcherSaga() {
   yield takeLatest(Actions.SEARCH_ADVERTS, workerStartSearch);
   yield takeLatest(
+    // TODO: Может лучше объединеить в один экшентип?
     [
       Actions.SEARCH_ADVERTS_BY_NAME,
       Actions.SEARCH_ADVERTS_BY_RUBLES,
