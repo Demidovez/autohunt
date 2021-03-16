@@ -1,81 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import "./styles.scss";
-import { Loader, Nav, Panel } from "rsuite";
+import { Badge, Loader, Nav, Panel } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
 import ResultSearchAdvertList from "../ResultSearchAdvertList/resultsearchadvertlist";
 import FilterTags from "../FilterTags/filtertags";
 import { setSearchByOneAction } from "../../actions/creators/searchActionCreators";
 
 function SearchResult({ onToFilter }) {
-  const { tabs, isLoading } = useSelector((state) => state.search);
-  const [tabsWithAdverts, setTabsWithAdverts] = useState([]);
-  const [activeTab, setActiveTab] = useState();
-  const [isLoadingTabs, setIsLoadingTabs] = useState(false);
+  const { tabs, isLoading, searchBy } = useSelector((state) => state.search);
+  const [hasSomeAdverts, setHasSomeAdverts] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const tabsWithAdverts = tabs.filter((t) => t.count > 0);
-    setTabsWithAdverts(tabsWithAdverts);
+  useLayoutEffect(() => {
+    const tabWithAdverts = tabs.find((t) => t.count > 0);
 
-    if (tabsWithAdverts.length && tabsWithAdverts[0].key !== activeTab) {
-      setActiveTab(tabsWithAdverts[0].key);
-      dispatch(setSearchByOneAction(tabsWithAdverts[0].key));
-    }
-
-    setIsLoadingTabs(false);
+    tabWithAdverts && dispatch(setSearchByOneAction(tabWithAdverts.key));
+    setHasSomeAdverts(!!tabWithAdverts);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tabs]);
 
-  useEffect(() => {
-    if (isLoading) {
-      setIsLoadingTabs(true);
-    }
-  }, [isLoading]);
-
-  const onSelectTab = (eventKey) => {
-    setActiveTab(eventKey);
-    dispatch(setSearchByOneAction(eventKey));
-  };
+  const onSelectTab = (searchBy) => dispatch(setSearchByOneAction(searchBy));
 
   return (
-    <Panel className="search-result-component">
+    <Panel className={`search-result-component`}>
       <FilterTags />
-      {tabsWithAdverts.length > 0 && (
+      {hasSomeAdverts && (
         <div>
           <Nav
-            activeKey={activeTab}
+            activeKey={searchBy}
             onSelect={onSelectTab}
             appearance="subtle"
             className="tabs"
           >
-            {tabsWithAdverts.map((tab) => (
+            {tabs.map((tab) => (
               <Nav.Item
                 eventKey={tab.key}
                 key={tab.key}
-                className={tab.key === activeTab ? "active-tab" : ""}
+                className={`${tab.key === searchBy ? "active-tab" : ""} ${
+                  !tab.count ? "disabled" : ""
+                }`}
+                disabled={!tab.count}
               >
-                {tab.title}
+                <Badge content={!!tab.count && tab.count}>{tab.title}</Badge>
               </Nav.Item>
             ))}
-            <Loader
-              content="Загрузка..."
-              className={
-                isLoadingTabs && tabsWithAdverts.length > 0 ? "show" : ""
-              }
-            />
+            <Loader content="Загрузка..." className={isLoading ? "show" : ""} />
           </Nav>
           <ResultSearchAdvertList
-            adverts={tabsWithAdverts.find((t) => t.key === activeTab).adverts}
-            countAll={tabsWithAdverts.find((t) => t.key === activeTab).count}
+            adverts={tabs.find((t) => t.key === searchBy).adverts}
+            countAll={tabs.find((t) => t.key === searchBy).count}
             onToFilter={onToFilter}
           />
         </div>
       )}
-      {!isLoadingTabs && tabsWithAdverts.length === 0 && (
+      {!isLoading && !hasSomeAdverts && (
         <p className="nothing-found">Ничего не найдено :(</p>
       )}
-      {isLoadingTabs && tabsWithAdverts.length === 0 && (
+      {isLoading && !hasSomeAdverts && (
         <p className="loading-label">Загрузка...</p>
       )}
     </Panel>

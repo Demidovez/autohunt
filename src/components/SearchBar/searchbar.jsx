@@ -64,7 +64,7 @@ function SearchBar() {
   };
 
   const onFocusSearch = () => {
-    if (filterOptions.searchStr) {
+    if (filterOptions.searchStr && !isPopupMode) {
       dispatch(
         setSearchInfoToSearchResultAction(
           adverts,
@@ -72,6 +72,7 @@ function SearchBar() {
           filterOptions.searchBy
         )
       );
+      dispatch(goSearchAction(searchStr, filterOptions));
       setIsPopupMode(!!searchStr);
     }
   };
