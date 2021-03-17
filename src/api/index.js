@@ -104,6 +104,7 @@ export const trySignUser = async ({ firstname, lastname, email, password }) => {
   }
 };
 
+// TODO: Как-то не прозрачно, нужно деструктурировать searchOptions
 export const startSearchBy = async (searchOptions) => {
   try {
     const { data } = await axios.post(

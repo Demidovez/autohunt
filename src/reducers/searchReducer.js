@@ -10,36 +10,48 @@ const initialState = {
       title: "По модели",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
     {
       key: "rubles",
       title: "По цене в BYN",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
     {
       key: "dollars",
       title: "По цене в USD",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
     {
       key: "mileage",
       title: "По пробегу",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
     {
       key: "city",
       title: "По городу",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
     {
       key: "other",
       title: "Прочее",
       count: 0,
       adverts: [],
+      offset: 0,
+      moreAdverts: [],
     },
   ],
 };
@@ -95,6 +107,23 @@ const searchReducer = (state = initialState, action) => {
             return initialTab;
           }
         }),
+      };
+    case Actions.SET_SEARCH_ADVERTS_MORE:
+      return {
+        ...state,
+        isLoading: false,
+        tabs: state.tabs.map((tab) =>
+          tab.key === action.payload.searchBy
+            ? {
+                ...tab,
+                offset: tab.offset + 15,
+                moreAdverts: [
+                  ...tab.moreAdverts,
+                  ...action.payload.moreAdverts,
+                ],
+              }
+            : tab
+        ),
       };
     case Actions.RESET_SEARCH_DATA:
       return {

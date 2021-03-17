@@ -5,6 +5,7 @@ import {
   setAdvertsAction,
   setIsLoadingAction,
   setAdvertsByKeyAction,
+  setAdvertsMoreAction,
 } from "../actions/creators/searchActionCreators";
 
 // TODO: Дублирование кода в воркерах
@@ -25,8 +26,17 @@ function* workerStartSearchByKey(action) {
   yield put(setAdvertsByKeyAction(data));
 }
 
+function* workerStartSearchMore(action) {
+  yield put(setIsLoadingAction());
+
+  const data = yield call(startSearchBy, action.payload);
+
+  yield put(setAdvertsMoreAction(action.payload.searchBy, data));
+}
+
 export default function* watcherSaga() {
   yield takeLatest(Actions.SEARCH_ADVERTS, workerStartSearch);
+  yield takeLatest(Actions.SEARCH_ADVERTS_MORE, workerStartSearchMore);
   yield takeLatest(
     // TODO: Может лучше объединеить в один экшентип?
     [

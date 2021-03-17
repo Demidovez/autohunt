@@ -4,27 +4,25 @@ import ResultSearchAdvertCard from "../ResultSearchAdvertCard/resultsearchadvert
 import { Button, Icon } from "rsuite";
 import { formatNumber } from "../../helpers";
 
-function ResultSearchAdvertList({ adverts, countAll, onToFilter }) {
-  const getMoreAdverts = () => {};
-
-  const moreAdverts = [];
+function ResultSearchAdvertList({ tab, getMore, onToFilter }) {
+  const { adverts, count, moreAdverts } = tab;
 
   return (
     <div className="result-search-advert-list-component">
-      {adverts.map((advert) => (
+      {[...adverts, ...moreAdverts].map((advert) => (
         <ResultSearchAdvertCard key={advert.id} advert={advert} />
       ))}
       <div className="controls-wrapper">
         <div>
-          {adverts.length > 0 && adverts.length !== countAll && (
+          {adverts.length > 0 && adverts.length !== count && (
             <div className="more">
-              <Button appearance="default" onClick={getMoreAdverts}>
+              <Button appearance="default" onClick={getMore}>
                 Показать еще
               </Button>
               <span>
                 {formatNumber(adverts.length + moreAdverts.length) +
                   " из " +
-                  formatNumber(countAll)}
+                  formatNumber(count)}
               </span>
             </div>
           )}

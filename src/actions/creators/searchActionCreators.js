@@ -24,6 +24,21 @@ export const goSearchAction = (searchStr, searchByArray, filterOptions) => ({
   payload: { searchStr, searchByArray, filterOptions },
 });
 
+export const goSearchMoreAction = (
+  searchStr,
+  searchBy,
+  offset,
+  filterOptions
+) => ({
+  type: Actions.SEARCH_ADVERTS_MORE,
+  payload: { searchStr, searchBy, offset, filterOptions },
+});
+
+export const setAdvertsMoreAction = (searchBy, data) => ({
+  type: Actions.SET_SEARCH_ADVERTS_MORE,
+  payload: { searchBy, moreAdverts: data[0].adverts },
+});
+
 export const setSearchInfoToSearchResultAction = (
   adverts,
   count,

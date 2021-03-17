@@ -4,18 +4,31 @@ import { Badge, Loader, Nav, Panel } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
 import ResultSearchAdvertList from "../ResultSearchAdvertList/resultsearchadvertlist";
 import FilterTags from "../FilterTags/filtertags";
-import { setSearchByOneAction } from "../../actions/creators/searchActionCreators";
+import {
+  goSearchMoreAction,
+  setSearchByOneAction,
+} from "../../actions/creators/searchActionCreators";
 
 function SearchResult({ onToFilter }) {
-  const { tabs, isLoading, searchBy } = useSelector((state) => state.search);
+  const { tabs, isLoading, searchBy, searchStr } = useSelector(
+    (state) => state.search
+  );
+  const filterOptions = useSelector((state) => state.filterBar.filterOptions);
   const [hasSomeAdverts, setHasSomeAdverts] = useState(false);
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     const tabWithAdverts = tabs.find((t) => t.count > 0);
 
-    if (tabWithAdverts && !searchBy) {
-      dispatch(setSearchByOneAction(tabWithAdverts.key));
+    if (tabWithAdverts) {
+      const activeTab = tabs
+        .filter((t) => t.count > 0)
+        .map((t) => t.key)
+        .includes(searchBy)
+        ? searchBy
+        : tabWithAdverts.key;
+
+      dispatch(setSearchByOneAction(activeTab));
     }
 
     setHasSomeAdverts(!!tabWithAdverts);
@@ -25,9 +38,20 @@ function SearchResult({ onToFilter }) {
 
   const onSelectTab = (searchBy) => dispatch(setSearchByOneAction(searchBy));
 
+  const getMoreAdverts = () => {
+    dispatch(
+      goSearchMoreAction(
+        searchStr,
+        searchBy,
+        tabs.find((t) => t.key === searchBy).offset + 15,
+        filterOptions
+      )
+    );
+  };
+
   return (
     <Panel className="search-result-component">
-      <FilterTags />
+      <FilterTags hideField="searchStr" />
       {hasSomeAdverts && (
         <div>
           <Nav
@@ -53,8 +77,8 @@ function SearchResult({ onToFilter }) {
             <Loader content="Загрузка..." className={isLoading ? "show" : ""} />
           </Nav>
           <ResultSearchAdvertList
-            adverts={tabs.find((t) => t.key === searchBy).adverts}
-            countAll={tabs.find((t) => t.key === searchBy).count}
+            tab={tabs.find((t) => t.key === searchBy)}
+            getMore={getMoreAdverts}
             onToFilter={onToFilter}
           />
         </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeTagAction } from "../../actions/creators/filterBarActionCreators";
 import { Tag } from "rsuite";
 
-function FilterTags() {
+function FilterTags({ hideField }) {
   const tags = useSelector((state) => state.filterBar.tags);
   const preAndPostfixes = useSelector(
     (state) => state.filterBar.tagPostfixesPrefixes
@@ -52,11 +52,13 @@ function FilterTags() {
 
   return (
     <div className="filter-tags-component">
-      {tags.map((tag, index) => (
-        <Tag closable onClick={() => onCloseTag(tag, index)} key={index}>
-          {addPreAndPostfixes(tag).value}
-        </Tag>
-      ))}
+      {tags
+        .filter((tag) => tag.field !== hideField)
+        .map((tag, index) => (
+          <Tag closable onClick={() => onCloseTag(tag, index)} key={index}>
+            {addPreAndPostfixes(tag).value}
+          </Tag>
+        ))}
     </div>
   );
 }

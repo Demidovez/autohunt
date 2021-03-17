@@ -50,7 +50,7 @@ function SearchBar() {
   }, [searchStr]);
 
   useEffect(() => {
-    isPopupMode && dispatch(goSearchAction(searchStr, filterOptions));
+    isPopupMode && dispatch(goSearchAction(searchStr, filterOptions)); // TODO: ошибка в параметрах
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterOptions]);
