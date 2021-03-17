@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   isLoadingAdverts: false,
-  isNeedFetchAdverts: true,
+  isNeedFetchAdverts: true, // TODO: Это где-то используется?
+  isFilterChanged: false,
   filterOptions: {
     searchStr: "",
     searchBy: "all",
@@ -68,7 +69,6 @@ const initialState = {
     },
   ],
   orderValue: {},
-  isFilterChanged: false,
   tags: [],
   tagPostfixesPrefixes: {
     priceMin: { pre: "от", post: "р." },

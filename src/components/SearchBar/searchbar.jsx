@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { InputGroup, Input, Icon } from "rsuite";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,8 @@ import {
   goResetSearchBarAction,
   setSearchStrAction,
   goSearchAction,
-  setSearchInfoToSearchResultAction,
+  setFilterResultToSearchResultAction,
+  goResetSearchBarWithValueAction,
 } from "../../actions/creators/searchActionCreators";
 import SearchResult from "../SearchResult/searchresult";
 import {
@@ -15,16 +16,21 @@ import {
 } from "../../actions/creators/filterBarActionCreators";
 
 function SearchBar() {
-  const { filterOptions, adverts, countAllAdverts } = useSelector(
-    (state) => state.filterBar
-  );
+  const {
+    filterOptions,
+    adverts,
+    countAllAdverts,
+    isLoadingAdverts,
+  } = useSelector((state) => state.filterBar);
   const { searchStr, searchBy, tabs } = useSelector((state) => state.search);
   const [timeoutSearchId, setTimeoutSearchId] = useState();
   const [isPopupMode, setIsPopupMode] = useState(false);
+  const [isNeedReSearch, setIsNeedReSearch] = useState(false);
+  const [isFocusedSearchInput, setIsFocusedSearchInput] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (searchStr) {
+    if (searchStr && isFocusedSearchInput) {
       timeoutSearchId && clearTimeout(timeoutSearchId);
 
       // TODO: Если строка является числом, то например по цене будет искать часть, а не точное совпадение
@@ -39,45 +45,38 @@ function SearchBar() {
       }, 300);
 
       setTimeoutSearchId(timeoutId);
+      setIsPopupMode(true);
     } else {
       timeoutSearchId && clearTimeout(timeoutSearchId);
-      isPopupMode && dispatch(goResetSearchBarAction(filterOptions.searchStr));
+      isPopupMode && isFocusedSearchInput && dispatch(goResetSearchBarAction());
+      setIsPopupMode(false);
     }
-
-    setIsPopupMode(!!searchStr);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStr]);
 
   useEffect(() => {
-    isPopupMode && dispatch(goSearchAction(searchStr, filterOptions)); // TODO: ошибка в параметрах
+    if (isPopupMode) {
+      dispatch(
+        goSearchAction(
+          searchStr,
+          tabs.map((t) => t.key),
+          filterOptions
+        )
+      );
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterOptions]);
 
   useEffect(() => {
-    dispatch(goResetSearchBarAction(filterOptions.searchStr));
+    searchStr && setIsNeedReSearch(!isPopupMode);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterOptions.searchStr]);
+  }, [isLoadingAdverts]);
 
-  // TODO: Наверное можно упростить проверку
-  const onClosePopup = (event) => {
-    if ([...event.target.classList].includes("search-bar-component")) {
-      dispatch(goResetSearchBarAction(filterOptions.searchStr));
-      setIsPopupMode(false);
-    }
-  };
-
-  const onFocusSearch = () => {
-    if (filterOptions.searchStr && !isPopupMode) {
-      dispatch(
-        setSearchInfoToSearchResultAction(
-          adverts,
-          countAllAdverts,
-          filterOptions.searchBy
-        )
-      );
+  useEffect(() => {
+    if (isPopupMode && isNeedReSearch) {
       dispatch(
         goSearchAction(
           searchStr,
@@ -85,8 +84,39 @@ function SearchBar() {
           filterOptions
         )
       );
-      setIsPopupMode(!!searchStr);
+      setIsNeedReSearch(false);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPopupMode]);
+
+  // TODO: Наверное можно упростить проверку
+  const onClosePopup = (event) => {
+    if ([...event.target.classList].includes("search-bar-component")) {
+      setIsPopupMode(false);
+
+      if (filterOptions.searchStr !== searchStr) {
+        setIsNeedReSearch(true);
+        setIsFocusedSearchInput(false);
+        dispatch(goResetSearchBarWithValueAction(filterOptions.searchStr));
+      }
+    }
+  };
+
+  const onFocusSearch = () => {
+    if (searchStr && !isPopupMode) {
+      dispatch(
+        setFilterResultToSearchResultAction(
+          adverts,
+          countAllAdverts,
+          filterOptions.searchBy
+        )
+      );
+
+      setIsPopupMode(true);
+    }
+
+    setIsFocusedSearchInput(true);
   };
 
   const goToFilter = () => {
@@ -106,7 +136,7 @@ function SearchBar() {
   };
 
   const onResetSearch = () => {
-    dispatch(goResetSearchBarAction(filterOptions.searchStr));
+    dispatch(goResetSearchBarAction());
     setIsPopupMode(!!searchStr);
   };
 

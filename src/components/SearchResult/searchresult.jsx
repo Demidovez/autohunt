@@ -21,14 +21,12 @@ function SearchResult({ onToFilter }) {
     const tabWithAdverts = tabs.find((t) => t.count > 0);
 
     if (tabWithAdverts) {
-      const activeTab = tabs
+      const searchByIsValid = tabs
         .filter((t) => t.count > 0)
         .map((t) => t.key)
-        .includes(searchBy)
-        ? searchBy
-        : tabWithAdverts.key;
+        .includes(searchBy);
 
-      dispatch(setSearchByOneAction(activeTab));
+      !searchByIsValid && dispatch(setSearchByOneAction(tabWithAdverts.key));
     }
 
     setHasSomeAdverts(!!tabWithAdverts);

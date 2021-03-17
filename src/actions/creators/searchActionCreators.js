@@ -4,8 +4,12 @@ export const setIsLoadingAction = () => ({
   type: Actions.SET_IS_LOADING,
 });
 
-export const goResetSearchBarAction = (resetValue) => ({
+export const goResetSearchBarAction = () => ({
   type: Actions.RESET_SEARCH_DATA,
+});
+
+export const goResetSearchBarWithValueAction = (resetValue) => ({
+  type: Actions.RESET_SEARCH_DATA_WITH_VALUE,
   payload: resetValue,
 });
 
@@ -39,12 +43,12 @@ export const setAdvertsMoreAction = (searchBy, data) => ({
   payload: { searchBy, moreAdverts: data[0].adverts },
 });
 
-export const setSearchInfoToSearchResultAction = (
+export const setFilterResultToSearchResultAction = (
   adverts,
   count,
   searchBy
 ) => ({
-  type: Actions.SET_SEARCH_INFO_TO_RESULT,
+  type: Actions.SET_FILTER_RESULT_TO_SEARCH_RESULT,
   payload: { adverts, count, searchBy },
 });
 

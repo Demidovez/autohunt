@@ -73,7 +73,7 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         searchBy: action.payload,
       };
-    case Actions.SET_SEARCH_INFO_TO_RESULT:
+    case Actions.SET_FILTER_RESULT_TO_SEARCH_RESULT:
       return {
         ...state,
         isLoading: false,
@@ -92,7 +92,7 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        tabs: initialState.tabs.map((initialTab) => {
+        tabs: state.tabs.map((initialTab) => {
           const loadTab = action.payload.find(
             (loadTab) => loadTab.key === initialTab.key
           );
@@ -126,6 +126,10 @@ const searchReducer = (state = initialState, action) => {
         ),
       };
     case Actions.RESET_SEARCH_DATA:
+      return {
+        ...initialState,
+      };
+    case Actions.RESET_SEARCH_DATA_WITH_VALUE:
       return {
         ...initialState,
         searchStr: action.payload,
