@@ -27,6 +27,7 @@ function SearchBar() {
   const [isPopupMode, setIsPopupMode] = useState(false);
   const [isNeedReSearch, setIsNeedReSearch] = useState(false);
   const [isFocusedSearchInput, setIsFocusedSearchInput] = useState(false);
+  const wrapperInputRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,6 +65,8 @@ function SearchBar() {
           filterOptions
         )
       );
+    } else {
+      dispatch(goResetSearchBarWithValueAction(filterOptions.searchStr));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -122,8 +125,15 @@ function SearchBar() {
   const goToFilter = () => {
     const activeTab = tabs.find((tab) => tab.key === searchBy);
 
-    dispatch(setSearchInfoToFilterAction(searchStr, searchBy, activeTab.title));
-    dispatch(setAdvertsAction(activeTab.adverts, activeTab.count));
+    // TODO: А что если пользователь начал вводить и сразу нажал Энтер?
+    if (searchStr && activeTab) {
+      dispatch(
+        setSearchInfoToFilterAction(searchStr, searchBy, activeTab.title)
+      );
+      dispatch(setAdvertsAction(activeTab.adverts, activeTab.count));
+    } else {
+      dispatch(goResetSearchBarAction());
+    }
 
     setIsPopupMode(false);
   };
@@ -131,13 +141,14 @@ function SearchBar() {
   const onKeyPress = (event) => {
     if (event.key === "Enter") {
       goToFilter();
-      event.target.blur();
+
+      isFocusedSearchInput && wrapperInputRef.current?.focus();
     }
   };
 
   const onResetSearch = () => {
     dispatch(goResetSearchBarAction());
-    setIsPopupMode(!!searchStr);
+    setIsPopupMode(false);
   };
 
   const setSearchStr = (searchStr) => dispatch(setSearchStrAction(searchStr));
@@ -147,7 +158,11 @@ function SearchBar() {
     <div
       className={`search-bar-component ${isPopupMode && "popup-show"} popup`}
       onClick={onClosePopup}
+      onKeyPress={onKeyPress}
+      tabIndex="1"
+      ref={wrapperInputRef}
     >
+      {/*<input ref={searchInputRef} />*/}
       <InputGroup size="lg" inside>
         <InputGroup.Button
           className="input-btn-left"
@@ -162,8 +177,7 @@ function SearchBar() {
           onChange={setSearchStr}
           spellCheck="false"
           onFocus={onFocusSearch}
-          onKeyPress={onKeyPress}
-          className={searchStr && "with-value"}
+          className={searchStr ? "with-value" : ""}
           classPrefix=""
         />
         {searchStr && (
