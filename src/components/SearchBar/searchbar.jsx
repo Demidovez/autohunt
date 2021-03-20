@@ -28,6 +28,7 @@ function SearchBar() {
   const [isNeedReSearch, setIsNeedReSearch] = useState(false);
   const [isFocusedSearchInput, setIsFocusedSearchInput] = useState(false);
   const wrapperInputRef = useRef(null);
+  const prevFilterOptionsRef = useRef(filterOptions);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,8 +67,27 @@ function SearchBar() {
         )
       );
     } else {
-      dispatch(goResetSearchBarWithValueAction(filterOptions.searchStr));
+      const prevFilterOptionsWithoutSearchFields = {
+        ...prevFilterOptionsRef.current,
+        searchStr: null,
+        searchBy: null,
+      };
+
+      const nextFilterOptionsWithoutSearchFields = {
+        ...filterOptions,
+        searchStr: null,
+        searchBy: null,
+      };
+
+      if (
+        JSON.stringify(prevFilterOptionsWithoutSearchFields) !==
+        JSON.stringify(nextFilterOptionsWithoutSearchFields)
+      ) {
+        dispatch(goResetSearchBarWithValueAction(filterOptions.searchStr));
+      }
     }
+
+    prevFilterOptionsRef.current = filterOptions;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterOptions]);
@@ -162,7 +182,6 @@ function SearchBar() {
       tabIndex="1"
       ref={wrapperInputRef}
     >
-      {/*<input ref={searchInputRef} />*/}
       <InputGroup size="lg" inside>
         <InputGroup.Button
           className="input-btn-left"
