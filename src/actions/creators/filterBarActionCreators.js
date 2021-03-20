@@ -95,3 +95,13 @@ export const setOrderAdvertsAction = (orderValue) => ({
   type: Actions.SET_ORDER_ADVERTS,
   payload: orderValue,
 });
+
+export const setIsSavingFilterAction = (isSaving) => ({
+  type: Actions.SET_IS_SAVING_FILTER,
+  payload: isSaving,
+});
+
+export const setSaveFilterSuccessAction = (isSaved) => ({
+  type: Actions.SET_IS_SAVED_FILTER,
+  payload: isSaved,
+});

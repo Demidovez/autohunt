@@ -10,6 +10,8 @@ const initialState = {
   isLoadingAdverts: false,
   isNeedFetchAdverts: true, // TODO: Это где-то используется?
   isFilterChanged: false,
+  isFilterSaving: false,
+  isFilterSaved: null, // TODO: Пока не используется. Нужно сделать через enum с вариантами результата
   filterOptions: {
     searchStr: "",
     searchBy: "all",
@@ -352,6 +354,17 @@ const filterBarReducer = (state = initialState, action) => {
     case Actions.RESET_FILTER:
       return {
         ...initialState,
+      };
+    case Actions.SET_IS_SAVING_FILTER:
+      return {
+        ...state,
+        isFilterSaving: action.payload,
+      };
+    case Actions.SET_IS_SAVED_FILTER:
+      return {
+        ...state,
+        isFilterSaving: false,
+        isFilterSaved: action.payload,
       };
     default:
       return state;

@@ -1,5 +1,14 @@
 import Actions from "../types/userActionTypes";
 
+export const onSaveFilterToUserAction = (
+  userId,
+  nameOptions,
+  filterOptions
+) => ({
+  type: Actions.SAVE_FILTER_OPTIONS,
+  payload: { userId, nameOptions, filterOptions },
+});
+
 export const tryLoginUserAction = (loginValue) => ({
   type: Actions.TRY_LOGIN,
   payload: loginValue,

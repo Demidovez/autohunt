@@ -102,4 +102,46 @@
   .rs-divider-horizontal.rs-divider-with-text {
     margin: 20px 0;
   }
+
+  .reset-save-wrapper {
+    button {
+      background-color: #e4e4e4;
+
+      .icon-wrapper {
+        display: inline-block;
+        width: 25px;
+
+        i {
+          margin-right: 0;
+        }
+      }
+
+      .rs-loader-wrapper {
+        vertical-align: middle;
+        margin-right: 5px;
+
+        .rs-loader-spin::before,
+        .rs-loader-spin::after {
+          border-width: 1px;
+        }
+      }
+
+      i {
+        margin-right: 5px;
+      }
+
+      &:first-child {
+        border-top-left-radius: 0 !important;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0 !important;
+      }
+
+      &:hover {
+        background-color: #d9d9d9;
+      }
+    }
+
+  }
 }

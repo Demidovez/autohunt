@@ -78,6 +78,7 @@ export const tryLoginUser = async ({ email, password }) => {
       lastname: data.lastname,
       isActive: data.isActive,
       role: data.role,
+      id: data.id,
     };
   } catch (e) {
     throw new Error(e);
@@ -98,6 +99,7 @@ export const trySignUser = async ({ firstname, lastname, email, password }) => {
       lastname: data.lastname,
       isActive: data.isActive,
       role: data.role,
+      id: data.id,
     };
   } catch (e) {
     throw new Error(e);
@@ -110,6 +112,19 @@ export const startSearchBy = async (searchOptions) => {
     const { data } = await axios.post(
       "https://server.autohunt.by/search",
       searchOptions
+    );
+
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const saveFilter = async (filterData) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/save_filter",
+      filterData
     );
 
     return data;
