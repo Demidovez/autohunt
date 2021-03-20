@@ -7,6 +7,7 @@ const initialState = {
   isLogined: false,
   isActive: true,
   role: "GUEST",
+  filters: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -20,6 +21,27 @@ const userReducer = (state = initialState, action) => {
         isActive: action.payload.isActive,
         isLogined: action.payload.isActive,
         userId: action.payload.id,
+      };
+    case Actions.SET_FILTERS:
+      return {
+        ...state,
+        filters: action.payload.map((filter) => ({
+          ...filter,
+          filterOptions: JSON.parse(filter.filterOptions),
+          tags: JSON.parse(filter.tags),
+        })),
+      };
+    case Actions.UPDATE_FILTER:
+      return {
+        ...state,
+        filters: state.filters.map((filter) =>
+          filter.id === action.payload.id ? action.payload : filter
+        ),
+      };
+    case Actions.REMOVE_FILTER:
+      return {
+        ...state,
+        filters: state.filters.filter((filter) => filter.id !== action.payload),
       };
     case Actions.LOGOUT:
       return {

@@ -132,3 +132,46 @@ export const saveFilter = async (filterData) => {
     throw new Error(e);
   }
 };
+
+export const getFilters = async (userId) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/get_filters",
+      { userId }
+    );
+
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const updateSavedFilter = async (filter) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/update_filter",
+      {
+        filter,
+      }
+    );
+
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const removeSavedFilter = async (id) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/remove_filter",
+      {
+        id,
+      }
+    );
+
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};

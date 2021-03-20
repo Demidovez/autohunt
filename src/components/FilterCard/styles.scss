@@ -4,18 +4,18 @@
   transition: background-color 0.3s linear;
 
   &.disabled {
-    background-color: #e5e5ea;
+    opacity: 0.6;
   }
 
   h4 {
     color: black;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 16px;
     margin-bottom: 10px;
   }
 
-  a {
+  .btn-more {
     min-width: 110px;
     margin-right: 10px;
   }
@@ -42,29 +42,40 @@
     display: inline-block;
   }
 
-  .controls-wrapper i {
-    margin-left: 10px;
-    cursor: pointer;
-    vertical-align: middle;
+  .controls-wrapper {
+    .is-mute-wrapper {
+      min-width: 50px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    i {
+      cursor: pointer;
+      vertical-align: middle;
+    }
   }
 
   .remove-icon {
     color: red;
   }
 
-  .modal {
-    text-align: center;
-  }
+  .tags-wrapper {
+    margin: 10px 0;
 
-  .modal i {
+    & > div {
+      background-color: rgb(241,241,241);
+      margin: 0 10px 10px 0;
+    }
+  }
+}
+
+.filter-card-modal {
+  text-align: center;
+
+  i {
     color: #ffb300;
     font-size: 24px;
     margin-right: 10px;
     vertical-align: middle;
-  }
-
-  .tags-wrapper > div {
-    background-color: rgb(241,241,241);
-    margin: 0 10px 10px 0;
   }
 }

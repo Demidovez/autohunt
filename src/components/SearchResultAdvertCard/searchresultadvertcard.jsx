@@ -13,7 +13,7 @@ import {
 import "./styles.scss";
 import { formatNumber } from "../../helpers";
 
-function ResultSearchAdvertCard({ advert }) {
+function SearchResultAdvertCard({ advert }) {
   return (
     <Panel className="result-search-advert-card-component">
       <Container>
@@ -85,4 +85,4 @@ function ResultSearchAdvertCard({ advert }) {
   );
 }
 
-export default ResultSearchAdvertCard;
+export default SearchResultAdvertCard;

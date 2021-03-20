@@ -196,3 +196,19 @@ export const getLabelBreadCrumbByPath = (path) => {
       return path;
   }
 };
+
+export const addToTagsPreAndPostfixes = (tags, preAndPostfixes) =>
+  tags.map((tag) => {
+    const { pre, post } = preAndPostfixes[tag.field] || { pre: "", post: "" };
+    let newValue = tag.value;
+
+    if (pre && post) {
+      newValue = pre + " " + tag.value + " " + post;
+    } else if (pre) {
+      newValue = pre + " " + tag.value;
+    } else if (post) {
+      newValue = tag.value + " " + post;
+    }
+
+    return { ...tag, value: newValue };
+  });

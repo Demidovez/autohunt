@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Panel,
   Container,
@@ -13,33 +13,36 @@ import {
   Modal,
   Tag,
   Toggle,
+  IconButton,
 } from "rsuite";
 import "./styles.scss";
+import { useDispatch } from "react-redux";
+import {
+  removeSavedFilterAction,
+  updateSavedFilterAction,
+} from "../../actions/creators/userActionCreators";
 
-function FilterCard() {
-  const [isEnableNotification, setIsEnableNotification] = React.useState(false);
-  const [titleFilter] = React.useState("Шкода Октавия");
-  const [showModalRemoveFilter, setShowModalRemoveFilter] = React.useState(
-    false
-  );
-  const [enabledFilter, setEnabledFilter] = React.useState(true);
+function FilterCard({ filter }) {
+  const { name, color, isActive, isMute, tags } = filter;
+
+  const dispatch = useDispatch();
+
+  const [showModalRemoveFilter, setShowModalRemoveFilter] = useState(false);
 
   const toggleNotification = () => {
-    setIsEnableNotification(!isEnableNotification);
+    dispatch(updateSavedFilterAction({ ...filter, isMute: !isMute }));
 
-    Alert.success(
-      `Уведомления по фильтру ${titleFilter} ${
-        isEnableNotification ? "включены" : "отключены"
-      }!`
-    );
+    !isMute
+      ? Alert.success(`Уведомления по фильтру «${name}» включены!`)
+      : Alert.error(`Уведомления по фильтру «${name}» отключены!`);
   };
 
   const stateFilter = (status) => {
-    setEnabledFilter(status);
+    dispatch(updateSavedFilterAction({ ...filter, isActive: status }));
 
-    enabledFilter
-      ? Alert.success(`Фильтр ${titleFilter} включен!`)
-      : Alert.error(`Фильтр ${titleFilter} отключен!`);
+    status
+      ? Alert.success(`Фильтр «${name}» включен!`)
+      : Alert.error(`Фильтр «${name}» отключен!`);
   };
 
   const closeModal = () => setShowModalRemoveFilter(false);
@@ -50,42 +53,33 @@ function FilterCard() {
   const confirmModal = () => {
     setShowModalRemoveFilter(false);
     Alert.error("Фильтр удален!");
+
+    dispatch(removeSavedFilterAction(filter.id));
   };
 
   return (
-    <Panel className={`filter-card-component ${!enabledFilter && "disabled"}`}>
+    <Panel className={`filter-card-component ${!isActive ? "disabled" : ""}`}>
       <Container>
         <Header>
-          <h4>{titleFilter}</h4>
+          <h4>{name}</h4>
         </Header>
         <Content>
           <div className="tags-wrapper">
-            <Tag>Шкода</Tag>
-            <Tag>Октавия</Tag>
-            <Tag>2015</Tag>
-            <Tag>1.6</Tag>
-            <Tag>130 000км</Tag>
-            <Tag>до 10 000$</Tag>
-            <Tag>Шкода</Tag>
-            <Tag>Октавия</Tag>
-            <Tag>2015</Tag>
-            <Tag>1.6</Tag>
-            <Tag>130 000км</Tag>
-            <Tag>до 10 000$</Tag>
-            <Tag>Шкода</Tag>
-            <Tag>Октавия</Tag>
-            <Tag>2015</Tag>
-            <Tag>1.6</Tag>
-            <Tag>130 000км</Tag>
-            <Tag>до 10 000$</Tag>
+            {tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
           </div>
         </Content>
         <Footer>
           <FlexboxGrid align="bottom">
             <FlexboxGrid.Item colspan={16}>
-              <Button appearance="primary" href={`asdasdasd`} target="_blank">
+              <IconButton
+                icon={<Icon icon="search" />}
+                color="blue"
+                className="btn-more"
+              >
                 Подробнее
-              </Button>
+              </IconButton>
               <div className="count-adverts">
                 <span>Найденно: 30</span>
                 <Divider vertical />
@@ -94,12 +88,14 @@ function FilterCard() {
             </FlexboxGrid.Item>
             <FlexboxGrid.Item colspan={8}>
               <div className="controls-wrapper">
-                <Toggle checked={enabledFilter} onChange={stateFilter} />
-                <Icon
-                  icon={isEnableNotification ? "bell-o" : "bell-slash"}
-                  size="lg"
-                  onClick={toggleNotification}
-                />
+                <Toggle checked={isActive} onChange={stateFilter} />
+                <div className="is-mute-wrapper">
+                  <Icon
+                    icon={isMute ? "bell-o" : "bell-slash"}
+                    size="lg"
+                    onClick={toggleNotification}
+                  />
+                </div>
                 <Icon
                   icon="trash-o"
                   size="lg"
@@ -114,9 +110,9 @@ function FilterCard() {
 
       {/* TODO: Может модалы вынести в отдельный компонент? */}
       <Modal show={showModalRemoveFilter} onHide={closeModal} size="xs">
-        <Modal.Body className="modal">
+        <Modal.Body className="filter-card-modal">
           <Icon icon="remind" />
-          Вы уверены, что хотите удалить фильтр {titleFilter}?
+          Вы уверены, что хотите удалить фильтр {name}?
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={confirmModal} appearance="primary">

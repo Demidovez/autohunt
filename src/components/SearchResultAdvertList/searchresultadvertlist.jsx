@@ -1,16 +1,16 @@
 import React from "react";
 import "./styles.scss";
-import ResultSearchAdvertCard from "../ResultSearchAdvertCard/resultsearchadvertcard";
+import SearchResultAdvertCard from "../SearchResultAdvertCard/searchresultadvertcard";
 import { Button, Icon } from "rsuite";
 import { formatNumber } from "../../helpers";
 
-function ResultSearchAdvertList({ tab, getMore, onToFilter }) {
+function SearchResultAdvertList({ tab, getMore, onToFilter }) {
   const { adverts, count, moreAdverts } = tab;
 
   return (
     <div className="result-search-advert-list-component">
       {[...adverts, ...moreAdverts].map((advert) => (
-        <ResultSearchAdvertCard key={advert.id} advert={advert} />
+        <SearchResultAdvertCard key={advert.id} advert={advert} />
       ))}
       <div className="controls-wrapper">
         <div>
@@ -40,4 +40,4 @@ function ResultSearchAdvertList({ tab, getMore, onToFilter }) {
   );
 }
 
-export default ResultSearchAdvertList;
+export default SearchResultAdvertList;

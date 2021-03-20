@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import "./styles.scss";
 import { Badge, Loader, Nav, Panel } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
-import ResultSearchAdvertList from "../ResultSearchAdvertList/resultsearchadvertlist";
+import SearchResultAdvertList from "../SearchResultAdvertList/searchresultadvertlist";
 import FilterTags from "../FilterTags/filtertags";
 import {
   goSearchMoreAction,
@@ -74,7 +74,7 @@ function SearchResult({ onToFilter }) {
             ))}
             <Loader content="Загрузка..." className={isLoading ? "show" : ""} />
           </Nav>
-          <ResultSearchAdvertList
+          <SearchResultAdvertList
             tab={tabs.find((t) => t.key === searchBy)}
             getMore={getMoreAdverts}
             onToFilter={onToFilter}

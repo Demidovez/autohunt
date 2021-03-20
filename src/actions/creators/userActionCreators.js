@@ -1,12 +1,34 @@
 import Actions from "../types/userActionTypes";
 
+// TODO: Много где нужно повторять список параметров. Может поменять на [...args]?
 export const onSaveFilterToUserAction = (
   userId,
   nameOptions,
-  filterOptions
+  filterOptions,
+  tags
 ) => ({
   type: Actions.SAVE_FILTER_OPTIONS,
-  payload: { userId, nameOptions, filterOptions },
+  payload: { userId, nameOptions, filterOptions, tags },
+});
+
+export const updateSavedFilterAction = (filter) => ({
+  type: Actions.UPDATE_FILTER,
+  payload: filter,
+});
+
+export const removeSavedFilterAction = (id) => ({
+  type: Actions.REMOVE_FILTER,
+  payload: id,
+});
+
+export const getFiltersAction = (userId) => ({
+  type: Actions.GET_FILTERS,
+  payload: userId,
+});
+
+export const setFiltersAction = (filters) => ({
+  type: Actions.SET_FILTERS,
+  payload: filters,
 });
 
 export const tryLoginUserAction = (loginValue) => ({

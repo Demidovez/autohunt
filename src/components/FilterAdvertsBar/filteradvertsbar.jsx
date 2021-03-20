@@ -32,7 +32,11 @@ import {
 import ColorPicker from "../ColorPicker/colorpicker";
 import ModelPicker from "../ModelPicker/modelpicker";
 import "./styles.scss";
-import { addOrRemoveItemInArray, formatNumber } from "../../helpers";
+import {
+  addOrRemoveItemInArray,
+  addToTagsPreAndPostfixes,
+  formatNumber,
+} from "../../helpers";
 import { onSaveFilterToUserAction } from "../../actions/creators/userActionCreators";
 import FilterSaveModal from "../FilterSaveModal/filtersavemodal";
 
@@ -44,6 +48,8 @@ const FilterAdvertsBar = () => {
     isFilterChanged,
     isNeedFetchAdverts,
     isFilterSaving,
+    tags,
+    tagPostfixesPrefixes,
   } = useSelector((state) => state.filterBar);
   const optionCarNames = useSelector((state) => state.optionCarNames);
   const dispatch = useDispatch();
@@ -114,8 +120,13 @@ const FilterAdvertsBar = () => {
 
   const closeFilterSaveModal = () => setShowFilterSaveModal(false);
 
-  const onSaveFilter = (nameOptions) =>
-    dispatch(onSaveFilterToUserAction(userId, nameOptions, state));
+  const onSaveFilter = (nameOptions) => {
+    const tagsValues = addToTagsPreAndPostfixes(tags, tagPostfixesPrefixes).map(
+      (tag) => tag.value
+    );
+
+    dispatch(onSaveFilterToUserAction(userId, nameOptions, state, tagsValues));
+  };
 
   const getStatusIcon = () => {
     let elem;
