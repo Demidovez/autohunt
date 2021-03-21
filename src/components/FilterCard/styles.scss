@@ -3,6 +3,21 @@
   font-family: "Open Sans", sans-serif;
   transition: background-color 0.3s linear;
 
+  .rs-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .color-label {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #3498ff;
+      margin-right: 10px;
+    }
+  }
+
   &.disabled {
     opacity: 0.6;
   }
@@ -12,7 +27,6 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 16px;
-    margin-bottom: 10px;
   }
 
   .btn-more {

@@ -27,7 +27,7 @@ import {
   Divider,
   FlexboxGrid,
   ButtonGroup,
-  Loader,
+  Alert,
 } from "rsuite";
 import ColorPicker from "../ColorPicker/colorpicker";
 import ModelPicker from "../ModelPicker/modelpicker";
@@ -47,9 +47,9 @@ const FilterAdvertsBar = () => {
     countAllAdverts,
     isFilterChanged,
     isNeedFetchAdverts,
-    isFilterSaving,
     tags,
     tagPostfixesPrefixes,
+    filterSavedStatus,
   } = useSelector((state) => state.filterBar);
   const optionCarNames = useSelector((state) => state.optionCarNames);
   const dispatch = useDispatch();
@@ -67,6 +67,21 @@ const FilterAdvertsBar = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isNeedFetchAdverts]);
+
+  useEffect(() => {
+    if (filterSavedStatus) {
+      switch (filterSavedStatus) {
+        case 1:
+          Alert.error(`Ошибка сохранения!`);
+          break;
+        case 2:
+          Alert.success(`Фильтр сохранен!`);
+          break;
+        default:
+          Alert.error(`Ошибка сохранения!`);
+      }
+    }
+  }, [filterSavedStatus]);
 
   const setCurrency = (label, unit) => {
     if (label !== state.currency.label) {
@@ -126,18 +141,6 @@ const FilterAdvertsBar = () => {
     );
 
     dispatch(onSaveFilterToUserAction(userId, nameOptions, state, tagsValues));
-  };
-
-  const getStatusIcon = () => {
-    let elem;
-
-    if (isFilterSaving) {
-      elem = <Loader size="xs" />;
-    } else {
-      elem = <Icon icon="save" />;
-    }
-
-    return <div className="icon-wrapper">{elem}</div>;
   };
 
   const { carcaseNames, fuelNames } = optionCarNames;
@@ -408,7 +411,7 @@ const FilterAdvertsBar = () => {
             </Button>
             {isLogined && (
               <Button onClick={openFilterSaveModal}>
-                {getStatusIcon()} сохранить
+                <Icon icon="save" /> сохранить
               </Button>
             )}
           </ButtonGroup>

@@ -69,7 +69,7 @@ function AdvertCard({ advert, className }) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src={`${advert.site}.png`} alt={`${advert.site}`} />
+                    <img src={`/${advert.site}.png`} alt={`${advert.site}`} />
                   </a>
                 </div>
               </FlexboxGrid.Item>

@@ -31,6 +31,21 @@ export const setFiltersAction = (filters) => ({
   payload: filters,
 });
 
+export const getFoundAutoItemsAction = (userId) => ({
+  type: Actions.GET_FOUND_AUTO_ITEMS,
+  payload: userId,
+});
+
+export const setFoundAutoItemsAction = (foundAutoItems, count) => ({
+  type: Actions.SET_FOUND_AUTO_ITEMS,
+  payload: { foundAutoItems, count },
+});
+
+export const setIsFoundAutoLoadingAction = (isLoading) => ({
+  type: Actions.SET_IS_FOUND_AUTO_LOADING,
+  payload: isLoading,
+});
+
 export const tryLoginUserAction = (loginValue) => ({
   type: Actions.TRY_LOGIN,
   payload: loginValue,

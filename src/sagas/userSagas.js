@@ -2,6 +2,7 @@ import { put, call, takeEvery } from "redux-saga/effects";
 import Actions from "../actions/types/userActionTypes";
 import {
   getFilters,
+  getFoundAutoItems,
   removeSavedFilter,
   saveFilter,
   tryLoginUser,
@@ -11,6 +12,8 @@ import {
 import {
   logoutUserAction,
   setFiltersAction,
+  setFoundAutoItemsAction,
+  setIsFoundAutoLoadingAction,
   setUserAction,
 } from "../actions/creators/userActionCreators";
 import {
@@ -57,9 +60,10 @@ function* workerTryLogout() {
 function* workerSaveFilter(action) {
   yield put(setIsSavingFilterAction(true));
 
+  // TODO: Нужно вернуть статус 1 - ошибка, 2 - успех
   const isSavedFilter = yield call(saveFilter, action.payload);
 
-  yield put(setSaveFilterSuccessAction(isSavedFilter));
+  yield put(setSaveFilterSuccessAction(isSavedFilter ? 2 : 1));
 }
 
 function* workerGetFilters(action) {
@@ -76,6 +80,15 @@ function* workerRemoveSavedFilter(action) {
   yield call(removeSavedFilter, action.payload);
 }
 
+function* workerGetFoundAutoItems(action) {
+  yield put(setIsFoundAutoLoadingAction(true));
+
+  const { rows, count } = yield call(getFoundAutoItems, action.payload);
+
+  yield put(setFoundAutoItemsAction(rows, count));
+  yield put(setIsFoundAutoLoadingAction(false));
+}
+
 export default function* watcherSaga() {
   yield takeEvery(Actions.TRY_LOGIN, workerTryLogin);
   yield takeEvery(Actions.TRY_SIGNIN, workerTrySignin);
@@ -85,4 +98,5 @@ export default function* watcherSaga() {
   yield takeEvery(Actions.GET_FILTERS, workerGetFilters);
   yield takeEvery(Actions.UPDATE_FILTER, workerUpdateSavedFilter);
   yield takeEvery(Actions.REMOVE_FILTER, workerRemoveSavedFilter);
+  yield takeEvery(Actions.GET_FOUND_AUTO_ITEMS, workerGetFoundAutoItems);
 }

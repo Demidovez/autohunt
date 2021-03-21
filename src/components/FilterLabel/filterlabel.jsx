@@ -11,8 +11,8 @@ function FilterLabel({ filter, children }) {
         placement="right"
         speaker={<Tooltip>Фильтр, по которому было найдено объявление</Tooltip>}
       >
-        <Link style={{ backgroundColor: filter.color }} to={filter.link}>
-          {filter.title}
+        <Link style={{ backgroundColor: filter.color }} to={"filter.link"}>
+          {filter.name}
         </Link>
       </Whisper>
 

@@ -61,6 +61,10 @@ function FilterCard({ filter }) {
     <Panel className={`filter-card-component ${!isActive ? "disabled" : ""}`}>
       <Container>
         <Header>
+          <div
+            className="color-label"
+            style={{ backgroundColor: color || "#3498ff" }}
+          />
           <h4>{name}</h4>
         </Header>
         <Content>

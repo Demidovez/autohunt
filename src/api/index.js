@@ -175,3 +175,18 @@ export const removeSavedFilter = async (id) => {
     throw new Error(e);
   }
 };
+
+export const getFoundAutoItems = async (userId) => {
+  try {
+    const { data } = await axios.post(
+      "https://server.autohunt.by/get_found_auto_items",
+      {
+        userId,
+      }
+    );
+
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};

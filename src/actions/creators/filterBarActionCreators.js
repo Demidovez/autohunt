@@ -101,7 +101,7 @@ export const setIsSavingFilterAction = (isSaving) => ({
   payload: isSaving,
 });
 
-export const setSaveFilterSuccessAction = (isSaved) => ({
+export const setSaveFilterSuccessAction = (saveStatus) => ({
   type: Actions.SET_IS_SAVED_FILTER,
-  payload: isSaved,
+  payload: saveStatus,
 });
